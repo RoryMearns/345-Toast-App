@@ -55,40 +55,49 @@ body {
    font-weight: 300;
    background-color: #ECECEA;
 }
+
 h1 {
 	font-size: 50px;
 	font-weight: 600;
 	margin: 23px 0;
 	text-align: center;
 }
+
 h2 {
 	font-size: 30px;
 	font-weight: 500;
 	margin: 20px 0;
 }
+
 p {
 	margin: 10px 0;
 }
+
 strong {
 	font-weight: 500;
 }
+
 section {
 	width: 800px;
 	margin: 0 auto;
 }
+
 header p {
 	text-align: center;
 }
+
 nav {
 	text-align: center;
 	margin: 20px 0;
 }
+
 nav li {
 	display: inline;
 	padding-right: 20px;
 	font-size: 18px;
 	font-weight: 900;
 }
+
 footer{
 	height: 110px;
 	background-color: #558C89;
@@ -96,14 +105,17 @@ footer{
 	padding-top: 8px;
 	text-align: center;
 }
+
 footer p {
 	font-size: 13px;
 	color: #ECECEA;
 }
+
 footer nav li {
 	font-size: 16px;
 	font-weight: 400;
 }
+
 a {
 	color: black;
 }
@@ -111,27 +123,34 @@ a {
 footer a {
 	color: #ECECEA;
 }
+
 a:visited {
 	color: black;
 }
+
 footer a:visited {
 	color: #ECECEA;
 }
+
 a:hover, a:focus {
 	color: #D9853B;
 }
+
 footer a:hover, a:focus {
 	color: #D9853B;
 }
+
 .brief {
 	font-style: italic;
 	font-weight: 100;
 }
+
 .deadlink {
 	color: #aaaaaa;
 }
+
 .mainapp {
-	height: 500px;
+	height: 400px;
 }
 
 
