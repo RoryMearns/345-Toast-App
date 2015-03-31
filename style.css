@@ -49,11 +49,37 @@ a {
 }
 
 /* ---------------------------------------------- */
-/* Our custom styles are below */
+/* My custom styles are below */
+
+/*
+My Golden Ratio for Typography: Helvetica Neue
+Content Width: 685px
+Font Size: 16px
+line Height: 26px
+
+My Color Scheme:
+Light Gray 1: #F2F2F2 - (lightest)
+Light Gray 2: #E6E6E6
+Light Gray 3: #DCDCDA
+Mid Gray: #C4C4C4
+Dark Gray 1: #4C565C
+Dark Gray 2: #383B3E
+Light Green 1: #72C29B
+Light Green 2: #60AA85
+Mid Green: #47834B
+Mid Brown: #A4A875
+Mid Orange: #FF5E14
+*/
+
+
+
 body {
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
    font-weight: 300;
-   background-color: #ECECEA;
+   font-size: 16px;
+   line-height: 26px;
+   background-color: #F2F2F2;
+   color: #383B3E;
 }
 
 h1 {
@@ -78,8 +104,12 @@ strong {
 }
 
 section {
-	width: 800px;
+	width: 685px;
 	margin: 0 auto;
+}
+
+header {
+
 }
 
 header p {
@@ -100,7 +130,7 @@ nav li {
 
 footer{
 	height: 110px;
-	background-color: #558C89;
+	background-color: #60AA85;
 	margin-top: 25px;
 	padding-top: 8px;
 	text-align: center;
@@ -108,7 +138,7 @@ footer{
 
 footer p {
 	font-size: 13px;
-	color: #ECECEA;
+	color: #383B3E;
 }
 
 footer nav li {
@@ -121,23 +151,23 @@ a {
 }
 
 footer a {
-	color: #ECECEA;
+	color: #383B3E;
 }
 
 a:visited {
-	color: black;
+	color: #383B3E;
 }
 
 footer a:visited {
-	color: #ECECEA;
+	color: #383B3E;
 }
 
 a:hover, a:focus {
-	color: #D9853B;
+	color: #FF5E14;
 }
 
 footer a:hover, a:focus {
-	color: #D9853B;
+	color: #FF5E14;
 }
 
 .brief {
@@ -146,7 +176,7 @@ footer a:hover, a:focus {
 }
 
 .deadlink {
-	color: #aaaaaa;
+	color: #C4C4C4;
 }
 
 .mainapp {
