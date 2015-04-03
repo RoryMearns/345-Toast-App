@@ -16,22 +16,22 @@
 		<p>NOTE: I was originally in a group with George Jackson, Benjamin Ryan and Mohammed Tarabishi but resigned from the group due to difficulties.</p>
 	</header>
 
+	<section id="contents">
 	<h2>Contents</h2>
 	<ul>
 		<li><a href="#group_members">Group Members</a></li>
-		<li><a href="#smartwatch_app"></a>My Smartwatch App</li>
-		<li><a href="#version_control"></a>Version Control</li>
-		<li><a href="#language"></a>Programming Language</li>
-		<li><a href="#editors"></a>Editors and IDEs</li>
-		<li><a href="#debugging"></a>Debugging Tools</li>
-		<li><a href="#schedule"></a>Project Schedule</li>
+		<li><a href="#smartwatch_app">My Smartwatch App</a></li>
+		<li><a href="#version_control">Version Control</a></li>
+		<li><a href="#language">Programming Language</a></li>
+		<li><a href="#editors">Editors and IDEs</a></li>
+		<li><a href="#debugging">Debugging Tools</a></li>
+		<li><a href="#schedule">Project Schedule</a></li>
 	</ul>
+	</section>
 
 	<section id="group_members">
 		<h2>Group Members</h2>
-		<p class="brief">1%	Form a group of 3 to 4 people. Include in your report the full names and student IDs of each member, together with a name for the group as a whole. Briefly describe each member’s strengths and weaknesses as relevant to this project. Your claims will be scrutinised by “intellects vast and cool and unsympathetic” who will not be impressed by boasting. Be particularly clear about how much you know about HTML5, the 'canvas' element, SVG, CSS, and JavaScript.</p>
-
-		<p>Our group (<strong>Toast Inc.</strong>) consists of the following 3 members:</p>
+		<p>My group (<strong>3.0</strong>) consists of the following members:</p>
 
 		<h3>Rory Mearns</h3>
 
@@ -53,33 +53,126 @@
 	</section>
 
 	<section id="smartwatch_app">
-		<h2>Section 2 (2%) - Our Smartwatch App</h2>
-		<p class="brief">2%	Include a brief and clear description of the smart watch application you intend to prototype. Include a diagram showing how the work will be partitioned between the prototype proper and the emulator. Include storyboards if they are appropriate. Search for related products and say what you find. It is OK if someone else had your idea first.</p>
+		<h2>The Smartwatch App</h2>
+		<p>My smart watch app is a simple forecasting app for windsurfing. It will provide on-demand forecasts, alerts for upcoming desirable weather and recommendations for equipment selection.</p>
+
+		<p><em>Why a windsurf & forcast app?</em> I realise that this is an app for a very niche market. However I see this as a prototype for an app that can have a much broader appeal. There are many popular wind and water sports that rely on weather and ocean conditions (surfing, kite-boarding, wind-surfing, kayaking, paddle boarding, fishing, snorkelling and diving to name a few) and my proposed app could be extended to include these sports with relative ease. I am a novice windsurfer and so I understand some of these forecasting tools and I use them fairly regularly that is why I have chosen to use this sport as a proof of concept for this app. If this idea were to be applied to surfing for example the alerts could be based on wave height forecasting, for fishing it may be based on tide information with a bias from the weather and wind direction possibly even phases of the moon.</p>
+
+		<p>Windsurfing is a sport that relies on having the appropriate weather for your corresponding skill level and also choosing the right equipment for the given weather. The app will periodically retrieve weather forecast information from an online weather API and store it locally. Initially this will be simulated but the aim is to have it call a real API, such as the ‘Magic Seaweed API’ http://magicseaweed.com/developer/forecast-api , in the final version. With the weather information now in the app the user will be able to simply browse the forecast like any other weather app or they will be able to have personalised alerts set up that will let them know of upcoming favourable weather.</p> 
+
+		<p>The app will also provide gear recommendations for any given forecast. It is quite common for windsurfers to own a quiver of different sail sizes (usually 3 - 6 sails) to cover a range of weather conditions, and to match their skill level and weight. A lot of windsurfers use online calculators to make these decisions such as the popular calculator on ‘James’ Blog’ (http://jimbodouglass.blogspot.co.nz/2010/11/updated-windsurf-calculator-online.html). I plan to use the formula from this calculator to make the sail recommendations in my app. Sails are measured in square meters and range between about 3.0m2 and 9.5m2. For example a small sail for very strong winds may may be 4.5 m2 and the weather for such a sail is colloquially termed ‘4.5 weather’. For my app I will use this two digit decimal number only (without the unit reference) to refer to the sail size as is often done when speaking about windsurf sails.</p>
+
+		<p>Alerts and equipment recommendations will be based on user set preferences. Initially I had thought that fewer user settings would be better as it would make the app simpler overall (not only simpler to code but simpler for the user as well) however with fewer personalisation settings the more likely it is to give unwanted alerts. Some balance needs to be reached between the number of personalisation settings and the simplicity of the app. The personalisation settings will include some combination of the following:</p>
+		<ul>
+			<li><strong>Skill Level</strong>: This would be a single choose from 3 or 4 different options such as “novice” or “experienced”.</li>
+			<li><strong>Wind Preferences</strong>: This will be a multi-choice set of options such as “gentle breeze sailing”, “brisk winds” and “I’ll be out there in hurricane force”.</li>
+			<li><strong>Weather Preferences</strong>: This will also be multi-choice set of options such as “sunny”, “warm”, “cold” or “anything goes”</li>
+			<li><strong>User Weight</strong>: Sail selection is greatly affected by rider weight.</li>
+			<li><strong>Sails Owned</strong>: If the user can add the sail sizes they own to the app then the app can then make a direct recommendation of which sail to use.</li>
+			<li><strong>Location</strong>: Weather reports will be based on a specific location. For proof of concept I plan to hard code the location in but a final app my include the ability to set up alerts for multiple locations. For example I might go windsurfing in Dunedin harbour on any slightly windy condition because I live nearby, but I might drive up or down the coast to specific locations but only if the forecast conditions reach some specific threshold.</li> 
+		</ul>
+		<p>Below are some early mockups of what the different screens might look like for this app:</p>
+
+		<p>Weather data for this app will be modelled directly off the JSON data provided by the ‘Magic Seaweed API’ http://magicseaweed.com/developer/forecast-api . Weather data will be stored locally in the the app program. The emulator will take care of all the control functions such as button pushes, screen taps, swipe control, current time and date, audio and rendering the display. The application itself will take care of all the data processing, creating custom messages, making gear recommendations and custom graphics.</p>
 	</section>
 
 	<section id="version_control">
-		<h2>Section 3 (1%) - Version Control</h2>
-		<p class="brief">1%	State which version control system you will use and why. Creating accounts on GitHub and SourceForge is easy and free, but you could set up a SubVersion, Mercurial, Git, Darcs, &c repository here or elsewhere. Include the URL of your repository in your report. This gets only 1% because it doesn’t really matter that much which version control system you use as long as you use some version control system.</p>
+		<h2>Version Control</h2>
+
+		<p>Little research it is required to see that Git is the most widespread version control system in use today. This is backed up by a 2014 survey of eclipse users (https://ianskerrett.wordpress.com/2014/06/23/eclipse-community-survey-2014-results/) which showed that 33.3% of the developers surveyed used Git followed by 30.7% of developers who used Subversion. The survey also noted a continued downward trend of Subversion users. Looking through job advertisements on trademe.co.nz and seek.co.nz also demonstrates the widespread adoption of Git, “understanding Git” appears to be a common skill requirement for advertised software developer positions.</p> 
+
+		<p>For these reasons, and the fact that I already have some limited experience using Git from the Terminal, Git will be the version control system of choice for this project.</p>
+
+		<p>The main Git repository hosting services available are ‘GitHub’ and ‘GitBucket’.</p>
+
+		<p>GitBucket offers free accounts with unlimited private repositories but the free service is limited in the number of collaborators you can have on a project (5 being the limit). GitHub on the other hand offers free accounts with unlimited collaborators but with the limitation of no private repositories.</p>
+
+		<p>As far as support goes it appears that GitHub is more widely used on the web. Viewing multiple youtube tutorials on how to use ‘Git’ it appears that GitHub is the most widely recommended service. Being so widely used it has the additional advantage of have an vast amount of supporting material online. A quick google search of “how to do XYZ on GitHub” brings up resources and documentation form the official site, questions and answers from StackOverflow, guides on blogs such as lifehacker.com and sites such as wikihow.com.</p>
+
+		<p>In addition to the widespread support for GitHub they also provide coupons for free “Micro Accounts” (usually $7 per month) with private repositories for tertiary students at: https://education.github.com/pack The student pack also comes with free access to a mix of other services (hosting, text editors, DNS management etc.) that are not normally free.</p>
+
+		<p>GitHub will the the repository used for this project.</p>
 	</section>
 
 	<section id="language">
-		<h2>Section 4 (1%) - Programming Language</h2>
-		<p class="brief">1%	State what programming language you will use. You may write in raw JavaScript, but you may also use a type checked variant that generates JavaScript, such as TypeScript or Dart. There is no wrong selection here, as far as marks go. The point is to make an informed choice.</p>
+		<h2>Programming Language</h2>
+
+		<p>My experience with Javascript is very limited and so my initial plan is to write the bulk of my code in raw Javascript and jQuery. I am enrolled in https://www.codeschool.com/ and to date have complete several of their courses on HTML, CSS, Sass and Git (my profile can be viewed here: https://www.codeschool.com/users/Mearns). I have found all their course to be easy to follow, challenging where needed and overall excellent for learning. As far as learning Javascript and jQuery I plan to complete the courses on these topics at codeschool (https://www.codeschool.com/paths/javascript) by early May 2015. CodeSchool also offers courses on using client and server side Javascript frameworks such as Angular.js, Ember.js, Backbone.js, Node.js and Express.js. However at this stage I don’t intend on using any of these frameworks as the size of this project is unlikely to warrant it. Should the project become appreciably large I will explore Angular.js, Backbone.js and Node.js as these three seem to be the most popular and widely supported frameworks.</p>
+
+		<p>Having looked at the numerous other languages out there that generate Javascript my personal preference is Dart as on face value it appears to be similar to Java, the programming language that I am most familiar with. I would like to put more effort into understand and ultimately learning Dart but at this early stage I believe it is more important to focus on learning the fundamentals of raw Javascript. When I become comfortable with raw Javascript I will reconsider using and implementing Dart into the final app.</p>
+
+		<p>For the visualisation of the app within the HTML environment I plan to use the HTML canvas element. I like the power behind some of the Javascript libraries such as D3.js however the premise of my app is very simple and the use of such a library which is intended for data visualisations may be overkill for what I am trying to achieve. Canvas appears to be relatively straight forward and ideal for what I am trying to achieve.</p>
 	</section>
 
 	<section id="editors">
-		<h2>Section 5 (1.5%) - Editors and IDEs</h2>
-		<p class="brief">1·5%	State which editor you will use and why. You should look briefly at Eclipse, NetBeans, BlueFish, Brackets, and WebStorm. All of these except WebStorm are open source, and we have a licence for WebStorm. You should search on the web for comparisons of these programs; while we forbid plagiarism, research is good. The difference is honesty about who did what, giving credit where credit is due. You should include a short list of features that matter to you and why they matter.</p>
+		<h2>Editors and IDEs</h2>
+		
+		<p>Myself and another group member (Matt Wynyard who later left the course) began exploring Editors and IDE’s very early on in the assignment. At the time I was just starting to become familiar with using Sublime Text ( https://www.sublimetext.com/ ) for writing HTML and CSS code and using the Terminal to operate Git and push/pull from GitHub. Matt was very keen on everyone in our group using a single IDE for consistency, his suggestion at the time was NetBeans. I installed and tested NetBeans on my computer for a couple of weeks just writing HTML & CSS while using the built in Git & GitHub features to commit, push, pull, branch and merge.</p>
+
+		<p>While JetBeans provided all the functionality that we needed it also came bundled with a lot more features that weren’t needed, it seemed overly complex to start very simple new projects. After some testing with the GitHub integration in JetBeans (intentionally branching, merging, deleting branches etc.) I managed to ‘break’ the the repository I was testing it on and no matter what I tried I was unable to repair the repository and I would repeatedly get indecipherable error messages from the JetBeans application. I had not experienced this issue while exploring the functionality of Git and GitHub from the Terminal.</p>
+
+		<p>My personal preference is to stick with the Sublime Text editor in conjunction with the Terminal for all my coding work and version control. Even if I were still in a group at this stage I would see no reason for everyone to be using the same IDE or text editor if we were all working from a remote repository.</p>
+
+		<p>Sublime Text itself is seemingly simple but deceptively powerful text editor with extendable functionality (using plugins). The editor is multi-platform and comes at a fairly reasonable price of $70 and offers an extensive trial period. To test the ease and practicality of it’s claimed extendability I decided to see how easy it would be to to make Sublime Text recognise Sass files and syntax.</p>
+
+		<ul>
+			<li>First I needed to install Sublime Package Control which is recommended for adding on extra packages. To do this I followed the online instructions of opening the Sublime Text console and pasting in the instruction code to install ( https://packagecontrol.io/installation ). This took less than 2 minutes to complete.</li>
+			<li>The next step was to open the Command Palette in Sublime Text then click on “Package Control: Install Package”. This opened a search bar, I entered “Sass” and clicked on the first and most appropriate option that brings Sass support to Sublime text and the install took less than a minute.</li>
+		</ul>
+
+		<p>Overall it took me less than 5 minutes to add extra functionality to Sublime Text that I was interest in. It worked flawlessly and my version of Sublime Text now recognises any and all Sass files I open.</p>
+
+
+		<p>In addition to Sublime Text and Teminal I discovered the website CodePen.io - http://codepen.io - that appears to be very useful for working with HTML, CSS & Javascript. CodePen is marketed as a “Front end developer playground” and runs entirely within the web browser. When you log into CodePen the first thing you do is create a new ‘pen’ and each pen consists of 4 panels: a panel each for HTML code, CSS code and Javascript code, and a fourth panel that displays the rendered code . This would be very useful for running small pieces of code (for example Javascript functions or CSS styles) and seeing how they function in the real world, or in isolation from a complete app, with instant feedback. A good place to test and brainstorm small ideas before inserting them into the final code.</p>
+
+		<p>For the remainder of this assignment I plan to work using the following tools:</p>
+			<ul>
+				<li><strong>Sublime Text</strong>: Code editor</li>
+				<li><strong>Terminal</strong>: To power Git & GitHub version control system</li>
+				<li><strong>CodePen</strong>: To test ideas</li>
+			</ul>
 	</section>
 
 	<section id="debugging">
-		<h2>Section 6 (1.5%) - Debugging Tools</h2>
-		<p class="brief">1·5%	Say what debugging tools you propose to use and why. Start with the W3Schools page on JavaScript debugging. You should particularly look at Chrome’s DevTools and Firebug, and of course check back with the IDEs to see what they offer in the way of debugging support.</p>
+		<h2>Debugging Tools</h2>
+		
+		<p>Having some experience with writing HTML and CSS I am familiar with using the Firebug web development tool for inspecting HTML and making changes to live CSS. While proven useful for HTML & CSS inspection Firebug is also advertised as “The most advanced JavaScript debugger available for any browser” (http://getfirebug.com/).</p> 
+
+		<p>As a Javascript debugging tool Firebug allows the ability to set breakpoints within the Javascript at the click of a button and then allows stepping through the code one step at a time. Firebug also allows the ability to inspect variables, objects and even the call stack while the script is paused.</p>
+
+		<p>At this stage, with my current understanding of Javascript, the Firebug tool seems more than adequate as a debugging tool for the anticipated size and complexity of my emulator & smart watch application.</p> 
+
+		<p>I am familiar with unit testing Java and would like to include some unit testing for my Javascript. QUnit (http://qunitjs.com/) appears to be one of more popular unit testing frameworks for Javascript (although there is no obvious internet-favourite of this category) and there are online tutorials (http://www.smashingmagazine.com/2012/06/27/introduction-to-javascript-unit-testing/) that provide useful introductions on how to integrate QUnit tests into Javascript code.</p>
 	</section>
 
 	<section id="schedule">
-		<h2>Section 7 (2%) - Work Schedule</h2>
-		<p class="brief">2%	End with a section breaking the work to be done into pieces, estimating the pieces, and showing a timetable of who will do what when. You are not required to predict the future perfectly; these are estimates. Do not forget to include the time needed to learn to use your selected tools effectively enough.</p>
+		<h2>Project Schedule</h2>
+		<ul>
+			<li>April
+				<ul>
+					<li>- Begin CodeSchool courses on Javascript and jQuery</li>
+				</ul>
+			</li>
+
+		<li>May
+			<ul>
+				<li>- Finished CodeSchool courses on Javascript and jQuery</li>
+			</ul>
+		</li>
+
+		<li>June</li>
+		
+		<li>July</li>
+		
+		<li>August</li>
+		
+		<li>September</li>
+		
+		<li>October</li>
+		
+		<li>November</li>
+		</ul>
+
 	</section>
 
 	<footer>
