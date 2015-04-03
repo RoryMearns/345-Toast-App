@@ -31,7 +31,7 @@
 
 	<section id="group_members">
 		<h2>Group Members</h2>
-		<p>My group (<strong>3.0</strong>) consists of the following members:</p>
+		<p>My group consists of the following members:</p>
 
 		<h3>Rory Mearns</h3>
 
@@ -39,7 +39,7 @@
 
 		<h4>Strengths:</h4> 
 		<ul>
-			<li>Although I have no experience with the SVG file format I have a lot of experience with static vector graphic formats (such as .ai & .eps). I also have some experience with the basic principals of graphic design including layouts, grids, composition, colour and typography.</li>
+			<li>Although I have no experience with the SVG file format I have a lot of experience with static vector graphic formats (such as .ai and .eps). I also have some experience with the basic principals of graphic design including layouts, grids, composition, colour and typography.</li>
 			<li>I have limited experience with using HTML & CSS and have spent some time learning Sass, a scripting language that extends CSS.</li>
 			<li>I have experience in report writing and scientific documentation. I wrote a masters thesis at Victoria University and spent three years writing reports for an engineering firm. </li>
 		</ul>
@@ -60,17 +60,23 @@
 
 		<p>Windsurfing is a sport that relies on having the appropriate weather for your corresponding skill level and also choosing the right equipment for the given weather. The app will periodically retrieve weather forecast information from an online weather API and store it locally. Initially this will be simulated but the aim is to have it call a real API, such as the ‘Magic Seaweed API’ http://magicseaweed.com/developer/forecast-api , in the final version. With the weather information now in the app the user will be able to simply browse the forecast like any other weather app or they will be able to have personalised alerts set up that will let them know of upcoming favourable weather.</p> 
 
-		<p>The app will also provide gear recommendations for any given forecast. It is quite common for windsurfers to own a quiver of different sail sizes (usually 3 - 6 sails) to cover a range of weather conditions, and to match their skill level and weight. A lot of windsurfers use online calculators to make these decisions such as the popular calculator on ‘James’ Blog’ (http://jimbodouglass.blogspot.co.nz/2010/11/updated-windsurf-calculator-online.html). I plan to use the formula from this calculator to make the sail recommendations in my app. Sails are measured in square meters and range between about 3.0m2 and 9.5m2. For example a small sail for very strong winds may may be 4.5 m2 and the weather for such a sail is colloquially termed ‘4.5 weather’. For my app I will use this two digit decimal number only (without the unit reference) to refer to the sail size as is often done when speaking about windsurf sails.</p>
+		<p>The app will also provide gear recommendations for any given forecast. It is quite common for windsurfers to own a quiver of different sail sizes (usually 3 - 6 sails) to cover a range of weather conditions, and to match their skill level and weight. A lot of windsurfers use online calculators to make these decisions such as the popular calculator on James’ Blog (http://jimbodouglass.blogspot.co.nz/2010/11/updated-windsurf-calculator-online.html). I plan to use the formula from this calculator to make the sail recommendations in my app. Sails are measured in square meters and range between about 3.0m2 and 9.5m2. For example a small sail for very strong winds may may be 4.5 m2 and the weather for such a sail is colloquially termed ‘4.5 weather’. For my app I will use this two digit decimal number only (without the unit reference) to refer to the sail size as is often done when speaking about windsurf sails.</p>
 
 		<p>Alerts and equipment recommendations will be based on user set preferences. Initially I had thought that fewer user settings would be better as it would make the app simpler overall (not only simpler to code but simpler for the user as well) however with fewer personalisation settings the more likely it is to give unwanted alerts. Some balance needs to be reached between the number of personalisation settings and the simplicity of the app. The personalisation settings will include some combination of the following:</p>
-		<ul>
-			<li><strong>Skill Level</strong>: This would be a single choose from 3 or 4 different options such as “novice” or “experienced”.</li>
-			<li><strong>Wind Preferences</strong>: This will be a multi-choice set of options such as “gentle breeze sailing”, “brisk winds” and “I’ll be out there in hurricane force”.</li>
-			<li><strong>Weather Preferences</strong>: This will also be multi-choice set of options such as “sunny”, “warm”, “cold” or “anything goes”</li>
-			<li><strong>User Weight</strong>: Sail selection is greatly affected by rider weight.</li>
-			<li><strong>Sails Owned</strong>: If the user can add the sail sizes they own to the app then the app can then make a direct recommendation of which sail to use.</li>
-			<li><strong>Location</strong>: Weather reports will be based on a specific location. For proof of concept I plan to hard code the location in but a final app my include the ability to set up alerts for multiple locations. For example I might go windsurfing in Dunedin harbour on any slightly windy condition because I live nearby, but I might drive up or down the coast to specific locations but only if the forecast conditions reach some specific threshold.</li> 
-		</ul>
+		<dl>
+			<dt>Skill Level: </dt> 
+			<dd>This would be a single choose from 3 or 4 different options such as &ldquo;novice&rdquo; or &ldquo;experienced&rdquo;.</dd>
+			<dt>Wind Preferences: </dt>
+			<dd>This will be a multi-choice set of options such as &ldquo;gentle breeze sailing&rdquo;, &ldquo;brisk winds&rdquo; and &ldquo;I&rsquo;ll be out there in hurricane force&rdquo;.</dd>
+			<dt>Weather Preferences: </dt>
+			<dd>This will also be multi-choice set of options such as &ldquo;sunny&rdquo;, &ldquo;warm&rdquo;, &ldquo;cold&rdquo; or &ldquo;anything goes&rdquo;.</dd>
+			<dt>User Weight: </dt>
+			<dd>Sail selection is greatly affected by rider weight.</dd>
+			<dt>Sails Owned: </dt>
+			<dd>If the user can add the sail sizes they own to the app then the app can then make a direct recommendation of which sail to use.</dd>
+			<dt>Location: </dt>
+			<dd>Weather reports will be based on a specific location. For proof of concept I plan to hard code the location in but a final app my include the ability to set up alerts for multiple locations. For example I might go windsurfing in Dunedin harbour on any slightly windy condition because I live nearby, but I might drive up or down the coast to specific locations but only if the forecast conditions reach some specific threshold.</dd>
+		</dl>
 		<p>Below are some early mockups of what the different screens might look like for this app:</p>
 
 		<p>Weather data for this app will be modelled directly off the JSON data provided by the ‘Magic Seaweed API’ http://magicseaweed.com/developer/forecast-api . Weather data will be stored locally in the the app program. The emulator will take care of all the control functions such as button pushes, screen taps, swipe control, current time and date, audio and rendering the display. The application itself will take care of all the data processing, creating custom messages, making gear recommendations and custom graphics.</p>
@@ -83,7 +89,7 @@
 
 		<p>For these reasons, and the fact that I already have some limited experience using Git from the Terminal, Git will be the version control system of choice for this project.</p>
 
-		<p>The main Git repository hosting services available are ‘GitHub’ and ‘GitBucket’.</p>
+		<p>The main Git repository hosting services available are GitHub and GitBucket.</p>
 
 		<p>GitBucket offers free accounts with unlimited private repositories but the free service is limited in the number of collaborators you can have on a project (5 being the limit). GitHub on the other hand offers free accounts with unlimited collaborators but with the limitation of no private repositories.</p>
 
