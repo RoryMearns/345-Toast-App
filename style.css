@@ -129,7 +129,6 @@ section {
 
 #schedule {
 	border-bottom: none;
-	padding-bottom: none;
 }
 
 header {
@@ -152,6 +151,10 @@ dt {
 dd {
 	clear: right;
 	padding-left: 60px;
+}
+
+ul ul {
+	margin-left: 30px;
 }
 
 section li {
@@ -254,7 +257,6 @@ footer a:hover, a:focus {
 	height: 400px;
 	padding-top: 50px;
 	border-bottom: none;
-	padding-bottom: none;
 }
 
 #smartwatch_app figure {
