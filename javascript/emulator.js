@@ -5,9 +5,17 @@ Functions I wand the emulator to handle:
 
 ------ WRITING TO THE SCREEN ------
 drawPNG(x, y, w, h);
-drawText(x, y, class, color, string);			// class = how big?
+drawText(x, y, size, color, string);	// Should size be in point? 
 drawRect(x, y, w, h, color);
 drawCircle(x, y, w, h, color);
+
+------ FETCHING FUNCTIONAL DATA ------
+getTime();
+getDate();
+getDay();
+
+------ DELIVERING ALERTS ------
+alert();		// ??? not so sure about this one...
 
 
 ------ DELIVERING INPUT TO THE PROGRAM ------
