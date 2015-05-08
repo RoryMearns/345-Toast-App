@@ -35,8 +35,30 @@
 
 	<section id="prototype">
 		<h2>Emulator &amp; App Prototype</h2>
+		
+		
+		<div id="proto">
+			<canvas id="proto_canvas" width="340" height="340"></canvas>
 
-		<canvas id="proto_canvas" width="500" height="600"></canvas>
+			<div>
+				<div class="controls">
+					<div class="button inactive"></div>
+					<a class="button active" id="up"><p></p>&uarr;<p>Swipe Up</p></a>
+					<div class="button inactive"></div>
+				</div>
+				<div class="controls">
+					<a class="button active" id="left"><p>Swipe Left</p><p>&larr;</p></a>
+					<a class="button active" id="enter"><p>Select</p></a>
+					<a class="button active" id="right"><p>Swipe Right</p><p>&rarr;</p></a>
+				</div>
+				<div class="controls">
+					<div class="button inactive"></div>
+					<a class="button active" id="down"><p>Swipe Down</p><p>&darr;</p></a>
+					<div class="button inactive"></div>
+				</div>
+			</div>
+		</div>
+
 		
 	</section>
 
@@ -54,6 +76,9 @@
 		</nav>
 		<p>Written by: Rory Mearns (ID.3928873)</p>
 	</footer>
+
+	<script src="../prototype_javascript/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="../prototype_javascript/emulator.js" type="text/javascript"></script>
 
 </body>
 </html>

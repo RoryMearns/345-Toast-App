@@ -1,8 +1,29 @@
 /* Emulator for 345 Assignment: Rory Mearns (ID.3928873) */
 
 
-var canvas = document.getElementById('proto_canvas');			// Link to the canvas in the part 2 html
+// Canvas elemnt
+var canvas = $("#proto_canvas").get(0);
 var ctx = canvas.getContext("2d");	
+
+
+$(document).ready(function() {
+	$("#up").click(function() {
+		//alert("UP is working");
+	});
+	$("#down").click(function() {
+		//alert("DOWN is working");
+	});
+	$("#left").click(function() {
+		//alert("LEFT is working");
+	});
+	$("#right").click(function() {
+		//alert("RIGHT is working");
+	});
+	$("#enter").click(function() {
+		//alert("SELECT is working");
+	});
+	//ctx.fillRect(0, 0, 60, 60);
+});
 
 
 /* 
