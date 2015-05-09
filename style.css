@@ -279,6 +279,7 @@ footer a:hover, a:focus {
 
 canvas {
 	border: 1px solid #4C565C;
+	cursor: pointer;
 }
 
 #proto {
@@ -320,8 +321,6 @@ canvas {
 	color: inherit;
 }
 
-.inactive {
-}
 
 
 
