@@ -1,10 +1,18 @@
 /* Application for 345 Assignment: Rory Mearns (ID.3928873) */
 
 
+/* ------ User Settings Options ------ */
+var skill = ["beginner", "experienced"],	// Skill options available to users
+	days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+	weather = ["sunny", "overcast", "rain"];
+
+
 /* ------ User Settings ------ */
 var user = {
-	weight: 85,
-	sailingDays: ["wednesday", "friday", "saturday", "sunday"]
+	riderWeight: 85,
+	riderSailingDays: ["wednesday", "friday", "saturday", "sunday"],
+	riderSkill: "experienced",
+	riderLocation: "St Clair"
 }
 
 /* ------ Weather Data ------ */
@@ -19,7 +27,7 @@ is delivered daily at midnight. It contains the forecast for up to
 4 full days in advace with 6 hour intervals.
 */
 
-var weather = {
+var weatherData = {
 	localTimestamp: 1366902000,
 	issueTimestamp: 1366848000,
 	// The weather at the time of delivery
@@ -230,4 +238,13 @@ var weather = {
 
 function main () {
 
+	/* -- FOLLOWING USED FOR TESTING -- */
+	// drawRect(10, 10, 70, 30, "yellow");
+	// drawRect(10, 10, 70, 30, "yellow", 15 );
+	// drawLine(40, 40, 100, 200, "green", 5);
+	setBackgroundColor("red");
+	drawText(0, 48, "48px serif", "blue", "I Love Lamp");
+	drawText(0, 48, "48px serif", "blue", "I Love Lamp", true);
+	// drawCircle(150, 150, 50, "blue");
+	// drawCircle(150, 150, 50, "blue", 15);
 };

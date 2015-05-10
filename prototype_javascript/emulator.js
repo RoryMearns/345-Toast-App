@@ -38,12 +38,64 @@ function Queue () {
 
 
 
-/* ------ General Functions ------ */
+/* ------ General Functions Available for Apps ------ */
 
 function flag () {								// A testing funciton for getting things going
 	
 };
 
+// Draw a rectangle, stroke is optional without=filled, with=outline
+function drawRect (x, y, width, height, color, stroke) {
+	if (stroke) {
+		ctx.lineWidth = stroke;
+		ctx.strokeStyle = color;
+		ctx.strokeRect(x, y, width, height);
+	} else {
+		ctx.fillStyle = color;
+		ctx.fillRect(x, y, width, height);
+	}
+};
+
+// Draw a circle, stroke is optional without=filled, with=outline
+function drawCircle (centerX, centerY, radius, color, stroke) {
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+	if (stroke) {
+		ctx.lineWidth = stroke;
+		ctx.strokeStyle = color;
+		ctx.stroke();
+	} else {
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+};
+
+// Draw a line XY to XY, of color and width
+function drawLine (startX, startY, endX, endY, color, width) {
+	ctx.beginPath();
+	ctx.strokeStyle = color;
+	ctx.lineWidth = width;
+	ctx.moveTo(startX, startY);
+	ctx.lineTo(endX,endY);
+	ctx.stroke();
+};
+
+// Write text at XY, font takes standard CSS input (e.g. "48px serif")
+// center is optional boolean that will center text at XY if 'true'
+function drawText (x, y, font, color, string, center) {
+	if (center){
+		ctx.textAlign = 'center';
+	}
+	ctx.font = font;
+	ctx.fillStyle = color;
+	ctx.fillText(string, x, y);
+};
+
+
+// Persistent change to the background color
+function setBackgroundColor (color) {
+	$("canvas").css("background-color", color);
+};
 
 /* ------ Button & Input Listeners ------ */
 
