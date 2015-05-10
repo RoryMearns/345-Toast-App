@@ -250,6 +250,8 @@ function buildAlertScreen () {
 
 	// Write the location
 
+	// Draw the seperator line
+
 	// Write the wind speed
 
 	// write the temperature 
