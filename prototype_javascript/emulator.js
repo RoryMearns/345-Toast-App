@@ -40,7 +40,8 @@ function Queue () {
 
 /* ------ General Functions Available for Apps ------ */
 
-function flag () {								// A testing funciton for getting things going
+// Just a testing function of sorts
+function flag () {
 	
 };
 
@@ -91,6 +92,14 @@ function drawText (x, y, font, color, string, center) {
 	ctx.fillText(string, x, y);
 };
 
+// Draw an image at XY of width and height from 'source'
+function drawImage (x, y, width, height, source) {
+	var image = new Image();
+	image.onload = function() {
+		ctx.drawImage(image, x, y, width, height);
+	};
+	image.src = source;
+};
 
 // Persistent change to the background color
 function setBackgroundColor (color) {

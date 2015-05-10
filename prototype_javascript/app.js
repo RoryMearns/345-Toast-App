@@ -232,19 +232,49 @@ var weatherData = {
 }
 
 
+/* ------ Draw Home Screen ------ */
+function buildHomeScreen () {
+
+};
 
 
+/* ------ Draw Alert Screen ------ */
+function buildAlertScreen () {
+	// Paint the background
+	setBackgroundColor("#ccc");
+	// Draw the sail recommendation
+
+	// Draw the current weather icon
+
+	// Write the day
+
+	// Write the location
+
+	// Write the wind speed
+
+	// write the temperature 
 
 
+};
+
+
+/* ------ Draw Forcast Screen ------ */
+function buildForecastScreen () {
+
+};
+
+
+/* ------ Main Function ------ */
 function main () {
 
 	/* -- FOLLOWING USED FOR TESTING -- */
 	// drawRect(10, 10, 70, 30, "yellow");
 	// drawRect(10, 10, 70, 30, "yellow", 15 );
 	// drawLine(40, 40, 100, 200, "green", 5);
-	setBackgroundColor("red");
-	drawText(0, 48, "48px serif", "blue", "I Love Lamp");
-	drawText(0, 48, "48px serif", "blue", "I Love Lamp", true);
+	// setBackgroundColor("#ccc");
+	// drawText(0, 48, "48px serif", "blue", "I Love Lamp");
+	// drawText(0, 48, "48px serif", "blue", "I Love Lamp", true);
 	// drawCircle(150, 150, 50, "blue");
 	// drawCircle(150, 150, 50, "blue", 15);
+	// drawImage(100, 100, 100, 100, "../prototype_javascript/app_images/test_image.png");
 };
