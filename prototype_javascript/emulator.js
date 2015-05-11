@@ -86,6 +86,8 @@ function drawLine (startX, startY, endX, endY, color, width) {
 function drawText (x, y, font, color, string, center) {
 	if (center){
 		ctx.textAlign = 'center';
+	} else {
+		ctx.textAlign = 'start';
 	}
 	ctx.font = font;
 	ctx.fillStyle = color;

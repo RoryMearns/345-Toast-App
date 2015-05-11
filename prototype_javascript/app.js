@@ -19,7 +19,7 @@ var user = {
 /* 
 Note that this weather data format is very similar to the JSON 
 data delivered by the many weather API's avialable. Refer to the 
-magicseaweed weather api (delivered in a JSON array) as an example:
+magicseaweed weather api as an example:
 http://magicseaweed.com/developer/forecast-api
 
 For simplicity this app runs on the premise that the weather data
@@ -239,23 +239,25 @@ function buildHomeScreen () {
 
 
 /* ------ Draw Alert Screen ------ */
-function buildAlertScreen () {
+function buildAlertScreen (sailSize, day, location, windUpper, windLower, temp, image) {
 	// Paint the background
-	setBackgroundColor("#ccc");
+	setBackgroundColor("#000");
 	// Draw the sail recommendation
-
+	drawCircle(235, 75, 52, "white");
+	drawText(235, 95, "bold 60px helvetica", "black", sailSize, true);
 	// Draw the current weather icon
-
+	drawImage(55, 35, 94, 80, "../prototype_javascript/app_images/"+image);
 	// Write the day
-
+	drawText(170, 173, "bold 42px helvetica", "#939597", day, true);
 	// Write the location
-
+	drawText(170, 210, "100 30px helvetica ", "#939597", location, true);
 	// Draw the seperator line
+	drawLine(20, 225, 320, 225, "white", 1);
 
 	// Write the wind speed
-
+	drawText(30, 268, "100 30px helvetica ", "#00ADEF", ("Wind: "+windUpper+"-"+windLower+" kn"));
 	// write the temperature 
-
+	drawText(30, 308, "100 30px helvetica ", "#00ADEF", ("Temp: "+temp+"°C"));
 
 };
 
@@ -268,7 +270,7 @@ function buildForecastScreen () {
 
 /* ------ Main Function ------ */
 function main () {
-
+	buildAlertScreen(5.3, "Wednesday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg");
 	/* -- FOLLOWING USED FOR TESTING -- */
 	// drawRect(10, 10, 70, 30, "yellow");
 	// drawRect(10, 10, 70, 30, "yellow", 15 );
