@@ -4,7 +4,8 @@
 /* ------ User Settings Options ------ */
 var skill = ["beginner", "experienced"],	// Skill options available to users
 	days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
-	weather = ["sunny", "overcast", "rain"];
+	weather = ["sunny", "overcast", "rain"],
+	currentScreen;
 
 
 /* ------ User Settings ------ */
@@ -241,6 +242,7 @@ function buildHomeScreen () {
 /* ------ Draw Alert Screen ------ */
 function buildAlertScreen (sailSize, day, location, windUpper, windLower, temp, image) {
 	// Paint the background
+	clearScreen();
 	setBackgroundColor("#000");
 	// Draw the sail recommendation
 	drawCircle(235, 75, 52, "white");

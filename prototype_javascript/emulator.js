@@ -45,6 +45,11 @@ function flag () {
 	
 };
 
+// Clear the screen
+function clearScreen () {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+};
+
 // Draw a rectangle, stroke is optional without=filled, with=outline
 function drawRect (x, y, width, height, color, stroke) {
 	if (stroke) {
@@ -125,6 +130,7 @@ $(document).ready(function() {
 		//alert("RIGHT is working");
 	});
 	$("#enter").click(function() {		// Click 'Select'
+		clearScreen();
 		//alert("SELECT is working");
 	});
 	$("#proto_canvas").mousedown(function(point) {		// clicking on the canvas
