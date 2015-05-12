@@ -5,10 +5,10 @@
 var skill = ["beginner", "experienced"],	// Skill options available to users
 days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
 weather = ["sunny", "overcast", "rain"],
+currentDay, 
 currentScreen,
 warningMsg = "Storm Warning",
 warningToday = true;
-
 
 /* ------ User Settings ------ */
 var user = {
@@ -237,53 +237,53 @@ var weatherData = {
 
 
 /* ------ Build Alert Screen ------ */
-function buildAlertScreen (sailSize, day, location, windUpper, windLower, temp, image) {
+function buildAlertScreen (sailSize, day, location, windLower, windUpper, temp, image) {
 	// Paint the background
 	clearScreen();
 	setBackgroundColor("#000");
 	// Draw the sail recommendation
 	drawCircle(235, 75, 52, "white");
-	drawText(235, 95, "bold 60px helvetica", "black", sailSize, true);
+	drawText(235, 95, "bold 60px helvetica", "black", sailSize, "center");
 	// Draw the current weather icon
 	drawImage(55, 35, 94, 80, "../prototype_javascript/app_images/"+image);
 	// Write the day
-	drawText(170, 173, "bold 42px helvetica", "#939597", day, true);
+	drawText(170, 173, "bold 42px helvetica", "#939597", day, "center");
 	// Write the location
-	drawText(170, 210, "100 30px helvetica ", "#939597", location, true);
+	drawText(170, 210, "100 30px helvetica ", "#939597", location, "center");
 	// Draw the seperator line
 	drawLine(20, 225, 320, 225, "white", 1);
 	// Write the wind speed
-	drawText(30, 268, "100 30px helvetica ", "#00ADEF", ("Wind: "+windUpper+"-"+windLower+" kn"));
+	drawText(30, 268, "100 30px helvetica ", "#00ADEF", ("Wind: "+windLower+"-"+windUpper+" kn"));
 	// write the temperature 
 	drawText(30, 308, "100 30px helvetica ", "#00ADEF", ("Temp: "+temp+"°C"));
 
 };
 
 /* ------ Build Home Screen ------ */
-function buildHomeScreen (sailSize, day, location, windUpper, windLower, temp, image, forecastDesc) {
+function buildHomeScreen (sailSize, day, location, windLower, windUpper, temp, image, forecastDesc) {
 	// Paint the background
 	clearScreen();
 	setBackgroundColor("#000");
 	// Draw the sail recommendation
 	drawCircle(170, 81, 52, "white");
-	drawText(170, 101, "bold 60px helvetica", "black", sailSize, true);
+	drawText(170, 101, "bold 60px helvetica", "black", sailSize, "center");
 	// Draw the current weather icon
 	drawImage(28, 53, 77, 65, "../prototype_javascript/app_images/"+image);
 	// Write the day
 	var dayShort = shortenDay(day);
 	drawText(230, 97, "400 38px helvetica", "#939597", dayShort);
 	// Write forecast:
-	drawText(170, 175, "100 30px helvetica ", "#BBBDC0", forecastDesc, true);
+	drawText(170, 175, "100 30px helvetica ", "#BBBDC0", forecastDesc, "center");
 	// Write the wind & temp:
-	drawText(170, 212, "100 30px helvetica ", "#00ADEF", (+windUpper+"-"+windLower+" kn, "+temp+"°C"), true);
+	drawText(170, 212, "100 30px helvetica ", "#00ADEF", (+windLower+"-"+windUpper+" kn, "+temp+"°C"), "center");
 	// Write any warnings:
 	if (warningToday) {
-		drawText(170, 263, "100 30px helvetica ", "#ED1C24", warningMsg, true);
+		drawText(170, 263, "100 30px helvetica ", "#ED1C24", warningMsg, "center");
 		drawImage(25, 241, 27, 25, "../prototype_javascript/app_images/warning_27x25.svg");
 		drawImage(285, 241, 27, 25, "../prototype_javascript/app_images/warning_27x25.svg");
 	}
 	// Write the location
-	drawText(170, 315, "100 30px helvetica ", "#939597", location, true);
+	drawText(170, 315, "100 30px helvetica ", "#939597", location, "center");
 	// Draw the calender & settings buttons
 	drawImage(25, 280, 49, 44, "../prototype_javascript/app_images/cal_49x44.svg");
 	drawImage(270, 280, 44, 44, "../prototype_javascript/app_images/settings_44x44.svg");
@@ -291,7 +291,7 @@ function buildHomeScreen (sailSize, day, location, windUpper, windLower, temp, i
 
 /* ------ Build Forecast Screen ------ */
 function buildForecastScreen (day1, day2, day3, day4) {
-	// Day item should be an array consisting of: [sailSize, day, windUpper, windLower, temp, image]
+	// Day item should be an array consisting of: [sailSize, day, windLower, windUpper, temp, image]
 
 	// Paint the background
 	clearScreen();
@@ -305,9 +305,18 @@ function buildForecastScreen (day1, day2, day3, day4) {
 	drawImage(155, 10, 30, 16, "../prototype_javascript/app_images/up_30x16.svg");
 	drawImage(155, 314, 30, 16, "../prototype_javascript/app_images/down_30x16.svg");
 
-	// Write all the content of a single line:
-	drawText(170, 101, "bold 60px helvetica", "black", sailSize, true);
-
+	// All thats needed to build each line & then building all four forecasts:
+	function drawDay (day, offset) {
+		drawText(170, 92+offset, "bold 55px helvetica", "white", day[0].toFixed(1), "center");
+		drawText(62, 81+offset, "100 22px helvetica", "white", shortenDay(day[1]));
+		drawText(320, 65+offset, "100 22px helvetica", "#939597", (day[2]+"-"+day1[2]+" kn"), "right");
+		drawText(320, 94+offset, "100 22px helvetica", "#00ADEF", (day[4]+"°C"), "right");
+		drawImage(20, 56+offset, 33, 33, "../prototype_javascript/app_images/"+day[5]);
+	}
+	drawDay(day1, 0);
+	drawDay(day2, 65);
+	drawDay(day3, 130);
+	drawDay(day4, 195);
 };
 
 
@@ -341,11 +350,6 @@ function shortenDay (day) {
 
 /* ------ Main Function ------ */
 function main () {
-	var xday = [5.3, ]
-
-	buildForecastScreen();
-	//buildHomeScreen(3.5, "Thursday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
-	//buildAlertScreen(5.3, "Wednesday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg");
 	
 	/* -- FOLLOWING USED FOR TESTING -- */
 	// drawRect(10, 10, 70, 30, "yellow");
@@ -357,4 +361,13 @@ function main () {
 	// drawCircle(150, 150, 50, "blue");
 	// drawCircle(150, 150, 50, "blue", 15);
 	// drawImage(100, 100, 100, 100, "../prototype_javascript/app_images/test_image.png");
+
+	var xday1 = [5.3, "Thursday", 12, 20, 13, "small_wind_cloud_33x33.svg"];
+	var xday2 = [6.7, "friday", 10, 12, 17, "small_sun_cloud_33x33.svg"];
+	var xday3 = [8.5, "Saturday", 5, 12, 24, "small_sun_33x33.svg"];
+	var xday4 = [5.0, "Sunday", 15, 22, 16, "small_wind_sun_33x33.svg"];
+	buildForecastScreen(xday1, xday2, xday3, xday4);
+	
+	//buildHomeScreen(3.5, "Thursday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
+	//buildAlertScreen(5.3, "Wednesday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg");
 };

@@ -12,7 +12,6 @@ var ctx = canvas.getContext("2d");
 
 
 /* ------ Basic Queue ------ */
-
 function Queue () {
 	var items = [];
 
@@ -35,8 +34,6 @@ function Queue () {
 		}
 	}
 };
-
-
 
 /* ------ General Functions Available for Apps ------ */
 
@@ -87,10 +84,12 @@ function drawLine (startX, startY, endX, endY, color, width) {
 };
 
 // Write text at XY, font takes standard CSS input (e.g. "48px serif")
-// center is optional boolean that will center text at XY if 'true'
-function drawText (x, y, font, color, string, center) {
-	if (center){
+// align is optional and takes: 'center', 'right' or nothing, default is left justify
+function drawText (x, y, font, color, string, align) {
+	if (align == "center") {
 		ctx.textAlign = 'center';
+	} else if (align == "right") {
+		ctx.textAlign = 'right';
 	} else {
 		ctx.textAlign = 'start';
 	}
