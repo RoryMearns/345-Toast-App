@@ -255,7 +255,6 @@ function buildAlertScreen (sailSize, day, location, windUpper, windLower, temp, 
 	drawText(170, 210, "100 30px helvetica ", "#939597", location, true);
 	// Draw the seperator line
 	drawLine(20, 225, 320, 225, "white", 1);
-
 	// Write the wind speed
 	drawText(30, 268, "100 30px helvetica ", "#00ADEF", ("Wind: "+windUpper+"-"+windLower+" kn"));
 	// write the temperature 
@@ -263,6 +262,24 @@ function buildAlertScreen (sailSize, day, location, windUpper, windLower, temp, 
 
 };
 
+
+function buildHomeScreen (sailSize, day, location, windUpper, windLower, temp, image) {
+	// Paint the background
+	clearScreen();
+	setBackgroundColor("#000");
+	// Draw the sail recommendation
+	drawCircle(170, 81, 52, "white");
+	drawText(170, 101, "bold 60px helvetica", "black", sailSize, true);
+	// Write forecast:
+	drawText(170, 210, "100 30px helvetica ", "#939597", location, true);
+	
+
+
+
+
+	// Write the location
+	//drawText(170, 210, "100 30px helvetica ", "#939597", location, true);
+};
 
 /* ------ Draw Forcast Screen ------ */
 function buildForecastScreen () {
@@ -272,7 +289,8 @@ function buildForecastScreen () {
 
 /* ------ Main Function ------ */
 function main () {
-	buildAlertScreen(5.3, "Wednesday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg");
+	buildHomeScreen(3.5, "Wednesday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
+	//buildAlertScreen(5.3, "Wednesday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg");
 	/* -- FOLLOWING USED FOR TESTING -- */
 	// drawRect(10, 10, 70, 30, "yellow");
 	// drawRect(10, 10, 70, 30, "yellow", 15 );
