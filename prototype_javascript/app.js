@@ -3,9 +3,11 @@
 
 /* ------ User Settings Options ------ */
 var skill = ["beginner", "experienced"],	// Skill options available to users
-	days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
-	weather = ["sunny", "overcast", "rain"],
-	currentScreen;
+days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+weather = ["sunny", "overcast", "rain"],
+currentScreen,
+warningMsg = "Storm Warning",
+warningToday = true;
 
 
 /* ------ User Settings ------ */
@@ -263,22 +265,57 @@ function buildAlertScreen (sailSize, day, location, windUpper, windLower, temp, 
 };
 
 
-function buildHomeScreen (sailSize, day, location, windUpper, windLower, temp, image) {
+function buildHomeScreen (sailSize, day, location, windUpper, windLower, temp, image, forecastDesc) {
 	// Paint the background
 	clearScreen();
 	setBackgroundColor("#000");
 	// Draw the sail recommendation
 	drawCircle(170, 81, 52, "white");
 	drawText(170, 101, "bold 60px helvetica", "black", sailSize, true);
+	// Draw the current weather icon
+	drawImage(28, 53, 77, 65, "../prototype_javascript/app_images/"+image);
+	// Write the day
+	var dayShort;
+	switch (day){
+		case "Monday": 
+		dayShort = "Mon";
+		break;
+		case "Tuesday": 
+		dayShort = "Tues";
+		break;
+		case "Wednesday": 
+		dayShort = "Wed";
+		break;
+		case "Thursday": 
+		dayShort = "Thurs";
+		break;
+		case "Friday": 
+		dayShort = "Fri";
+		break;
+		case "Saturday": 
+		dayShort = "Sat";
+		break;
+		case "Sunday": 
+		dayShort = "Sun";
+		break;	
+	}
+	drawText(230, 97, "400 38px helvetica", "#939597", dayShort);
 	// Write forecast:
-	drawText(170, 210, "100 30px helvetica ", "#939597", location, true);
-	
-
-
-
-
+	drawText(170, 175, "100 30px helvetica ", "#BBBDC0", forecastDesc, true);
+	// Write the wind & temp:
+	drawText(170, 212, "100 30px helvetica ", "#00ADEF", (+windUpper+"-"+windLower+" kn, "+temp+"°C"), true);
+	// Write any warnings:
+	if (warningToday) {
+		drawText(170, 263, "100 30px helvetica ", "#ED1C24", warningMsg, true);
+		drawImage(25, 241, 27, 25, "../prototype_javascript/app_images/warning_27x25.svg");
+		drawImage(285, 241, 27, 25, "../prototype_javascript/app_images/warning_27x25.svg");
+	}
 	// Write the location
-	//drawText(170, 210, "100 30px helvetica ", "#939597", location, true);
+	drawText(170, 315, "100 30px helvetica ", "#939597", location, true);
+	// Draw the calender & settings buttons
+	drawImage(25, 280, 49, 44, "../prototype_javascript/app_images/cal_49x44.svg");
+	drawImage(270, 280, 44, 44, "../prototype_javascript/app_images/settings_44x44.svg");
+
 };
 
 /* ------ Draw Forcast Screen ------ */
@@ -289,7 +326,7 @@ function buildForecastScreen () {
 
 /* ------ Main Function ------ */
 function main () {
-	buildHomeScreen(3.5, "Wednesday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
+	buildHomeScreen(3.5, "Thursday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
 	//buildAlertScreen(5.3, "Wednesday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg");
 	/* -- FOLLOWING USED FOR TESTING -- */
 	// drawRect(10, 10, 70, 30, "yellow");
