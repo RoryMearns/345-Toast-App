@@ -15,6 +15,9 @@ var ctx = canvas.getContext("2d");
 function Queue () {
 	var items = [];
 
+	this.length = function () {
+		return items.length;
+	}
 	this.enqueue = function (item) {
 		items.push(item);
 	}
