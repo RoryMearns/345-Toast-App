@@ -40,11 +40,6 @@ function Queue () {
 
 /* ------ General Functions Available for Apps ------ */
 
-// Just a testing function of sorts
-function flag () {
-	
-};
-
 // Clear the screen
 function clearScreen () {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -152,8 +147,7 @@ $(document).ready(function() {
 
 function initialize () {
 
-	instructionQueue = new Queue();		
-
+	instructionQueue = new Queue();
 }
 
 
