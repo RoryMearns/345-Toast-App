@@ -26,10 +26,10 @@ function Queue () {
 	}
 	this.isEmpty = function () {
 		if (items.length == 0) {
-			alert("it's empty");
+			//alert("it's empty");
 			return true;
 		} else {
-			alert("it's empty");
+			//alert("it's empty");
 			return false;
 		}
 	}
