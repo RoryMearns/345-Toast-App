@@ -281,44 +281,48 @@ var weatherData = {
 
 
 /* ------ Build Alert Screen ------ */
-function buildAlertScreen (sailSize, day, location, windLower, windUpper, temp, image) {
+function buildAlertScreen (day) {
+	// An incomming day = [0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, [5]image, [6]forecastDesc, [7]locations
+
 	// Paint the background
 	clearScreen();
 	setBackgroundColor("#000");
 	// Draw the sail recommendation
 	drawCircle(235, 75, 52, "white");
-	drawText(235, 95, "bold 60px helvetica", "black", sailSize, "center");
+	drawText(235, 95, "bold 60px helvetica", "black", day[0], "center");
 	// Draw the current weather icon
-	drawImage(55, 35, 94, 80, "../prototype_javascript/app_images/"+image);
+	drawImage(55, 35, 94, 80, "../prototype_javascript/app_images/"+day[5]);
 	// Write the day
-	drawText(170, 173, "bold 42px helvetica", "#939597", day, "center");
+	drawText(170, 173, "bold 42px helvetica", "#939597", day[1], "center");
 	// Write the location
-	drawText(170, 210, "100 30px helvetica ", "#939597", location, "center");
+	drawText(170, 210, "100 30px helvetica ", "#939597", day[7], "center");
 	// Draw the seperator line
 	drawLine(20, 225, 320, 225, "white", 1);
 	// Write the wind speed
-	drawText(30, 268, "100 30px helvetica ", "#00ADEF", ("Wind: "+windLower+"-"+windUpper+" kn"));
+	drawText(30, 268, "100 30px helvetica ", "#00ADEF", ("Wind: "+day[2]+"-"+day[3]+" kn"));
 	// write the temperature 
-	drawText(30, 308, "100 30px helvetica ", "#00ADEF", ("Temp: "+temp+"°C"));
+	drawText(30, 308, "100 30px helvetica ", "#00ADEF", ("Temp: "+day[4]+"°C"));
 };
 
 /* ------ Build Home Screen ------ */
-function buildHomeScreen (sailSize, day, location, windLower, windUpper, temp, image, forecastDesc) {
+function buildHomeScreen (day) {
+	// An incomming day = [0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, [5]image, [6]forecastDesc, [7]locations
+
 	// Paint the background
 	clearScreen();
 	setBackgroundColor("#000");
 	// Draw the sail recommendation
 	drawCircle(170, 81, 52, "white");
-	drawText(170, 101, "bold 60px helvetica", "black", sailSize, "center");
+	drawText(170, 101, "bold 60px helvetica", "black", day[0], "center");
 	// Draw the current weather icon
-	drawImage(28, 53, 77, 65, "../prototype_javascript/app_images/"+image);
+	drawImage(28, 53, 77, 65, "../prototype_javascript/app_images/"+day[5]);
 	// Write the day
-	var dayShort = shortenDay(day);
+	var dayShort = shortenDay(day[1]);
 	drawText(230, 97, "400 38px helvetica", "#939597", dayShort);
 	// Write forecast:
-	drawText(170, 175, "100 30px helvetica ", "#BBBDC0", forecastDesc, "center");
+	drawText(170, 175, "100 30px helvetica ", "#BBBDC0", day[6], "center");
 	// Write the wind & temp:
-	drawText(170, 212, "100 30px helvetica ", "#00ADEF", (+windLower+"-"+windUpper+" kn, "+temp+"°C"), "center");
+	drawText(170, 212, "100 30px helvetica ", "#00ADEF", (+day[2]+"-"+day[3]+" kn, "+day[4]+"°C"), "center");
 	// Write any warnings:
 	if (warningToday) {
 		drawText(170, 263, "100 30px helvetica ", "#ED1C24", warningMsg, "center");
@@ -326,7 +330,7 @@ function buildHomeScreen (sailSize, day, location, windLower, windUpper, temp, i
 		drawImage(285, 241, 27, 25, "../prototype_javascript/app_images/warning_27x25.svg");
 	}
 	// Write the location
-	drawText(170, 315, "100 30px helvetica ", "#939597", location, "center");
+	drawText(170, 315, "100 30px helvetica ", "#939597", day[7], "center");
 	// Draw the calender & settings buttons
 	drawImage(25, 280, 49, 44, "../prototype_javascript/app_images/cal_49x44.svg");
 	drawImage(270, 280, 44, 44, "../prototype_javascript/app_images/settings_44x44.svg");
@@ -362,6 +366,9 @@ function buildForecastScreen (day0, day1, day2, day3) {
 	drawDay(day3, 195);
 };
 
+function buildSettingsScreen {
+
+};
 
 /* ------ Some Helper Functions ------ */
 // Shorten day name:
@@ -397,19 +404,20 @@ function sailSizeSetter (lower, upper) {
 };
 
 /* ------ Compress day into an array ------ */
+// A day array = [0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, [5]image, [6]forecastDesc, [7]locations
 function dayCompress (day) {
 	if (day == 0) {
 		return [weather.day0.sailSize, weather.day0.dName, weather.day0.windLower, weather.day0.windUpper,
-		weather.day0.temp, weather.day0.icon, weather.day0.outlook];
+		weather.day0.temp, weather.day0.icon, weather.day0.outlook, user.riderLocal];
 	} else if (day == 1) {
 		return [weather.day1.sailSize, weather.day1.dName, weather.day1.windLower, weather.day1.windUpper,
-		weather.day1.temp, weather.day1.icon, weather.day1.outlook];
+		weather.day1.temp, weather.day1.icon, weather.day1.outlook, user.riderLocal];
 	} else if (day == 2) {
 		return [weather.day2.sailSize, weather.day2.dName, weather.day2.windLower, weather.day2.windUpper,
-		weather.day2.temp, weather.day2.icon, weather.day2.outlook];
+		weather.day2.temp, weather.day2.icon, weather.day2.outlook, user.riderLocal];
 	} else if (day == 3) {
 		return [weather.day3.sailSize, weather.day3.dName, weather.day3.windLower, weather.day3.windUpper,
-		weather.day3.temp, weather.day3.icon, weather.day3.outlook];
+		weather.day3.temp, weather.day3.icon, weather.day3.outlook, user.riderLocal];
 	}
 }
 
@@ -436,8 +444,7 @@ function main () {
 	// If this is the first boot, launch the home screen:
 	if (firstBoot) {
 		//buildHomeScreen(3.5, "Thursday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
-		buildHomeScreen(weather.day0.sailSize, currentDay, user.riderLocal, weather.day0.windLower,
-			weather.day0.windUpper, weather.day0.temp, weather.day0.icon, weather.day0.outlook);
+		buildHomeScreen(dayCompress(0));
 		currentScreen = "home";
 		firstBoot = false;
 	}
@@ -446,27 +453,7 @@ function main () {
 		instProcess(instructionQueue.dequeue());
 	}
 	
-	appOn ? requestAnimationFrame(main) : ''; 	// Keep looping main function 
-
-	/* -- FOLLOWING USED FOR TESTING -- */
-	// drawRect(10, 10, 70, 30, "yellow");
-	// drawRect(10, 10, 70, 30, "yellow", 15 );
-	// drawLine(40, 40, 100, 200, "green", 5);
-	// setBackgroundColor("#ccc");
-	// drawText(0, 48, "48px serif", "blue", "I Love Lamp");
-	// drawText(0, 48, "48px serif", "blue", "I Love Lamp", true);
-	// drawCircle(150, 150, 50, "blue");
-	// drawCircle(150, 150, 50, "blue", 15);
-	// drawImage(100, 100, 100, 100, "../prototype_javascript/app_images/test_image.png");
-
-	// var xday1 = [5.3, "Thursday", 12, 20, 13, "small_wind_cloud_33x33.svg"];
-	// var xday2 = [6.7, "friday", 10, 12, 17, "small_sun_cloud_33x33.svg"];
-	// var xday3 = [8.5, "Saturday", 5, 12, 24, "small_sun_33x33.svg"];
-	// var xday4 = [5.0, "Sunday", 15, 22, 16, "small_wind_sun_33x33.svg"];
-	// buildForecastScreen(xday1, xday2, xday3, xday4);
-	
-	//buildHomeScreen(3.5, "Thursday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
-	//
+	appOn ? requestAnimationFrame(main) : ''; 	// Keep looping main function if app is on.
 };
 
 
