@@ -33,14 +33,8 @@ function getTodayPlusX (x) {
 	for (var i=0; i<days.length; i++) {
 		(days[i].toLowerCase() == currentDay.toLowerCase()) ? todayIndex = i : '';
 	}
-
-	if (x == 0) {
-		return currentDay;
-	} else if (x+todayIndex <= 6) {
-		return days[x+todayIndex];
-	} else if (x+todayIndex > 6) {
-		return days[x-6+todayIndex];
-	}
+	// I finally used modulo in a meaningful way!
+	return days[(x+todayIndex)%7];
 };
 
 /* ------ Weather Data ------ */
@@ -454,7 +448,19 @@ function homeTap (x,y) {
 
 // Dealing with taps on the forecast screen
 function forecastTap (x,y) {
-	
+	if (y>=40 && y<105) {
+		buildAlertScreen(dayCompress(0));
+		currentScreen = "alert";
+	} else if (y>=105 && y<170) {
+		buildAlertScreen(dayCompress(1));
+		currentScreen = "alert";
+	} else if (y>=170 && y<235) {
+		buildAlertScreen(dayCompress(2));
+		currentScreen = "alert";
+	} else if (y>=235 && y<300) {
+		buildAlertScreen(dayCompress(3));
+		currentScreen = "alert";
+	}
 };
 
 
