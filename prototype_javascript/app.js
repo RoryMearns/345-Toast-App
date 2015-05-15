@@ -1,7 +1,6 @@
 /* Application for 345 Assignment: Rory Mearns (ID.3928873) */
 
-
-/* ------ User Settings Options ------ */
+/* ------ Global Variables ------ */
 var appOn = true,
 sailAlpha = 1.34,
 skill = ["beginner", "experienced"],	// Skill options available to users
@@ -22,221 +21,6 @@ var user = {
 }
 
 /* ------ Weather Data ------ */
-/* 
-Note that this weather data format is very similar to the JSON 
-data delivered by the many weather API's avialable. Refer to the 
-magicseaweed weather api as an example:
-http://magicseaweed.com/developer/forecast-api
-
-For simplicity this app runs on the premise that the weather data
-is delivered daily at midnight. It contains the forecast for up to
-4 full days in advace with 6 hour intervals.
-*/
-
-// The raw weather data:
-var weatherData = {
-	localTimestamp: 1366902000,
-	issueTimestamp: 1366848000,	
-	// The weather forecast for now (0000) and the following 90 hours (at 6 hour intervals)
-	forecast: {
-		timePlus0000: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus0600: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus1200: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus1800: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		// Midnight / start of Day 2
-		timePlus2400: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus3000: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus3600: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus4200: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		// Midnight / start of Day 3
-		timePlus4800: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus5400: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus6000: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus6600: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		// Midnight / start of Day 3
-		timePlus7200: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus7800: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus8400: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		},
-		timePlus9000: {
-			weatherDescription: "",
-			temp: 18,
-			tempUnit: "c",
-			wind: {
-				speed: 10,
-				gusts: 13,
-				direction: 85,
-				compassDirection: "W",
-				unit: "knt"
-			}
-		}
-	}
-}
-
 // Raw weather will be processed into the following format:
 var weather = {
 	day0: {					// Day0 = Today
@@ -281,13 +65,18 @@ var weather = {
 	}
 }
 
-
 /* ------ Process Raw Weather Into Local Stored Data ------ */
 function constructWeather () {
 	weather.day0.dName = getToday();
 	weather.day1.dName = getTodayPlusX(1);
 	weather.day2.dName = getTodayPlusX(2);
 	weather.day3.dName = getTodayPlusX(3);
+
+	/* 
+	Many more funcitons & setters are to go in here to take 
+	the raw weather data and convert it into the locally 
+	stored weather data for easy access. 
+	*/
 };
 
 /* ------ Build Alert Screen ------ */
@@ -378,7 +167,36 @@ function buildForecastScreen (day0, day1, day2, day3) {
 
 /* ------ Build Settings Screen ------ */
 function buildSettingsScreen () {
+	// Paint the background
+	clearScreen();
+	setBackgroundColor("#000");
+	drawText(170, 40, "100 30px helvetica ", "#FFFFFF", "Settings[FIXED]", "center");
+	drawText(15, 80, "100 20px helvetica ", "#BBBDC0", ("Rider Location: "+user.riderLocal));
+	drawText(15, 105, "100 20px helvetica ", "#BBBDC0", ("Rider Skill: "+user.riderSkill));
+	drawText(15, 130, "100 20px helvetica ", "#BBBDC0", ("Rider Weight: "+user.riderWeight));
+};
 
+/* ------ Check For Alerts ------ */
+function alertChecker () {
+	/*
+	The alert checker function will go through all the
+	weather data (either Raw or Local, undecided yet) and
+	check for conditions that are favorable to the users
+	preferences. If a favorable forecast is found it 
+	will alert the user after a short wait. Maybe include
+	some sort of audio alert: **BEEP**
+
+	The alert checker will deliver the FIRST and only the 
+	first favorable forecast alert. This makes sense from
+	a users point of view:
+		a) 	It would seem obnoxious to alert the user 4 times
+			if there are 4 days in a row of favorable weather.
+		b)	If the user is allerted to favorable weather (on 
+			wednesday for example) and they can't make the most
+			of the weather on that day, it is likely that they
+			would check the wether for subsequent days at that
+			time.
+	*/
 };
 
 /* ------ Some Helper Functions ------ */
@@ -419,7 +237,7 @@ function sailSizeSetter (lower, upper) {
 function getToday () {
 	var date = new Date();
 	return days[date.getDay()];
-}
+};
 
 // Calculate the name of the day that is X many days from 'today'
 function getTodayPlusX (x) {
@@ -448,7 +266,7 @@ function dayCompress (day) {
 		return [weather.day3.sailSize, weather.day3.dName, weather.day3.windLower, weather.day3.windUpper,
 		weather.day3.temp, weather.day3.icon, weather.day3.outlook, user.riderLocal, weather.day3.windDir];
 	}
-}
+};
 
 /* ------ Screen Taps ------ */
 // Dealing with taps on the home screen
@@ -456,6 +274,9 @@ function homeTap (x,y) {
 	if (x>0 && x<101 && y>269 && y<340) {
 		buildForecastScreen(dayCompress(0), dayCompress(1), dayCompress(2), dayCompress(3));
 		currentScreen = 'forecast'; 
+	} else if (x>255 && x<340 && y>269 && y<340) {
+		buildSettingsScreen();
+		currentScreen = 'settings';
 	}
 };
 
@@ -476,12 +297,9 @@ function forecastTap (x,y) {
 	}
 };
 
-
-
 /* ------ Instruciton Processor ------ */
 function instProcess (inst) {
 	var input = inst[0];
-
 	// What to do with taps on the screen
 	if (input == "tap") {
 		if (currentScreen == "home") {
@@ -492,6 +310,10 @@ function instProcess (inst) {
 			forecastTap(inst[1], inst[2]);
 		} else if (currentScreen == "alert") {
 			// Return back to the home screen if alert screen it tapped
+			buildHomeScreen(dayCompress(0));
+			currentScreen = "home"
+		} else if (currentScreen == "settings") {
+			// Return back to the home screen if settings screen it tapped
 			buildHomeScreen(dayCompress(0));
 			currentScreen = "home"
 		}
@@ -508,6 +330,10 @@ function instProcess (inst) {
 			// If a swipe is detected on the alert screen, return to home screen
 			buildHomeScreen(dayCompress(0));
 			currentScreen = "home"
+		} else if (currentScreen == "settings") {
+			// If a swipe is detected on the settings screen, return to home screen
+			buildHomeScreen(dayCompress(0));
+			currentScreen = "home"
 		}
 	}
 };
@@ -522,6 +348,14 @@ function main () {
 		buildHomeScreen(dayCompress(0));
 		currentScreen = "home";
 		firstBoot = false;
+		/* 
+		alertChecker();
+
+		After turning the app on and reaching the home screen
+		the app will then make a call to allert checker to see
+		check for favorable forecasts and make the alert if
+		one exists.
+		*/
 	}
 
 	// Fetch instructions from the queue if they exist
@@ -532,6 +366,3 @@ function main () {
 	// Keep looping main function if app is on.
 	appOn ? requestAnimationFrame(main) : ''; 	
 };
-
-
-
