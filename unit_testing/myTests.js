@@ -1,6 +1,5 @@
 /* Tests for 345 Assignment: Rory Mearns (ID.3928873) */
 
-// Tests for the basic Queue structure
 test("New queue is empty", function() {
 	ok(Queue, "Queue function exists");
 	var testQueue = new Queue();

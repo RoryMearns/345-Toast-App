@@ -283,17 +283,33 @@ canvas {
 }
 
 #proto {
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-flex-wrap: nowrap;
+	    -ms-flex-wrap: nowrap;
+	        flex-wrap: nowrap;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 }
 
 .controls {
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-flex-wrap: nowrap;
+	    -ms-flex-wrap: nowrap;
+	        flex-wrap: nowrap;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 	width: 320px;
 	margin: 10px auto 10px auto;
 	text-align: center;
@@ -310,7 +326,6 @@ canvas {
 
 }
 
-
 .active {
 	box-shadow: inset 0 0 5px #555;
 	cursor: pointer;
@@ -320,13 +335,3 @@ canvas {
 	background-color: #ccc;
 	color: inherit;
 }
-
-
-
-
-
-
-
-
-
-
