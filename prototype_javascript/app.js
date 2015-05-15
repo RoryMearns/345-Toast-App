@@ -366,7 +366,7 @@ function buildForecastScreen (day0, day1, day2, day3) {
 	drawDay(day3, 195);
 };
 
-function buildSettingsScreen {
+function buildSettingsScreen () {
 
 };
 
@@ -422,20 +422,53 @@ function dayCompress (day) {
 }
 
 /* ------ Screen Taps ------ */
+// Dealing with taps on the home screen
 function homeTap (x,y) {
 	if (x>0 && x<101 && y>269 && y<340) {
 		buildForecastScreen(dayCompress(0), dayCompress(1), dayCompress(2), dayCompress(3));
+		currentScreen = 'forecast'; 
 	}
 };
+
+// Dealing with taps on the forecast screen
+function forecastTap (x,y) {
+	
+};
+
+
 
 /* ------ Instruciton Processor ------ */
 function instProcess (inst) {
 	var input = inst[0];
 
+	// What to do with taps on the screen
 	if (input == "tap") {
-		homeTap(inst[1], inst[2]);
+		if (currentScreen == "home") {
+			// If on home screen go to function to deal with that
+			homeTap(inst[1], inst[2]);
+		} else if (currentScreen == "forecast") {
+			// If on forecast screen go to funciton to deal with that
+			forecastTap(inst[1], inst[2]);
+		} else if (currentScreen == "alert") {
+			// Return back to the home screen if alert screen it tapped
+			buildHomeScreen(dayCompress(0));
+			currentScreen = "home"
+		}
 	}
-
+	// what to do with swipes
+	else if (input == "swipe") {
+		if (currentScreen == "home") {
+			// Do nothing (???), maybe expand on this later (?)
+		} else if (currentScreen == "forecast") {
+			// If a swipe is detected on the forecast screen, return to home screen
+			buildHomeScreen(dayCompress(0));
+			currentScreen = "home"
+		} else if (currentScreen == "alert") {
+			// If a swipe is detected on the alert screen, return to home screen
+			buildHomeScreen(dayCompress(0));
+			currentScreen = "home"
+		}
+	}
 };
 
 /* ------ Main Function ------ */

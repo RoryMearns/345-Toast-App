@@ -117,20 +117,19 @@ $(document).ready(function() {
 		//alert("on is working");
 	});
 	$("#up").click(function() {			// Swipe up
-		//alert("UP is working");
+		instructionQueue.enqueue(["swipe", "up"]);
 	});
 	$("#down").click(function() {		// Swipe down
-		//alert("DOWN is working");
+		instructionQueue.enqueue(["swipe", "down"]);
 	});
 	$("#left").click(function() {		// Swipe left
-		//alert("LEFT is working");
+		instructionQueue.enqueue(["swipe", "left"]);
 	});
 	$("#right").click(function() {		// Swipe right
-		//alert("RIGHT is working");
+		instructionQueue.enqueue(["swipe", "right"]);
 	});
 	$("#enter").click(function() {		// Click 'Select'
 		clearScreen();
-		//alert("SELECT is working");
 	});
 	$("#proto_canvas").mousedown(function(point) {		// clicking on the canvas
 		var offset = $("#proto_canvas").offset();
