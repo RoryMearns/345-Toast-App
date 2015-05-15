@@ -2,23 +2,66 @@
 
 
 /* ------ User Settings Options ------ */
-var skill = ["beginner", "experienced"],	// Skill options available to users
+var appOn = true,
+sailAlpha = 1.34,
+skill = ["beginner", "experienced"],	// Skill options available to users
 days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
 weather = ["sunny", "overcast", "rain"],
-currentDay, 
-currentScreen,
+currentDay = "Monday", 
+currentScreen = false,
 warningMsg = "Storm Warning",
-warningToday = true;
+warningToday = true,
+firstBoot = true;
 
 /* ------ User Settings ------ */
 var user = {
 	riderWeight: 85,
-	riderSailingDays: ["wednesday", "friday", "saturday", "sunday"],
+	riderDays: ["wednesday", "friday", "saturday", "sunday"],
 	riderSkill: "experienced",
-	riderLocation: "St Clair"
+	riderLocal: "St Clair"
 }
 
 /* ------ Weather Data ------ */
+// Raw weather will be processed into the following format:
+var weather = {
+	day0: {					// Day0 = Today
+		windLower: 24,
+		windUpper: 30,
+		temp: 10,
+		sailSize: 4.2,
+		outlook: "Rain, high seas, gale",
+		icon: "overcast_wind_94x80.svg",
+		dName: "Monday"
+	},
+	day1: {					// Day0 = Today
+		windLower: 24,
+		windUpper: 30,
+		temp: 10,
+		sailSize: 4.2,
+		outlook: "Rain, high seas, gale",
+		icon: "overcast_wind_94x80.svg",
+		dName: "Tuesday"
+	},
+	day2: {					// Day0 = Today
+		windLower: 24,
+		windUpper: 30,
+		temp: 10,
+		sailSize: 4.2,
+		outlook: "Rain, high seas, gale",
+		icon: "overcast_wind_94x80.svg",
+		dName: "Wednesday"
+	},
+	day3: {					// Day0 = Today
+		windLower: 24,
+		windUpper: 30,
+		temp: 10,
+		sailSize: 4.2,
+		outlook: "Rain, high seas, gale",
+		icon: "overcast_wind_94x80.svg",
+		dName: "Thursday"
+	}
+}
+
 /* 
 Note that this weather data format is very similar to the JSON 
 data delivered by the many weather API's avialable. Refer to the 
@@ -30,6 +73,7 @@ is delivered daily at midnight. It contains the forecast for up to
 4 full days in advace with 6 hour intervals.
 */
 
+// The raw weather data:
 var weatherData = {
 	localTimestamp: 1366902000,
 	issueTimestamp: 1366848000,
@@ -256,7 +300,6 @@ function buildAlertScreen (sailSize, day, location, windLower, windUpper, temp, 
 	drawText(30, 268, "100 30px helvetica ", "#00ADEF", ("Wind: "+windLower+"-"+windUpper+" kn"));
 	// write the temperature 
 	drawText(30, 308, "100 30px helvetica ", "#00ADEF", ("Temp: "+temp+"°C"));
-
 };
 
 /* ------ Build Home Screen ------ */
@@ -290,7 +333,7 @@ function buildHomeScreen (sailSize, day, location, windLower, windUpper, temp, i
 };
 
 /* ------ Build Forecast Screen ------ */
-function buildForecastScreen (day1, day2, day3, day4) {
+function buildForecastScreen (day0, day1, day2, day3) {
 	// Day item should be an array consisting of: [sailSize, day, windLower, windUpper, temp, image]
 
 	// Paint the background
@@ -309,14 +352,14 @@ function buildForecastScreen (day1, day2, day3, day4) {
 	function drawDay (day, offset) {
 		drawText(170, 92+offset, "bold 55px helvetica", "white", day[0].toFixed(1), "center");
 		drawText(62, 81+offset, "100 22px helvetica", "white", shortenDay(day[1]));
-		drawText(320, 65+offset, "100 22px helvetica", "#939597", (day[2]+"-"+day1[2]+" kn"), "right");
+		drawText(320, 65+offset, "100 22px helvetica", "#939597", (day[2]+"-"+day[2]+" kn"), "right");
 		drawText(320, 94+offset, "100 22px helvetica", "#00ADEF", (day[4]+"°C"), "right");
 		drawImage(20, 56+offset, 33, 33, "../prototype_javascript/app_images/"+day[5]);
 	}
-	drawDay(day1, 0);
-	drawDay(day2, 65);
-	drawDay(day3, 130);
-	drawDay(day4, 195);
+	drawDay(day0, 0);
+	drawDay(day1, 65);
+	drawDay(day2, 130);
+	drawDay(day3, 195);
 };
 
 
@@ -348,9 +391,63 @@ function shortenDay (day) {
 	}
 };
 
+function sailSizeSetter (lower, upper) {
+	// Sail size is: (Rider Weight X 1.34) / Windspeed in Knots
+	return ((user.riderWeight*sailAlpha)/((lower+upper)/2)).toFixed(1);
+};
+
+/* ------ Compress day into an array ------ */
+function dayCompress (day) {
+	if (day == 0) {
+		return [weather.day0.sailSize, weather.day0.dName, weather.day0.windLower, weather.day0.windUpper,
+		weather.day0.temp, weather.day0.icon, weather.day0.outlook];
+	} else if (day == 1) {
+		return [weather.day1.sailSize, weather.day1.dName, weather.day1.windLower, weather.day1.windUpper,
+		weather.day1.temp, weather.day1.icon, weather.day1.outlook];
+	} else if (day == 2) {
+		return [weather.day2.sailSize, weather.day2.dName, weather.day2.windLower, weather.day2.windUpper,
+		weather.day2.temp, weather.day2.icon, weather.day2.outlook];
+	} else if (day == 3) {
+		return [weather.day3.sailSize, weather.day3.dName, weather.day3.windLower, weather.day3.windUpper,
+		weather.day3.temp, weather.day3.icon, weather.day3.outlook];
+	}
+}
+
+/* ------ Screen Taps ------ */
+function homeTap (x,y) {
+	if (x>0 && x<101 && y>269 && y<340) {
+		buildForecastScreen(dayCompress(0), dayCompress(1), dayCompress(2), dayCompress(3));
+	}
+};
+
+/* ------ Instruciton Processor ------ */
+function instProcess (inst) {
+	var input = inst[0];
+
+	if (input == "tap") {
+		homeTap(inst[1], inst[2]);
+	}
+
+};
+
 /* ------ Main Function ------ */
 function main () {
+
+	// If this is the first boot, launch the home screen:
+	if (firstBoot) {
+		//buildHomeScreen(3.5, "Thursday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
+		buildHomeScreen(weather.day0.sailSize, currentDay, user.riderLocal, weather.day0.windLower,
+			weather.day0.windUpper, weather.day0.temp, weather.day0.icon, weather.day0.outlook);
+		currentScreen = "home";
+		firstBoot = false;
+	}
+
+	if (instructionQueue.length()>0) {
+		instProcess(instructionQueue.dequeue());
+	}
 	
+	appOn ? requestAnimationFrame(main) : ''; 	// Keep looping main function 
+
 	/* -- FOLLOWING USED FOR TESTING -- */
 	// drawRect(10, 10, 70, 30, "yellow");
 	// drawRect(10, 10, 70, 30, "yellow", 15 );
@@ -362,12 +459,15 @@ function main () {
 	// drawCircle(150, 150, 50, "blue", 15);
 	// drawImage(100, 100, 100, 100, "../prototype_javascript/app_images/test_image.png");
 
-	var xday1 = [5.3, "Thursday", 12, 20, 13, "small_wind_cloud_33x33.svg"];
-	var xday2 = [6.7, "friday", 10, 12, 17, "small_sun_cloud_33x33.svg"];
-	var xday3 = [8.5, "Saturday", 5, 12, 24, "small_sun_33x33.svg"];
-	var xday4 = [5.0, "Sunday", 15, 22, 16, "small_wind_sun_33x33.svg"];
-	buildForecastScreen(xday1, xday2, xday3, xday4);
+	// var xday1 = [5.3, "Thursday", 12, 20, 13, "small_wind_cloud_33x33.svg"];
+	// var xday2 = [6.7, "friday", 10, 12, 17, "small_sun_cloud_33x33.svg"];
+	// var xday3 = [8.5, "Saturday", 5, 12, 24, "small_sun_33x33.svg"];
+	// var xday4 = [5.0, "Sunday", 15, 22, 16, "small_wind_sun_33x33.svg"];
+	// buildForecastScreen(xday1, xday2, xday3, xday4);
 	
 	//buildHomeScreen(3.5, "Thursday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
-	//buildAlertScreen(5.3, "Wednesday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg");
+	//
 };
+
+
+

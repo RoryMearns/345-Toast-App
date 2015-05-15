@@ -5,7 +5,6 @@
 var instructionQueue; 		// Queue of incoming instructions for the app. App will poll this queue for new events.
 var canvasButtons = [];		// Buttons that are on the canvas.
 
-
 // Canvas Element
 var canvas = $("#proto_canvas").get(0);
 var ctx = canvas.getContext("2d");	
@@ -113,8 +112,11 @@ function setBackgroundColor (color) {
 /* ------ Button & Input Listeners ------ */
 
 $(document).ready(function() {
-	$("#up").click(function() {			// Swipe up
+	$("#appOn").click(function() {		// Activate app
 		main();
+		//alert("on is working");
+	});
+	$("#up").click(function() {			// Swipe up
 		//alert("UP is working");
 	});
 	$("#down").click(function() {		// Swipe down
@@ -136,9 +138,9 @@ $(document).ready(function() {
 		var y = point.pageY-offset.top;
 		$("#x-coord").html(x.toFixed(0));
 		$("#y-coord").html(y.toFixed(0));
-		//alert("X: "+x+" Y: "+y);
-	});
 
+		instructionQueue.enqueue(["tap", x, y]);
+	});
 
 	//ctx.fillRect(0, 0, 60, 60);
 });
@@ -146,34 +148,8 @@ $(document).ready(function() {
 /* ------ Emulator Setup ------ */
 
 function initialize () {
-
 	instructionQueue = new Queue();
 }
 
-
 initialize();
-
-
-/* 
-Functions I wand the emulator to handle:
-
------- WRITING TO THE SCREEN ------
-drawPNG(x, y, w, h);
-drawText(x, y, size, color, string);
-drawRect(x, y, w, h, color);
-drawCircle(x, y, w, h, color);
-
------- FETCHING FUNCTIONAL DATA ------
-getTime();
-getDate();
-getDay();
-
------- DELIVERING ALERTS ------
-alert();		// ??? not so sure about this one...
-
-
------- DELIVERING INPUT TO THE PROGRAM ------
-...Not sure if I should just deliver it straight to the program...
-*/
-
 

@@ -23,3 +23,8 @@ test("Day Shortener Function Tests", function() {
 	ok(shortenDay("TUESDAY") === "Tues", "'TUESDAY' shortened to 'Tues'");
 	ok(shortenDay(days[1]) === "Tues", "'days[1]' is shortened to 'Tues'");
 })
+
+test("Sail Size Setter", function() {
+	equal(sailSizeSetter(24,30), 4.2, "Given the wind range of 24-30 the sail size should be 4.2");
+})
+
