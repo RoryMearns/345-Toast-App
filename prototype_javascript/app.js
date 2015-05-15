@@ -21,63 +21,7 @@ var user = {
 	riderLocal: "St Clair"
 }
 
-/* ------ Calculate day names ------ */
-function getToday () {
-	var date = new Date();
-	return days[date.getDay()];
-}
-
-// Returns the name of the day that is X many days from 'today'
-function getTodayPlusX (x) {
-	var todayIndex;
-	for (var i=0; i<days.length; i++) {
-		(days[i].toLowerCase() == currentDay.toLowerCase()) ? todayIndex = i : '';
-	}
-	// I finally used modulo in a meaningful way!
-	return days[(x+todayIndex)%7];
-};
-
 /* ------ Weather Data ------ */
-// Raw weather will be processed into the following format:
-var weather = {
-	day0: {					// Day0 = Today
-		windLower: 24,
-		windUpper: 30,
-		temp: 10,
-		sailSize: 4.2,
-		outlook: "Rain, high seas, gale",
-		icon: "overcast_wind_94x80.svg",
-		dName: "Monday"
-	},
-	day1: {					// Day0 = Today
-		windLower: 24,
-		windUpper: 30,
-		temp: 10,
-		sailSize: 4.2,
-		outlook: "Rain, high seas, gale",
-		icon: "overcast_wind_94x80.svg",
-		dName: "Tuesday"
-	},
-	day2: {					// Day0 = Today
-		windLower: 24,
-		windUpper: 30,
-		temp: 10,
-		sailSize: 4.2,
-		outlook: "Rain, high seas, gale",
-		icon: "overcast_wind_94x80.svg",
-		dName: "Wednesday"
-	},
-	day3: {					// Day0 = Today
-		windLower: 24,
-		windUpper: 30,
-		temp: 10,
-		sailSize: 4.2,
-		outlook: "Rain, high seas, gale",
-		icon: "overcast_wind_94x80.svg",
-		dName: "Thursday"
-	}
-}
-
 /* 
 Note that this weather data format is very similar to the JSON 
 data delivered by the many weather API's avialable. Refer to the 
@@ -92,22 +36,21 @@ is delivered daily at midnight. It contains the forecast for up to
 // The raw weather data:
 var weatherData = {
 	localTimestamp: 1366902000,
-	issueTimestamp: 1366848000,
-	// The weather at the time of delivery
-	current: {
-		weatherDescription: "",
-		temp: 18,
-		tempUnit: "c",
-		wind: {
-			speed: 10,
-			gusts: 13,
-			direction: 85,
-			compassDirection: "W",
-			unit: "knt"
-		}
-	},
-	// The weather forecast for the following 90 hours (at 6 hour intervals)
+	issueTimestamp: 1366848000,	
+	// The weather forecast for now (0000) and the following 90 hours (at 6 hour intervals)
 	forecast: {
+		timePlus0000: {
+			weatherDescription: "",
+			temp: 18,
+			tempUnit: "c",
+			wind: {
+				speed: 10,
+				gusts: 13,
+				direction: 85,
+				compassDirection: "W",
+				unit: "knt"
+			}
+		},
 		timePlus0600: {
 			weatherDescription: "",
 			temp: 18,
@@ -294,12 +237,63 @@ var weatherData = {
 	}
 }
 
+// Raw weather will be processed into the following format:
+var weather = {
+	day0: {					// Day0 = Today
+		windLower: 24,
+		windUpper: 30,
+		windDir: "W",
+		temp: 10,
+		sailSize: 4.2,
+		outlook: "Rain, high seas, gale",
+		icon: "overcast_wind_94x80.svg",
+		dName: "Monday"
+	},
+	day1: {	
+		windLower: 24,
+		windUpper: 30,
+		windDir: "W",
+		temp: 10,
+		sailSize: 4.2,
+		outlook: "Rain, high seas, gale",
+		icon: "overcast_wind_94x80.svg",
+		dName: "Tuesday"
+	},
+	day2: {
+		windLower: 24,
+		windUpper: 30,
+		windDir: "W",
+		temp: 10,
+		sailSize: 4.2,
+		outlook: "Rain, high seas, gale",
+		icon: "overcast_wind_94x80.svg",
+		dName: "Wednesday"
+	},
+	day3: {	
+		windLower: 24,
+		windUpper: 30,
+		windDir: "W",
+		temp: 10,
+		sailSize: 4.2,
+		outlook: "Rain, high seas, gale",
+		icon: "overcast_wind_94x80.svg",
+		dName: "Thursday"
+	}
+}
 
+
+/* ------ Process Raw Weather Into Local Stored Data ------ */
+function constructWeather () {
+	weather.day0.dName = getToday();
+	weather.day1.dName = getTodayPlusX(1);
+	weather.day2.dName = getTodayPlusX(2);
+	weather.day3.dName = getTodayPlusX(3);
+};
 
 /* ------ Build Alert Screen ------ */
 function buildAlertScreen (day) {
-	// An incomming day = [0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, [5]image, [6]forecastDesc, [7]locations
-
+	// A day array = 	[0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, 
+	// 					[5]image, [6]forecastDesc, [7]locations, [8]wind direction
 	// Paint the background
 	clearScreen();
 	setBackgroundColor("#000");
@@ -315,15 +309,15 @@ function buildAlertScreen (day) {
 	// Draw the seperator line
 	drawLine(20, 225, 320, 225, "white", 1);
 	// Write the wind speed
-	drawText(30, 268, "100 30px helvetica ", "#00ADEF", ("Wind: "+day[2]+"-"+day[3]+" kn"));
+	drawText(30, 268, "100 30px helvetica ", "#00ADEF", ("Wind: "+day[2]+"-"+day[3]+" kn"+", "+day[8]));
 	// write the temperature 
 	drawText(30, 308, "100 30px helvetica ", "#00ADEF", ("Temp: "+day[4]+"°C"));
 };
 
 /* ------ Build Home Screen ------ */
 function buildHomeScreen (day) {
-	// An incomming day = [0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, [5]image, [6]forecastDesc, [7]locations
-
+	// A day array = 	[0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, 
+	// 					[5]image, [6]forecastDesc, [7]locations, [8]wind direction
 	// Paint the background
 	clearScreen();
 	setBackgroundColor("#000");
@@ -338,7 +332,7 @@ function buildHomeScreen (day) {
 	// Write forecast:
 	drawText(170, 175, "100 30px helvetica ", "#BBBDC0", day[6], "center");
 	// Write the wind & temp:
-	drawText(170, 212, "100 30px helvetica ", "#00ADEF", (+day[2]+"-"+day[3]+" kn, "+day[4]+"°C"), "center");
+	drawText(170, 212, "100 30px helvetica ", "#00ADEF", (+day[2]+"-"+day[3]+" kn, "+day[8]+", "+day[4]+"°C"), "center");
 	// Write any warnings:
 	if (warningToday) {
 		drawText(170, 263, "100 30px helvetica ", "#ED1C24", warningMsg, "center");
@@ -354,8 +348,8 @@ function buildHomeScreen (day) {
 
 /* ------ Build Forecast Screen ------ */
 function buildForecastScreen (day0, day1, day2, day3) {
-	// Day item should be an array consisting of: [sailSize, day, windLower, windUpper, temp, image]
-
+	// A day array = 	[0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, 
+	// 					[5]image, [6]forecastDesc, [7]locations, [8]wind direction
 	// Paint the background
 	clearScreen();
 	setBackgroundColor("#000");
@@ -373,7 +367,7 @@ function buildForecastScreen (day0, day1, day2, day3) {
 		drawText(170, 92+offset, "bold 55px helvetica", "white", day[0].toFixed(1), "center");
 		drawText(62, 81+offset, "100 22px helvetica", "white", shortenDay(day[1]));
 		drawText(320, 65+offset, "100 22px helvetica", "#939597", (day[2]+"-"+day[2]+" kn"), "right");
-		drawText(320, 94+offset, "100 22px helvetica", "#00ADEF", (day[4]+"°C"), "right");
+		drawText(320, 94+offset, "100 22px helvetica", "#00ADEF", (day[8]+", "+day[4]+"°C"), "right");
 		drawImage(20, 56+offset, 33, 33, "../prototype_javascript/app_images/"+day[5]);
 	}
 	drawDay(day0, 0);
@@ -382,6 +376,7 @@ function buildForecastScreen (day0, day1, day2, day3) {
 	drawDay(day3, 195);
 };
 
+/* ------ Build Settings Screen ------ */
 function buildSettingsScreen () {
 
 };
@@ -414,26 +409,44 @@ function shortenDay (day) {
 	}
 };
 
+// Calculate the sail size given a wind range
 function sailSizeSetter (lower, upper) {
 	// Sail size is: (Rider Weight X 1.34) / Windspeed in Knots
 	return ((user.riderWeight*sailAlpha)/((lower+upper)/2)).toFixed(1);
 };
 
+// Get the name of 'today'
+function getToday () {
+	var date = new Date();
+	return days[date.getDay()];
+}
+
+// Calculate the name of the day that is X many days from 'today'
+function getTodayPlusX (x) {
+	var todayIndex;
+	for (var i=0; i<days.length; i++) {
+		(days[i].toLowerCase() == currentDay.toLowerCase()) ? todayIndex = i : '';
+	}
+	// I finally used modulo in a meaningful way!
+	return days[(x+todayIndex)%7];
+};
+
 /* ------ Compress day into an array ------ */
-// A day array = [0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, [5]image, [6]forecastDesc, [7]locations
+// A day array = 	[0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, 
+// 					[5]image, [6]forecastDesc, [7]locations, [8]wind direction
 function dayCompress (day) {
 	if (day == 0) {
 		return [weather.day0.sailSize, weather.day0.dName, weather.day0.windLower, weather.day0.windUpper,
-		weather.day0.temp, weather.day0.icon, weather.day0.outlook, user.riderLocal];
+		weather.day0.temp, weather.day0.icon, weather.day0.outlook, user.riderLocal, weather.day0.windDir];
 	} else if (day == 1) {
 		return [weather.day1.sailSize, weather.day1.dName, weather.day1.windLower, weather.day1.windUpper,
-		weather.day1.temp, weather.day1.icon, weather.day1.outlook, user.riderLocal];
+		weather.day1.temp, weather.day1.icon, weather.day1.outlook, user.riderLocal, weather.day1.windDir];
 	} else if (day == 2) {
 		return [weather.day2.sailSize, weather.day2.dName, weather.day2.windLower, weather.day2.windUpper,
-		weather.day2.temp, weather.day2.icon, weather.day2.outlook, user.riderLocal];
+		weather.day2.temp, weather.day2.icon, weather.day2.outlook, user.riderLocal, weather.day2.windDir];
 	} else if (day == 3) {
 		return [weather.day3.sailSize, weather.day3.dName, weather.day3.windLower, weather.day3.windUpper,
-		weather.day3.temp, weather.day3.icon, weather.day3.outlook, user.riderLocal];
+		weather.day3.temp, weather.day3.icon, weather.day3.outlook, user.riderLocal, weather.day3.windDir];
 	}
 }
 
@@ -503,10 +516,11 @@ function instProcess (inst) {
 function main () {
 	// If this is the first boot, launch the home screen:
 	if (firstBoot) {
-		//buildHomeScreen(3.5, "Thursday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
+		// alert(weather['day'+1]['dName']);
+		currentDay = getToday();
+		constructWeather();
 		buildHomeScreen(dayCompress(0));
 		currentScreen = "home";
-		currentDay = getToday();
 		firstBoot = false;
 	}
 
