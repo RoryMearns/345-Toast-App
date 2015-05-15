@@ -90,7 +90,7 @@ function buildAlertScreen (day) {
 	drawCircle(235, 75, 52, "white");
 	drawText(235, 95, "bold 60px helvetica", "black", day[0], "center");
 	// Draw the current weather icon
-	drawImage(55, 35, 94, 80, "../prototype_javascript/app_images/"+day[5]);
+	drawImage(55, 35, 90, 90, "../prototype_javascript/app_images/"+day[5]);
 	// Write the day
 	drawText(170, 173, "bold 42px helvetica", "#939597", day[1], "center");
 	// Write the location
