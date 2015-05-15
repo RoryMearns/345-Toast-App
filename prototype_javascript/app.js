@@ -30,7 +30,7 @@ var weather = {
 		temp: 10,
 		sailSize: 4.2,
 		outlook: "Rain, high seas, gale",
-		icon: "overcast_wind_94x80.svg",
+		icon: "weather_rain_33x33.svg",
 		dName: "Monday"
 	},
 	day1: {	
@@ -40,7 +40,7 @@ var weather = {
 		temp: 10,
 		sailSize: 4.2,
 		outlook: "Rain, high seas, gale",
-		icon: "overcast_wind_94x80.svg",
+		icon: "weather_wind_cloud_33x33.svg",
 		dName: "Tuesday"
 	},
 	day2: {
@@ -50,7 +50,7 @@ var weather = {
 		temp: 10,
 		sailSize: 4.2,
 		outlook: "Rain, high seas, gale",
-		icon: "overcast_wind_94x80.svg",
+		icon: "weather_wind_sun_33x33.svg",
 		dName: "Wednesday"
 	},
 	day3: {	
@@ -60,7 +60,7 @@ var weather = {
 		temp: 10,
 		sailSize: 4.2,
 		outlook: "Rain, high seas, gale",
-		icon: "overcast_wind_94x80.svg",
+		icon: "weather_sun_cloud_33x33.svg",
 		dName: "Thursday"
 	}
 }
@@ -114,7 +114,7 @@ function buildHomeScreen (day) {
 	drawCircle(170, 81, 52, "white");
 	drawText(170, 101, "bold 60px helvetica", "black", day[0], "center");
 	// Draw the current weather icon
-	drawImage(28, 53, 77, 65, "../prototype_javascript/app_images/"+day[5]);
+	drawImage(28, 53, 73, 73, "../prototype_javascript/app_images/"+day[5]);
 	// Write the day
 	var dayShort = shortenDay(day[1]);
 	drawText(230, 97, "400 38px helvetica", "#939597", dayShort);
@@ -249,6 +249,33 @@ function getTodayPlusX (x) {
 	return days[(x+todayIndex)%7];
 };
 
+// Choose a weather icon based on the weather
+function iconPicker () {
+	/*
+	This function will choose from the preset weather icons
+	which one will be used based on the given weather forecast.
+
+	The icons available are:
+		- Sun
+		- Sun + Cloud
+		- Cloud
+		- Cloud + Wind
+		- Wind
+		- Rain
+
+	It will first check the wind speed and if it is gale it will
+	set the icon to "wind", if not it will then check the forecast
+	description looking for keywords such as "sunny", "overcast" 
+	and "rain". 
+
+	For example if it is 'not gale', contains the words 'overcast'
+	and the wind is above some threshold then the icon is set 
+	to: "Cloud + Wind"
+
+	It should return a sting (eg. "overcast_wind_94x80.svg")
+	*/
+}
+
 /* ------ Compress day into an array ------ */
 // A day array = 	[0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, 
 // 					[5]image, [6]forecastDesc, [7]locations, [8]wind direction
@@ -366,3 +393,4 @@ function main () {
 	// Keep looping main function if app is on.
 	appOn ? requestAnimationFrame(main) : ''; 	
 };
+
