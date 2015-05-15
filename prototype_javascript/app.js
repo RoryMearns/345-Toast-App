@@ -36,8 +36,6 @@ function getTodayPlusX (x) {
 
 	if (x == 0) {
 		return currentDay;
-	} else if (x>6) {
-		return undefined;
 	} else if (x+todayIndex <= 6) {
 		return days[x+todayIndex];
 	} else if (x+todayIndex > 6) {
