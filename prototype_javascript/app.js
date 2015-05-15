@@ -5,9 +5,9 @@
 var appOn = true,
 sailAlpha = 1.34,
 skill = ["beginner", "experienced"],	// Skill options available to users
-days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
 weather = ["sunny", "overcast", "rain"],
-currentDay = "Monday", 
+currentDay = "monday", 
 currentScreen = false,
 warningMsg = "Storm Warning",
 warningToday = true,
@@ -20,6 +20,30 @@ var user = {
 	riderSkill: "experienced",
 	riderLocal: "St Clair"
 }
+
+/* ------ Calculate day names ------ */
+function getToday () {
+	var date = new Date();
+	return days[date.getDay()];
+}
+
+// Returns the name of the day that is X many days from 'today'
+function getTodayPlusX (x) {
+	var todayIndex;
+	for (var i=0; i<days.length; i++) {
+		(days[i].toLowerCase() == currentDay.toLowerCase()) ? todayIndex = i : '';
+	}
+
+	if (x == 0) {
+		return currentDay;
+	} else if (x>6) {
+		return undefined;
+	} else if (x+todayIndex <= 6) {
+		return days[x+todayIndex];
+	} else if (x+todayIndex > 6) {
+		return days[x-6+todayIndex];
+	}
+};
 
 /* ------ Weather Data ------ */
 // Raw weather will be processed into the following format:
@@ -473,20 +497,22 @@ function instProcess (inst) {
 
 /* ------ Main Function ------ */
 function main () {
-
 	// If this is the first boot, launch the home screen:
 	if (firstBoot) {
 		//buildHomeScreen(3.5, "Thursday", "St Clair", 24, 30, 10, "overcast_wind_94x80.svg", "Rain, high seas, gale");
 		buildHomeScreen(dayCompress(0));
 		currentScreen = "home";
+		currentDay = getToday();
 		firstBoot = false;
 	}
 
+	// Fetch instructions from the queue if they exist
 	if (instructionQueue.length()>0) {
 		instProcess(instructionQueue.dequeue());
 	}
 	
-	appOn ? requestAnimationFrame(main) : ''; 	// Keep looping main function if app is on.
+	// Keep looping main function if app is on.
+	appOn ? requestAnimationFrame(main) : ''; 	
 };
 
 

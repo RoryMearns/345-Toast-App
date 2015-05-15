@@ -120,6 +120,10 @@ strong {
 	font-weight: 500;
 }
 
+span {
+	font-weight: 900;
+}
+
 section {
 	width: 685px;
 	margin: 0 auto;

@@ -58,7 +58,7 @@ test("Day Shortener Function Tests", function() {
 })
 
 test("Day Shortener Function Tests", function() {
-	ok(shortenDay(days[1]) === "Tues", "'days[1]' is shortened to 'Tues'");
+	ok(shortenDay(days[2]) === "Tues", "'days[1]' is shortened to 'Tues'");
 })
 
 test("Sail Size Setter", function() {
@@ -69,3 +69,5 @@ test("Day Compressor", function() {
 	var day0 = dayCompress(0);
 	ok(Object.prototype.toString.call(day0) === '[object Array]', "dayCompress function returns an array");
 })
+
+
