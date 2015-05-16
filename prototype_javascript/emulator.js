@@ -1,14 +1,13 @@
 /* Emulator for 345 Assignment: Rory Mearns (ID.3928873) */
 
 /* ------ Program Variables & Setup ------ */
-
 var instructionQueue; 		// Queue of incoming instructions for the app. App will poll this queue for new events.
 var canvasButtons = [];		// Buttons that are on the canvas.
+var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
 // Canvas Element
 var canvas = $("#proto_canvas").get(0);
 var ctx = canvas.getContext("2d");	
-
 
 /* ------ Basic Queue ------ */
 function Queue () {
@@ -38,7 +37,6 @@ function Queue () {
 };
 
 /* ------ General Functions Available for Apps ------ */
-
 // Clear the screen
 function clearScreen () {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -109,8 +107,28 @@ function setBackgroundColor (color) {
 	$("canvas").css("background-color", color);
 };
 
-/* ------ Button & Input Listeners ------ */
+// Get the date, 'request' is optional, request can be day.
+function dateGetter (request) {
+	var date = new Date();
+	if (request == "day") {
+		return days[date.getDay()];
+	} else {
+		return date;
+	}
+	/*
+	I may expand this function to decode and return an
+	expanded range of requests. Currenty it only returns
+	the day or a whole date object but could return a number
+	of other things including:
+		- Year
+		- Month
+		- Day 
+		- Time
+		- AM/PM
+	*/
+};
 
+/* ------ Button & Input Listeners ------ */
 $(document).ready(function() {
 	$("#appOn").click(function() {		// Activate app
 		main();
@@ -137,18 +155,16 @@ $(document).ready(function() {
 		var y = point.pageY-offset.top;
 		$("#x-coord").html(x.toFixed(0));
 		$("#y-coord").html(y.toFixed(0));
-
 		instructionQueue.enqueue(["tap", x, y]);
 	});
 
 	//ctx.fillRect(0, 0, 60, 60);
 });
 
-/* ------ Emulator Setup ------ */
+	/* ------ Emulator Setup ------ */
+	function initialize () {
+		instructionQueue = new Queue();
+	}
 
-function initialize () {
-	instructionQueue = new Queue();
-}
-
-initialize();
+	initialize();
 

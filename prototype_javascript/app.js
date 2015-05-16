@@ -196,10 +196,10 @@ function alertChecker () {
 			of the weather on that day, it is likely that they
 			would check the wether for subsequent days at that
 			time.
-	*/
-};
+			*/
+		};
 
-/* ------ Some Helper Functions ------ */
+		/* ------ Some Helper Functions ------ */
 // Shorten day name:
 function shortenDay (day) {
 	switch (day.toLowerCase()){
@@ -235,8 +235,7 @@ function sailSizeSetter (lower, upper) {
 
 // Get the name of 'today'
 function getToday () {
-	var date = new Date();
-	return days[date.getDay()];
+	return dateGetter("day");
 };
 
 // Calculate the name of the day that is X many days from 'today'
