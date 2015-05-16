@@ -25,11 +25,11 @@
 		<ul>
 			<li><a href="#prototype">Emulator &amp; App Prototype</a></li>
 			<li><a href="#report_intro">Report Introduction</a></li>
-			<li><a href="#">...</a></li>
-			<li><a href="#">...</a></li>
-			<li><a href="#">...</a></li>
-			<li><a href="#">...</a></li>
-			<li><a href="#">...</a></li>
+			<li><a href="#learning">Learning JavaScript &amp; HTML Canvas</a></li>
+			<li><a href="#emulator_app">The Current Emulator &amp; App System</a></li>
+			<li><a href="#changes">Changes to The Original Design</a></li>
+			<li><a href="#foward">Forward Workload &amp; Project Schedule Update</a></li>
+			<li><a href="#conclusion">Conclusion</a></li>
 		</ul>
 	</section>
 
@@ -65,8 +65,184 @@
 	</section>
 
 	<section id="report_intro">
-	<h2><span>Assignment 2 Report</span></h2>
-	<h2>Introduction</h2>
+		<h2><span>Assignment 2 Report</span></h2>
+		<h2>Introduction</h2>
+
+		<p>The task for assignment 2 was to build a working prototype of the smart watch emulator and app. Although some functionality is missing my emulator and application prototypes (presented above) are working as expected. I utilised raw javascript, some basic jQuery elements and the HTML Canvas element to create my implementation.</p>
+
+		<p>I have a simple user interface where the emulator can take inputs as direct taps (clicks) on the watch face or one of several other gestures delivered through the buttons listed adjacent to the watch face. The emulator makes a single call to the app to activate it then all subsequent input from the user is delivered to the app through the emulator via a queue of instructions.</p>  
+
+		<p>Finding the right weather API has proved problematic so custom weather data has been had been locally created in a way that mimmic that of real world weather APIs.</p>
+	</section>
+
+	<section id="learning">
+		<h2>Learning JavaScript &amp; HTML Canvas</h2>
+		<p>A large portion of the time between the submission of assignment 1 and the completion of this assignment has been spent learning JavaScript, the HTML canvas element and some basic jQuery. The bulk of learning JavaScript and jQuery has been through Code School and a history of my progress is documented here: (https://www.codeschool.com/users/1363483).</p>  
+
+		<p>To learn the basics of the HTML canvas I spent and afternoon following and deconstructing a tutorial on how to make a simple HTML canvas game (http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/) while at the same time reading some of the canvas API documentation on Mozilla Developer Network (https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API). This exercise proved to be very helpful as the use of JavaScript and canvas element to create an interactive panel on a webpage is in line with the goals of this assignment.</p>
+
+		<p>Part way through learning JavaScript my Artificial Intelligence class (COSC343) was given an assignment on genetic algorithms. The goal of the assignment was to build a very basic world consisting of creatures (with a set of chromosomes that dictate their behaviour in the world), monsters, food and poison. Then create a genetic algorithm that evolves subsequent generations of creatures based on their performance in the world as dictated by their chromosomes.</p> 
+
+		<p>While everybody in the class chose to implement their solution in either Java or Python I decided to put to practice what I had been learning at Code School and create my implementation in JavaScript while utilising the canvas element to display my results. Through this exercise I was able to get a reasonable grasp the JavaScript syntax and object-oriented programming using JavaScript. The results of this can be seen in this repository: https://github.com/RoryMearns/COSC343_Assignment_Genetic_Algorithm</p>
+
+		<p>In addition to this I put my new JavaScript and jQuery skills to practice to create a simple website to achieve some of the functionality that my app aims to achieve. This website is a basic windsurf calculator that takes some input from a user and returns a range of recommended sail sizes for given wind speeds. The product of this exercise is stored in this repository (https://github.com/RoryMearns/Windsurf_Calculator) and the site itself is published here: (http://windsurfcalc.com/).</p>
+
+		<p>As a result when I started writing the emulator and app for this assignment I didn’t have to waste time learning the syntax for the first time and the code was quicker to write.</p>
+
+		<h3>Revisiting the Dart Language</h3>
+
+		<p>In assignment 1 I mentioned that I would revisit the Dart programming language at a later stage and reconsider its use for this assignment. Having had some practice with JavaScript I now feel comfortable completing this assignment using raw JavaScript as the language. Although Dart looks like an interesting language I believe that learning Dart now would bring nothing of value to this assignment and only slow progress.</p>
+	</section>
+
+	<section id="emulator_app">
+		<h2>The Current Emulator &amp; App System</h2>
+		<p>The emulator in its current state has a number of functions that any app can utilise for manipulating, drawing or writing to the screen. It contains a very basic date function that will deliver a date object or the current day to a caller. The emulator also has a set of listeners (implemented using jQuery) that listen for user input and a custom queue data structure which is used as the interface with the app.</p>
+
+		<p>The emulator is smaller than I had anticipated it to be but for the purposes of this assignment it has almost all the functionality that it needs.</p> 
+
+		<p>The emulator only makes a single call to the app. This is simply a call to the app’s ‘main’ function when the app is first activated. All subsequent communication from the emulator to the app is done through the emulator—app interface.</p>
+
+		<h3>The Emulator—App Interface</h3>
+
+		<p>Initially I struggled with how to conceptualise the interface between the emulator and and app. I understood that the emulator would have a list of functions that the app could call but I didn’t understand how the emulator would or should deliver user input to the the app.</p> 
+
+		<p>After a few false starts I decided to implement a basic queue in the emulator that the would push any user input instruction onto the queue. Each instruction was an array object and the first item in each instruction array would be a string stating what the input was. Subsequent items in each instruction array would be strings or values depending on what the instruction was.</p>
+
+		<p>For example: If the user taps on the watch face the emulator would create a new instruction array. The first item in this array is the string “tap” and the two subsequent items in this instruction are numbers which represent the X and Y coordinates of where the user clicked. This whole instruction array is then added to the queue.</p>
+
+		<p>After the app is launched it continually polls the front of this queue checking for instructions. If the queue is empty it does nothing and then checks back again after some small time quantum. If there items in the queue the app dequeues the instruction at the head of the queue, unpackes it and sends it off to the appropriate function for processing depending on the type of instruction it is.</p>
+
+		<p>This interface implementation works very well for the purposes of this assignment.</p>
+
+		<h3>Testing</h3>
+
+		<p>To test specific functions in in my emulator and app I used QUnit as planned in assignment 1. The setup is relatively straight forward and all testing files are kept separate from the the main program files. Although at this stage I only have an elementary understanding of how to use the QUnit testing functions the testing that I have done has proven useful. A more thorough test suite will be implemented prior to the completion of assignment 3. I am as yet unsure how I will test time specific functions in my final applications.</p>
+
+		<p>It must also be noted that both Firebug and the use of the native ‘alert’ and ‘console.log’ functions have both been used extensively throughout the creation of my prototypes. When a feature appears to be broken the systematic placement of alert functions is helpful for assessing how far the program gets before things break down. Also the ability to set break points and the “break on property change” command in Firebug have been valuable tools in finding and fixing bugs quickly.</p>
+	</section>
+
+	<section id="changes">
+		<h2>Changes to The Original Design</h2>
+		<p>The design of my app in its current state is very close to the design outlined in assignment 1 however the changes that I have already made or plan to make for assignment 3 are outlined as follows.</p> 
+
+		<p>The watch face has been set to 340px wide by 340px high which reflects the resolution of some of the smart watches available on the market today. On a computer screen this looks a lot bigger than a watch face because of the difference in pixel density.</p>
+
+		<p>I didn’t include a much needed wind direction indicator in my original design so this has been added to the design as a simple single/double letter compass direction (eg. “NE” or “W”).</p>
+
+		<p>I initially wanted to include a settings screen where the user could enter all their preferences and personal data. At this stage this data has been hard coded into the app and although I would still like to implement this feature in assignment 3 it is a low priority feature at this stage.</p>
+
+		<h3>Changes to the Weather Data</h3>
+
+		<p>The delivery and storage of weather data is another area that has undergone some changes since conception. Initially I wanted to mirror the forecast data supplied by the MagicSeaWeed weather API (http://magicseaweed.com/developer/forecast-api) with the hope of being able to connect to the actual API for assignment 3. However on close inspection this data does not include a multi-day forecast.</p>
+
+		<p>For this feature I returned to the drawing board and visited a number of weather API’s listed in an online API repository ( http://www.programmableweb.com/category/sports%2Bwater%2Bweather/apis?category=20016%2C20412%2C20122&data_format=21173 ). Very few of the sites I visited provided example data, or if they did it didn’t quite match my requirements. Most sites required you to sign up (usually with a credit card) for a free trial to test out their data. One site (weather2.com  http://www.myweather2.com/developer/apis.aspx?uref=228b1fd1-f8ab-44df-9bd8-1494c086b79e) however did provide an interesting overview of the data structure they deliver although this still wasn’t quite what I was hoping for.</p>
+
+		<p>After much deliberation I decided that the best solution would be to mock up my own data structure. Something that was simple, useful for the purposes of my app but didn’t deviate too far from the structure of what a real world API would deliver. The structure I created is based on a combination of the MagicSeaWeed data plus the Weather2 data and is roughly as follows:</p>
+		<ul>
+			<li>Weather (with delivery time stamp)
+				<ul>
+					<li>Time 0000 (the first forecast is for midnight just past, the time it’s delivered)
+						<ul>
+							<li>Weather Description</li>
+							<li>Temperature</li>
+							<li>Wind
+								<ul>
+									<li>Speed</li>
+									<li>Gusts</li>
+									<li>Direction</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>Time + 0600 (full forecast for every 6 hour period)</li>
+					<li>Time + 1200</li>
+					<li>…</li>
+					<li>Time + 9000 (a total of 4 full days of forecast with predictions for every 6 hour interval)</li>
+				</ul>
+			</li>
+		</ul>
+		<p>This raw weather data is stored in a separate file and will be processed by the app to create a locally stored simplified version of the weather data for easy access.</p>
+	</section>
+
+	<section id="forward">
+		<h2>Forward Workload &amp; Project Schedule Update</h2>
+		<p>Perhaps the biggest hurdle for assignment 3 and completing this emulator and app is creating a simulation of time. The core functionality of my app is to provide the user with valuable information as it becomes available over time so it is necessary to implement a feature in the emulator to fast-forward time to observe how the app reacts.</p> 
+
+		<p>The emulator handles time in my prototype and for the app to determine what day it is it makes a direct request for this information from the emulator. To implement the time fast forwarding feature I plan to create some buttons in the browser that will add a given amount of time to the current time on each press of the button.</p>
+
+		<p>For this assignment I have created the faux raw weather data file but have not yet filled out all the fields with realistic data. The weather data file contains four unique weather objects to simulate the delivery of weather data over four days. Whenever the time has been shifted forward by the emulators fast-forward function the app will need to determine what day it is and if it needs to update its local weather data from the ‘new’ raw data.</p>
+
+		<p>I also need to complete the function within the app that will mine the raw weather data and rebuild the simplified local weather data structure as necessary.</p>
+
+		<p>For the prototype I have filled out the simplified weather data structure within the app to enable it to function.</p>
+
+		<p>An updated project schedule is as follows:</p>
+
+		<ul>
+
+			<li><strong>May</strong>
+				<ul>
+					<li><strong><em>18<sup>th</sup> - Assignment 2 due</em></strong> (user settings &amp; weather data to be hard coded into app)</li>
+					<li>23<sup>rd</sup> - Begin work on final emulator and app</li>
+				</ul>
+			</li>
+
+			<li><strong>June</strong>
+				<ul>
+					<li>6<sup>th</sup> - Address any comments / suggestions from Assignment 2 marks</li>
+					<li>7<sup>th</sup> - Make decision about including call to a real weather API in final app</li>
+					<li>7<sup>th</sup> - Make decision about including settings screen in final app</li>
+					<li>8<sup>th</sup> to 30<sup>th</sup> - Code emulator and app core functionality in Javascript or Dart</li>
+				</ul>
+			</li>
+
+			<li><strong>July</strong>
+				<ul>
+					<li>4<sup>th</sup> - Incorporate weather API calls (if used)</li>
+					<li>11<sup>th</sup> - Build app personalisations &amp; settings screen</li>
+					<li>18<sup>th</sup> - Begin polishing the interface and screen output design</li>
+					<li>19<sup>th</sup> - Have emulator documentation layed out with all funcions listed (skeleton of final version)</li>
+					<li>25<sup>th</sup> - Write accompanying report for Assignment 3</li>
+					<li>26<sup>th</sup> - Finish emulator documentation</li>
+				</ul>
+			</li>
+
+			<li><strong>August</strong>
+				<ul>
+					<li>8<sup>th</sup> - Ensure all tests are passing, emulator &amp; app is functioning 100%</li>
+					<li>9<sup>th</sup> - Proof read report and documentation for Assignment 3, make any final additions or changes</li>
+					<li>9<sup>th</sup> - Check HTML &amp; CSS validations</li>
+					<li><strong><em>14<sup>th</sup> - Assignment 3 due</em></strong></li>
+					<li>29<sup>th</sup> - Read &amp; re-read the documentation of the the other two emulators to port to</li>
+					<li>30<sup>th</sup> - Decide which emulator to port to first and make a start</li>
+				</ul>
+			</li>
+
+			<li><strong>September</strong>
+				<ul>
+					<li>12<sup>th</sup> - Finished porting to the first emulator</li>
+					<li>13<sup>th</sup> - Write report chapter on results of porting to the first emulator</li>
+					<li>14<sup>th</sup> - Begin porting to the second emulator</li>
+					<li>26<sup>th</sup> - Finished porting to the second emulator</li>
+					<li>27<sup>th</sup> - Write report chapter on results of porting to the second emulator</li>
+					<li>27<sup>th</sup> - Compile final report in HTML</li>
+					<li>29<sup>th</sup> - Validate HTML &amp; CSS</li>
+				</ul>
+			</li>
+
+			<li><strong>October</strong>
+				<ul>
+					<li><strong><em>2<sup>nd</sup> - Assignment 4 due</em></strong></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+
+	<section id="conclusion">
+		<h2>Conclusion</h2>
+		<p>At the prototype stage both emulator and app are functioning as expected and I am pleased with the results. The emulator is near its final version with the main lacking feature being the ability to fast forward time to assess how the app responds.</p>
+
+		<p>The application prototype is currently lacking the ability to mine raw weather data. This functionality isn’t expected to be too difficult to implement however it requires the finalised version of the raw weather data file. The app is also lacking the ability for the user to change their preferences and settings. The goal is to include this feature in the final submission however it is currently a low priority task as the time shifting functionality and the data mining ability take priority.</p>
 	</section>
 
 	<footer>
