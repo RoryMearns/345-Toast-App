@@ -28,7 +28,7 @@
 			<li><a href="#learning">Learning JavaScript &amp; HTML Canvas</a></li>
 			<li><a href="#emulator_app">The Current Emulator &amp; App System</a></li>
 			<li><a href="#changes">Changes to The Original Design</a></li>
-			<li><a href="#foward">Forward Workload &amp; Project Schedule Update</a></li>
+			<li><a href="#forward">Forward Workload &amp; Project Schedule Update</a></li>
 			<li><a href="#conclusion">Conclusion</a></li>
 		</ul>
 	</section>
@@ -61,7 +61,16 @@
 		<p>Click Coordinates: X=<span id="x-coord"></span>, Y=<span id="y-coord"></span></p>
 
 		<h3>Prototype Notes</h3>
-
+		<ul> 
+			<li>Press “Activate App” button to launch the app</li>
+			<li>Click on the watch screen to navigate around the app</li>
+			<li>Button layout uses flex box property, this has been tested and appears to be working normally in Firefox, Chrome and Safari browsers</li>
+			<li>Full functionality has not yet been added to all buttons, more buttons may be added in the final version, some may be removed</li>
+			<li>User preferences and settings have been hard coded into the app prototype and cannot be altered at this stage</li>
+			<li>Weather data has been hard coded into the app prototype</li>
+			<li>No ‘time fast-forwarding’ functionality exists in the emulator prototype, thus the alert functionality of the app has not been implemented at this stage. Click on a day in the forecast screen to see an alert page for that day</li>
+			<li>Click co-ordinates are displayed for development purposes only</li>
+		</ul>
 	</section>
 
 	<section id="report_intro">
@@ -77,15 +86,15 @@
 
 	<section id="learning">
 		<h2>Learning JavaScript &amp; HTML Canvas</h2>
-		<p>A large portion of the time between the submission of assignment 1 and the completion of this assignment has been spent learning JavaScript, the HTML canvas element and some basic jQuery. The bulk of learning JavaScript and jQuery has been through Code School and a history of my progress is documented here: (https://www.codeschool.com/users/1363483).</p>  
+		<p>A large portion of the time between the submission of assignment 1 and the completion of this assignment has been spent learning JavaScript, the HTML canvas element and some basic jQuery. The bulk of learning JavaScript and jQuery has been through Code School and a history of my progress is <a href="https://www.codeschool.com/users/1363483">documented here</a>.</p>  
 
-		<p>To learn the basics of the HTML canvas I spent and afternoon following and deconstructing a tutorial on how to make a simple HTML canvas game (http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/) while at the same time reading some of the canvas API documentation on Mozilla Developer Network (https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API). This exercise proved to be very helpful as the use of JavaScript and canvas element to create an interactive panel on a webpage is in line with the goals of this assignment.</p>
+		<p>To learn the basics of the HTML canvas I spent and afternoon following and deconstructing a tutorial on <a href="http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/">how to make a simple HTML canvas game</a> while at the same time reading some of the canvas API documentation on <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Mozilla Developer Network</a>. This exercise proved to be very helpful as the use of JavaScript and canvas element to create an interactive panel on a webpage is in line with the goals of this assignment.</p>
 
 		<p>Part way through learning JavaScript my Artificial Intelligence class (COSC343) was given an assignment on genetic algorithms. The goal of the assignment was to build a very basic world consisting of creatures (with a set of chromosomes that dictate their behaviour in the world), monsters, food and poison. Then create a genetic algorithm that evolves subsequent generations of creatures based on their performance in the world as dictated by their chromosomes.</p> 
 
-		<p>While everybody in the class chose to implement their solution in either Java or Python I decided to put to practice what I had been learning at Code School and create my implementation in JavaScript while utilising the canvas element to display my results. Through this exercise I was able to get a reasonable grasp the JavaScript syntax and object-oriented programming using JavaScript. The results of this can be seen in this repository: https://github.com/RoryMearns/COSC343_Assignment_Genetic_Algorithm</p>
+		<p>While everybody in the class chose to implement their solution in either Java or Python I decided to put to practice what I had been learning at Code School and create my implementation in JavaScript while utilising the canvas element to display my results. Through this exercise I was able to get a reasonable grasp the JavaScript syntax and object-oriented programming using JavaScript. The results of this can be seen in <a href="https://github.com/RoryMearns/COSC343_Assignment_Genetic_Algorithm">this repository</a>.</p>
 
-		<p>In addition to this I put my new JavaScript and jQuery skills to practice to create a simple website to achieve some of the functionality that my app aims to achieve. This website is a basic windsurf calculator that takes some input from a user and returns a range of recommended sail sizes for given wind speeds. The product of this exercise is stored in this repository (https://github.com/RoryMearns/Windsurf_Calculator) and the site itself is published here: (http://windsurfcalc.com/).</p>
+		<p>In addition to this I put my new JavaScript and jQuery skills to practice to create a simple website to achieve some of the functionality that my app aims to achieve. This website is a basic windsurf calculator that takes some input from a user and returns a range of recommended sail sizes for given wind speeds. The product of this exercise is stored in <a href="https://github.com/RoryMearns/Windsurf_Calculator">this repository</a> and the site itself is published at <a href="http://windsurfcalc.com/">windsurfcalc.com</a></p>
 
 		<p>As a result when I started writing the emulator and app for this assignment I didn’t have to waste time learning the syntax for the first time and the code was quicker to write.</p>
 
@@ -133,9 +142,9 @@
 
 		<h3>Changes to the Weather Data</h3>
 
-		<p>The delivery and storage of weather data is another area that has undergone some changes since conception. Initially I wanted to mirror the forecast data supplied by the MagicSeaWeed weather API (http://magicseaweed.com/developer/forecast-api) with the hope of being able to connect to the actual API for assignment 3. However on close inspection this data does not include a multi-day forecast.</p>
+		<p>The delivery and storage of weather data is another area that has undergone some changes since conception. Initially I wanted to mirror the forecast data supplied by the <a href="http://magicseaweed.com/developer/forecast-api">MagicSeaWeed weather API</a> with the hope of being able to connect to the actual API for assignment 3. However on close inspection this data does not include a multi-day forecast.</p>
 
-		<p>For this feature I returned to the drawing board and visited a number of weather API’s listed in an online API repository ( http://www.programmableweb.com/category/sports%2Bwater%2Bweather/apis?category=20016%2C20412%2C20122&data_format=21173 ). Very few of the sites I visited provided example data, or if they did it didn’t quite match my requirements. Most sites required you to sign up (usually with a credit card) for a free trial to test out their data. One site (weather2.com  http://www.myweather2.com/developer/apis.aspx?uref=228b1fd1-f8ab-44df-9bd8-1494c086b79e) however did provide an interesting overview of the data structure they deliver although this still wasn’t quite what I was hoping for.</p>
+		<p>For this feature I returned to the drawing board and visited a number of weather API’s listed in an <a href="http://www.programmableweb.com/category/sports%2Bwater%2Bweather/apis?category=20016%2C20412%2C20122&amp;data_format=21173">online API repository</a>. Very few of the sites I visited provided example data, or if they did it didn’t quite match my requirements. Most sites required you to sign up (usually with a credit card) for a free trial to test out their data. One site (<a href="http://www.myweather2.com/developer/apis.aspx?uref=228b1fd1-f8ab-44df-9bd8-1494c086b79e">weather2.com</a>) however did provide an interesting overview of the data structure they deliver although this still wasn’t quite what I was hoping for.</p>
 
 		<p>After much deliberation I decided that the best solution would be to mock up my own data structure. Something that was simple, useful for the purposes of my app but didn’t deviate too far from the structure of what a real world API would deliver. The structure I created is based on a combination of the MagicSeaWeed data plus the Weather2 data and is roughly as follows:</p>
 		<ul>
@@ -184,24 +193,28 @@
 				<ul>
 					<li><strong><em>18<sup>th</sup> - Assignment 2 due</em></strong> (user settings &amp; weather data to be hard coded into app)</li>
 					<li>23<sup>rd</sup> - Begin work on final emulator and app</li>
+					<li>30<sup>th</sup> - Finish the mock weather data to enable work on data mining function</li>
+					<li>31<sup>st</sup> - Write the bulk of the weather data mining function</li>
 				</ul>
 			</li>
 
 			<li><strong>June</strong>
 				<ul>
 					<li>6<sup>th</sup> - Address any comments / suggestions from Assignment 2 marks</li>
-					<li>7<sup>th</sup> - Make decision about including call to a real weather API in final app</li>
+					<li><del>7<sup>th</sup> - Make decision about including call to a real weather API in final app</del></li>
 					<li>7<sup>th</sup> - Make decision about including settings screen in final app</li>
-					<li>8<sup>th</sup> to 30<sup>th</sup> - Code emulator and app core functionality in Javascript or Dart</li>
+					<li>13<sup>th</sup> - Finish weather data mining function</li>
+					<li>14<sup>th</sup> - Start work on time fast-forwarding functionality of emulator</li>
+					<li>28<sup>th</sup> - Finish time fast-forwarding functionality of emulator</li>
 				</ul>
 			</li>
 
 			<li><strong>July</strong>
 				<ul>
-					<li>4<sup>th</sup> - Incorporate weather API calls (if used)</li>
+					<li><del>4<sup>th</sup> - Incorporate weather API calls (if used)</del></li>
 					<li>11<sup>th</sup> - Build app personalisations &amp; settings screen</li>
 					<li>18<sup>th</sup> - Begin polishing the interface and screen output design</li>
-					<li>19<sup>th</sup> - Have emulator documentation layed out with all funcions listed (skeleton of final version)</li>
+					<li>19<sup>th</sup> - Have emulator documentation layed out with all functions listed (skeleton of final version)</li>
 					<li>25<sup>th</sup> - Write accompanying report for Assignment 3</li>
 					<li>26<sup>th</sup> - Finish emulator documentation</li>
 				</ul>
@@ -242,7 +255,7 @@
 		<h2>Conclusion</h2>
 		<p>At the prototype stage both emulator and app are functioning as expected and I am pleased with the results. The emulator is near its final version with the main lacking feature being the ability to fast forward time to assess how the app responds.</p>
 
-		<p>The application prototype is currently lacking the ability to mine raw weather data. This functionality isn’t expected to be too difficult to implement however it requires the finalised version of the raw weather data file. The app is also lacking the ability for the user to change their preferences and settings. The goal is to include this feature in the final submission however it is currently a low priority task as the time shifting functionality and the data mining ability take priority.</p>
+		<p>The application prototype is currently lacking the ability to mine raw weather data. This functionality isn’t expected to be difficult to implement however it requires the finalised version of the raw weather data file. The app is also lacking the ability for the user to change their preferences and settings. The goal is to include this feature in the final submission however it is currently a low priority task as the time shifting functionality and the data mining ability take priority.</p>
 	</section>
 
 	<footer>
