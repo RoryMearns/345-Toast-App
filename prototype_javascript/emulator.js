@@ -132,7 +132,6 @@ function dateGetter (request) {
 $(document).ready(function() {
 	$("#appOn").click(function() {		// Activate app
 		main();
-		//alert("on is working");
 	});
 	$("#up").click(function() {			// Swipe up
 		instructionQueue.enqueue(["swipe", "up"]);
@@ -158,13 +157,12 @@ $(document).ready(function() {
 		instructionQueue.enqueue(["tap", x, y]);
 	});
 
-	//ctx.fillRect(0, 0, 60, 60);
 });
 
-	/* ------ Emulator Setup ------ */
-	function initialize () {
-		instructionQueue = new Queue();
-	}
+/* ------ Emulator Setup ------ */
+function initialize () {
+	instructionQueue = new Queue();
+}
 
-	initialize();
+initialize();
 

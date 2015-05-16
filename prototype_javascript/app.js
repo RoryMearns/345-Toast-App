@@ -24,59 +24,61 @@ var user = {
 // Raw weather will be processed into the following format:
 var weather = {
 	day0: {					// Day0 = Today
-		windLower: 24,
-		windUpper: 30,
-		windDir: "W",
-		temp: 10,
+		windLower: 26,
+		windUpper: 34,
+		windDir: "SE",
+		temp: 12,
 		sailSize: 4.2,
 		outlook: "Rain, high seas, gale",
 		icon: "weather_rain_33x33.svg",
 		dName: "Monday"
 	},
 	day1: {	
-		windLower: 24,
-		windUpper: 30,
-		windDir: "W",
-		temp: 10,
+		windLower: 28,
+		windUpper: 36,
+		windDir: "S",
+		temp: 9,
 		sailSize: 4.2,
 		outlook: "Rain, high seas, gale",
-		icon: "weather_wind_cloud_33x33.svg",
+		icon: "weather_rain_33x33.svg",
 		dName: "Tuesday"
 	},
 	day2: {
-		windLower: 24,
-		windUpper: 30,
-		windDir: "W",
-		temp: 10,
+		windLower: 18,
+		windUpper: 22,
+		windDir: "E",
+		temp: 14,
 		sailSize: 4.2,
-		outlook: "Rain, high seas, gale",
-		icon: "weather_wind_sun_33x33.svg",
+		outlook: "Strong wind, overcast",
+		icon: "weather_wind_cloud_33x33.svg",
 		dName: "Wednesday"
 	},
 	day3: {	
-		windLower: 24,
-		windUpper: 30,
-		windDir: "W",
-		temp: 10,
+		windLower: 8,
+		windUpper: 14,
+		windDir: "NE",
+		temp: 17,
 		sailSize: 4.2,
-		outlook: "Rain, high seas, gale",
-		icon: "weather_sun_cloud_33x33.svg",
+		outlook: "Moderate winds, sunny",
+		icon: "weather_sun_33x33.svg",
 		dName: "Thursday"
 	}
 }
 
 /* ------ Process Raw Weather Into Local Stored Data ------ */
 function constructWeather () {
-	weather.day0.dName = getToday();
-	weather.day1.dName = getTodayPlusX(1);
-	weather.day2.dName = getTodayPlusX(2);
-	weather.day3.dName = getTodayPlusX(3);
-
 	/* 
 	Many more funcitons & setters are to go in here to take 
 	the raw weather data and convert it into the locally 
 	stored weather data for easy access. 
 	*/
+
+	for (var i=0; i<=3; i++) {
+		// Set the day names
+		weather['day'+i]['dName'] = getTodayPlusX(i);
+		// Set the sail sizes (note: wind ranges NEED to be set prior!)
+		weather['day'+i]['sailSize'] = sailSizeSetter(weather['day'+i]['windLower'], weather['day'+i]['windUpper']);
+	}
 };
 
 /* ------ Build Alert Screen ------ */
@@ -88,7 +90,9 @@ function buildAlertScreen (day) {
 	setBackgroundColor("#000");
 	// Draw the sail recommendation
 	drawCircle(235, 75, 52, "white");
-	drawText(235, 95, "bold 60px helvetica", "black", day[0], "center");
+	var size, shift;
+	(day[0] < 10) ? (size = "60px", shift = 95) : (size = "50px", shift = 91);
+	drawText(235, shift, ("bold "+size+" helvetica"), "black", day[0], "center");
 	// Draw the current weather icon
 	drawImage(55, 35, 90, 90, "../prototype_javascript/app_images/"+day[5]);
 	// Write the day
@@ -112,7 +116,9 @@ function buildHomeScreen (day) {
 	setBackgroundColor("#000");
 	// Draw the sail recommendation
 	drawCircle(170, 81, 52, "white");
-	drawText(170, 101, "bold 60px helvetica", "black", day[0], "center");
+	var size, shift;
+	(day[0] < 10) ? (size = "60px", shift = 101) : (size = "50px", shift = 98);
+	drawText(170, shift, "bold "+size+" helvetica", "black", day[0], "center");
 	// Draw the current weather icon
 	drawImage(28, 53, 73, 73, "../prototype_javascript/app_images/"+day[5]);
 	// Write the day
@@ -153,7 +159,7 @@ function buildForecastScreen (day0, day1, day2, day3) {
 
 	// All thats needed to build each line & then building all four forecasts:
 	function drawDay (day, offset) {
-		drawText(170, 92+offset, "bold 55px helvetica", "white", day[0].toFixed(1), "center");
+		drawText(170, 92+offset, "bold 55px helvetica", "white", day[0], "center");
 		drawText(62, 81+offset, "100 22px helvetica", "white", shortenDay(day[1]));
 		drawText(320, 65+offset, "100 22px helvetica", "#939597", (day[2]+"-"+day[2]+" kn"), "right");
 		drawText(320, 94+offset, "100 22px helvetica", "#00ADEF", (day[8]+", "+day[4]+"°C"), "right");
@@ -196,10 +202,10 @@ function alertChecker () {
 			of the weather on that day, it is likely that they
 			would check the wether for subsequent days at that
 			time.
-			*/
-		};
+	*/
+};
 
-		/* ------ Some Helper Functions ------ */
+/* ------ Some Helper Functions ------ */
 // Shorten day name:
 function shortenDay (day) {
 	switch (day.toLowerCase()){
