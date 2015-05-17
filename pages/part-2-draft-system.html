@@ -27,7 +27,7 @@
 			<li><a href="#report_intro">Report Introduction</a></li>
 			<li><a href="#learning">Learning JavaScript &amp; HTML Canvas</a></li>
 			<li><a href="#emulator_app">The Current Emulator &amp; App System</a></li>
-			<li><a href="#changes">Changes to The Original Design</a></li>
+			<li><a href="#changes">Changes to the Original Design</a></li>
 			<li><a href="#forward">Forward Workload &amp; Project Schedule Update</a></li>
 			<li><a href="#conclusion">Conclusion</a></li>
 		</ul>
@@ -64,7 +64,7 @@
 		<ul> 
 			<li>Press “Activate App” button to launch the app</li>
 			<li>Click on the watch screen to navigate around the app</li>
-			<li>Button layout uses flex box property, this has been tested and appears to be working normally in Firefox, Chrome and Safari browsers</li>
+			<li>Button layout uses 'flexbox' property, this has been tested and appears to be working normally in Firefox, Chrome and Safari browsers</li>
 			<li>Full functionality has not yet been added to all buttons, more buttons may be added in the final version, some may be removed</li>
 			<li>User preferences and settings have been hard coded into the app prototype and cannot be altered at this stage</li>
 			<li>Weather data has been hard coded into the app prototype</li>
@@ -77,18 +77,18 @@
 		<h2><span>Assignment 2 Report</span></h2>
 		<h2>Introduction</h2>
 
-		<p>The task for assignment 2 was to build a working prototype of the smart watch emulator and app. Although some functionality is missing my emulator and application prototypes (presented above) are working as expected. I utilised raw javascript, some basic jQuery elements and the HTML Canvas element to create my implementation.</p>
+		<p>The task for assignment 2 was to build a working prototype of the smart watch emulator and app. Although some functionality is missing my emulator and application prototypes (presented above) are working as expected. I utilised raw JavaScript, some basic jQuery elements and the HTML Canvas element to create my implementation.</p>
 
 		<p>I have a simple user interface where the emulator can take inputs as direct taps (clicks) on the watch face or one of several other gestures delivered through the buttons listed adjacent to the watch face. The emulator makes a single call to the app to activate it then all subsequent input from the user is delivered to the app through the emulator via a queue of instructions.</p>  
 
-		<p>Finding the right weather API has proved problematic so custom weather data has been had been locally created in a way that mimmic that of real world weather APIs.</p>
+		<p>Finding the right weather API has proved problematic so custom weather data has been locally created in a way that mimmic that of real world weather APIs.</p>
 	</section>
 
 	<section id="learning">
 		<h2>Learning JavaScript &amp; HTML Canvas</h2>
 		<p>A large portion of the time between the submission of assignment 1 and the completion of this assignment has been spent learning JavaScript, the HTML canvas element and some basic jQuery. The bulk of learning JavaScript and jQuery has been through Code School and a history of my progress is <a href="https://www.codeschool.com/users/1363483">documented here</a>.</p>  
 
-		<p>To learn the basics of the HTML canvas I spent and afternoon following and deconstructing a tutorial on <a href="http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/">how to make a simple HTML canvas game</a> while at the same time reading some of the canvas API documentation on <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Mozilla Developer Network</a>. This exercise proved to be very helpful as the use of JavaScript and canvas element to create an interactive panel on a webpage is in line with the goals of this assignment.</p>
+		<p>To learn the basics of the HTML canvas element I spent an afternoon following and deconstructing a tutorial on <a href="http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/">how to make a simple HTML canvas game</a> while at the same time reading some of the canvas API documentation on <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Mozilla Developer Network</a>. This exercise proved to be very helpful as the use of JavaScript and canvas element to create an interactive panel on a webpage is in line with the goals of this assignment.</p>
 
 		<p>Part way through learning JavaScript my Artificial Intelligence class (COSC343) was given an assignment on genetic algorithms. The goal of the assignment was to build a very basic world consisting of creatures (with a set of chromosomes that dictate their behaviour in the world), monsters, food and poison. Then create a genetic algorithm that evolves subsequent generations of creatures based on their performance in the world as dictated by their chromosomes.</p> 
 
@@ -96,7 +96,7 @@
 
 		<p>In addition to this I put my new JavaScript and jQuery skills to practice to create a simple website to achieve some of the functionality that my app aims to achieve. This website is a basic windsurf calculator that takes some input from a user and returns a range of recommended sail sizes for given wind speeds. The product of this exercise is stored in <a href="https://github.com/RoryMearns/Windsurf_Calculator">this repository</a> and the site itself is published at <a href="http://windsurfcalc.com/">windsurfcalc.com</a></p>
 
-		<p>As a result when I started writing the emulator and app for this assignment I didn’t have to waste time learning the syntax for the first time and the code was quicker to write.</p>
+		<p>As a result when I started writing the emulator and app for this assignment I didn’t have to waste time learning the syntax for the first time and the code was much quicker to write.</p>
 
 		<h3>Revisiting the Dart Language</h3>
 
@@ -119,7 +119,7 @@
 
 		<p>For example: If the user taps on the watch face the emulator would create a new instruction array. The first item in this array is the string “tap” and the two subsequent items in this instruction are numbers which represent the X and Y coordinates of where the user clicked. This whole instruction array is then added to the queue.</p>
 
-		<p>After the app is launched it continually polls the front of this queue checking for instructions. If the queue is empty it does nothing and then checks back again after some small time quantum. If there items in the queue the app dequeues the instruction at the head of the queue, unpackes it and sends it off to the appropriate function for processing depending on the type of instruction it is.</p>
+		<p>After the app is launched it continually polls the front of this queue checking for instructions. If the queue is empty it does nothing and then checks back again after some small time quantum. If there are items in the queue the app dequeues the instruction at the head of the queue, unpackes it and sends it off to the appropriate function for processing depending on the type of instruction it is.</p>
 
 		<p>This interface implementation works very well for the purposes of this assignment.</p>
 
@@ -132,7 +132,7 @@
 
 	<section id="changes">
 		<h2>Changes to The Original Design</h2>
-		<p>The design of my app in its current state is very close to the design outlined in assignment 1 however the changes that I have already made or plan to make for assignment 3 are outlined as follows.</p> 
+		<p>The design of my app in its current state is very close to the design outlined in assignment 1, however the changes that I have already made or plan to make for assignment 3 are outlined as follows.</p> 
 
 		<p>The watch face has been set to 340px wide by 340px high which reflects the resolution of some of the smart watches available on the market today. On a computer screen this looks a lot bigger than a watch face because of the difference in pixel density.</p>
 
@@ -255,7 +255,7 @@
 		<h2>Conclusion</h2>
 		<p>At the prototype stage both emulator and app are functioning as expected and I am pleased with the results. The emulator is near its final version with the main lacking feature being the ability to fast forward time to assess how the app responds.</p>
 
-		<p>The application prototype is currently lacking the ability to mine raw weather data. This functionality isn’t expected to be difficult to implement however it requires the finalised version of the raw weather data file. The app is also lacking the ability for the user to change their preferences and settings. The goal is to include this feature in the final submission however it is currently a low priority task as the time shifting functionality and the data mining ability take priority.</p>
+		<p>The app prototype is currently lacking the ability to mine raw weather data. This functionality isn’t expected to be difficult to implement however it requires the finalised version of the raw weather data file. The app is also lacking the ability for the user to change their preferences and settings. The goal is to include this feature in the final submission however it is currently a low priority task as the time shifting functionality and the data mining ability take priority.</p>
 	</section>
 
 	<footer>
