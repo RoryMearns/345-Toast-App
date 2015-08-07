@@ -5,8 +5,16 @@ var instructionQueue; 		// Queue of incoming instructions for the app. Poll this
 var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 var canvas = $("#proto_canvas").get(0);
 var ctx = canvas.getContext("2d");	
+var timePlusX = 0;
 
-/* Basic Queue structure for instructions */
+/* Basic Queue structure for instructions 
+	######################
+	######################
+	ADD INFOR ABOUT QUEUE FUNCTIONS AND RETURNS
+	######################
+	######################
+
+*/
 function Queue () {
 	var items = [];
 	this.length = function () {
@@ -44,7 +52,7 @@ If stroke is given the stroke is styled with given color and the rectange is not
 	- [x, y] 	Number input 	- Starting co-ordinates of the rectangle relative the canvas (i.e. upper left of rectangle)
 	- [width]	Number input 	- Width of the rectangle
 	- [height]	Number input 	- Height of the rectangle
-	- [color] 	Color input 	- Color of rectange fill or stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
+	- [color] 	CSS color input - Color of rectange fill or stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
 	- [stroke] 	Number input 	- (Optional) Width of stroke, default = 1
  */
 function drawRect (x, y, width, height, color, stroke) {
@@ -68,7 +76,7 @@ If stroke is given the stroke is styled with given color and the circle is not f
 	- [centerX] Number input 	- X co-ordinate of the circle center
 	- [centerY]	Number input 	- Y co-ordinate of the circle center
 	- [radius]	Number input 	- Radius of the circle
-	- [color] 	Color input 	- Color of circle fill or stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
+	- [color] 	CSS color input - Color of circle fill or stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
 	- [stroke] 	Number input 	- (Optional) Width of stroke, default = 1
  */
 function drawCircle (centerX, centerY, radius, color, stroke) {
@@ -91,7 +99,7 @@ Draw a line on the screen
 	- [startY]	Number input 	- Y co-ordinate of the starting of the line
 	- [endX]	Number input 	- X co-ordinate of the end of the line
 	- [endY] 	Number input 	- Y co-ordinate of the end of the line
-	- [color] 	Color input 	- Color of the stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
+	- [color] 	CSS color input - Color of the stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
 	- [width]	Number Input 	- Stroke width of the line
  */
 function drawLine (startX, startY, endX, endY, color, width) {
@@ -110,7 +118,7 @@ Write text on the screen
 
 	- [x, y] 	Number input 	- Starting coordinates of the text relative to the canvas
 	- [font]	CSS font input 	- Styling of the font. Example: "48px serif"
-	- [color]	Color input 	- Color of circle text. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
+	- [color]	CSS color input - Color of circle text. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
 	- [string] 	String input 	- Text string to be written to the screen
 	- [align] 	Position input 	- Text justification relative to starting coordinates, default = left justification. Accepted values "center", "right" or no input.
  */
@@ -127,7 +135,14 @@ function drawText (x, y, font, color, string, align) {
 	ctx.fillText(string, x, y);
 };
 
-// Draw an image at XY of width and height from 'source'
+/*
+Draw an image on the screen
+
+	- [x, y] 	Number input 	- Starting coordinates of the image relative to the canvas (i.e. upper left of image)
+	- [width]	Number input 	- Width of the image
+	- [height]	Number input 	- Height of the image
+	- [source]	Url input 		- Location of the image to be displayed
+ */
 function drawImage (x, y, width, height, source) {
 	var image = new Image();
 	image.onload = function() {
@@ -136,12 +151,21 @@ function drawImage (x, y, width, height, source) {
 	image.src = source;
 };
 
-// Persistent change to the background color
+/*
+Make a persistent change to the background color
+
+	- [color]	CSS color input - Color background. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
+*/
 function setBackgroundColor (color) {
 	$("canvas").css("background-color", color);
 };
 
-// Get the date, 'request' is optional, request can be day.
+/*
+Get today's date
+
+'Request' is optional and if the value "day" is passed in as the request then the day is returned.
+Otherwise the return value is a date object.
+*/
 function dateGetter (request) {
 	var date = new Date();
 	if (request == "day") {
@@ -163,7 +187,31 @@ function dateGetter (request) {
 };
 
 
-/* ------ Button & Input Listeners ------ */
+/* 
+Button & Input Listeners 
+
+There are two main types of input here
+	1 - Input from one of the 9 html buttons
+	2 - Input from clicking on the app screen
+
+1 Input from one of the 9 html buttons:
+	Buttons are used to represent physical watch buttons (eg. "power") or conceptual actions (eg. "swipe left")
+
+	Only some of the 9 html buttons have been setup or activated in this implimentation of the emulator.
+	To setup and activate additional buttons change the class of the button in the 'control' div in the html file 
+	from 'inactive' to 'active' and then give it an 'id'. Buttons can then be accessed using the basic pattern:
+
+		$("#button_id").click(function() {
+			// actions to be performed go here...
+		});
+
+2 Input from clicking on the app screen:
+	######################
+	######################
+	ADD MORE ABOUT CLICKING ON SCREEN
+	######################
+	######################
+*/
 $(document).ready(function() {
 	$("#appOn").click(function() {		// Activate app
 		main();
@@ -183,13 +231,14 @@ $(document).ready(function() {
 	$("#enter").click(function() {		// Click 'Select'
 		clearScreen();
 	});
-	$("#ffwd").click(function() {		// Advance 1 Day
-		alert("ffwd");
+	$("#ffwd").click(function() {		// Advance 'time' by 1
+		timePlusX += 1;
 	});
 	$("#reset").click(function() {		// Reset
 		alert("reset");
 	});
 
+	/* Clicking on the canvas */
 	$("#proto_canvas").mousedown(function(point) {		// clicking on the canvas
 		var offset = $("#proto_canvas").offset();
 		var x = point.pageX-offset.left;
@@ -204,6 +253,7 @@ $(document).ready(function() {
 /* ------ Emulator Setup ------ */
 function initialize () {
 	instructionQueue = new Queue();
+	timePlusX = 0;
 }
 
 initialize();
