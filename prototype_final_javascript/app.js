@@ -5,7 +5,6 @@ var appOn = true,
 sailAlpha = 1.34,
 skill = ["beginner", "experienced"],	// Skill options available to users
 days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
-weather = ["sunny", "overcast", "rain"],
 currentDay = "monday", 
 currentScreen = false,
 warningMsg = "Storm Warning",

@@ -128,6 +128,7 @@ function dateGetter (request) {
 	*/
 };
 
+
 /* ------ Button & Input Listeners ------ */
 $(document).ready(function() {
 	$("#appOn").click(function() {		// Activate app
@@ -148,6 +149,7 @@ $(document).ready(function() {
 	$("#enter").click(function() {		// Click 'Select'
 		clearScreen();
 	});
+
 	$("#proto_canvas").mousedown(function(point) {		// clicking on the canvas
 		var offset = $("#proto_canvas").offset();
 		var x = point.pageX-offset.left;
