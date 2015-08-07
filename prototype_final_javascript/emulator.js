@@ -234,8 +234,9 @@ $(document).ready(function() {
 	$("#ffwd").click(function() {		// Advance 'time' by 1
 		timePlusX += 1;
 	});
-	$("#reset").click(function() {		// Reset
-		alert("reset");
+	$("#reset").click(function() {		// Reset emulator & app
+		initialize();
+		instructionQueue.enqueue(["reset"]);
 	});
 
 	/* Clicking on the canvas */
@@ -252,6 +253,7 @@ $(document).ready(function() {
 
 /* ------ Emulator Setup ------ */
 function initialize () {
+	clearScreen();
 	instructionQueue = new Queue();
 	timePlusX = 0;
 }

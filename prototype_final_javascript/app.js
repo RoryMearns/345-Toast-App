@@ -367,6 +367,9 @@ function instProcess (inst) {
 			currentScreen = "home"
 		}
 	}
+	else if (input == "reset") {
+		firstBoot = true;
+	}
 };
 
 /* ------ Main Function ------ */
