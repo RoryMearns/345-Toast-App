@@ -72,6 +72,10 @@ function constructWeather () {
 	stored weather data for easy access. 
 	*/
 
+	// select icon
+	// find wind range for day
+	
+
 	for (var i=0; i<=3; i++) {
 		// Set the day names
 		weather['day'+i]['dName'] = getTodayPlusX(i);

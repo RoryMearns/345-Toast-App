@@ -173,17 +173,6 @@ function dateGetter (request) {
 	} else {
 		return date;
 	}
-	/*
-	I may expand this function to decode and return an
-	expanded range of requests. Currenty it only returns
-	the day or a whole date object but could return a number
-	of other things including:
-		- Year
-		- Month
-		- Day 
-		- Time
-		- AM/PM
-	*/
 };
 
 
@@ -248,7 +237,6 @@ $(document).ready(function() {
 		$("#y-coord").html(y.toFixed(0));
 		instructionQueue.enqueue(["tap", x, y]);
 	});
-
 });
 
 /* ------ Emulator Setup ------ */
