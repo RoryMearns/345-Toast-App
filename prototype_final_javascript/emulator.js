@@ -1,18 +1,14 @@
 /* Emulator for 345 Assignment: Rory Mearns (ID.3928873) */
 
-/* ------ Program Variables & Setup ------ */
-var instructionQueue; 		// Queue of incoming instructions for the app. App will poll this queue for new events.
-var canvasButtons = [];		// Buttons that are on the canvas.
+/* Setting up of the emulator environment and variables */
+var instructionQueue; 		// Queue of incoming instructions for the app. Poll this queue for new events.
 var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-
-// Canvas Element
 var canvas = $("#proto_canvas").get(0);
 var ctx = canvas.getContext("2d");	
 
-/* ------ Basic Queue ------ */
+/* Basic Queue structure for instructions */
 function Queue () {
 	var items = [];
-
 	this.length = function () {
 		return items.length;
 	}
@@ -27,22 +23,31 @@ function Queue () {
 	}
 	this.isEmpty = function () {
 		if (items.length == 0) {
-			//alert("it's empty");
 			return true;
 		} else {
-			//alert("it's empty");
 			return false;
 		}
 	}
 };
 
-/* ------ General Functions Available for Apps ------ */
-// Clear the screen
+/* Clear the screen */
 function clearScreen () {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
 
-// Draw a rectangle, stroke is optional without=filled, with=outline
+/* 
+Draw a rectangle on the screen
+
+Stroke is optional. If no stroke is given the the rectange is filled with the specified color.
+If stroke is given the stroke is styled with given color and the rectange is not filled.
+
+	- [x, y] 	Number input 	- Starting co-ordinates of the rectangle relative the canvas (i.e. upper left of rectangle)
+	- [width]	Number input 	- Width of the rectangle
+	- [height]	Number input 	- Height of the rectangle
+	- [color] 	Color input 	- Color of rectange fill or stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
+	- [stroke] 	Number input 	- (Optional) Width of stroke, default = 1
+
+ */
 function drawRect (x, y, width, height, color, stroke) {
 	if (stroke) {
 		ctx.lineWidth = stroke;
@@ -54,7 +59,20 @@ function drawRect (x, y, width, height, color, stroke) {
 	}
 };
 
-// Draw a circle, stroke is optional without=filled, with=outline
+
+/*
+Draw a circle on the screen
+
+Stroke is optional. If no stroke is given the the circle is filled with the specified color.
+If stroke is given the stroke is styled with given color and the circle is not filled.
+
+	- [centerX] Number input 	- X co-ordinate of the circle center
+	- [centerY]	Number input 	- Y co-ordinate of the circle center
+	- [radius]	Number input 	- Radius of the circle
+	- [color] 	Color input 	- Color of circle fill or stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
+	- [stroke] 	Number input 	- (Optional) Width of stroke, default = 1
+
+ */
 function drawCircle (centerX, centerY, radius, color, stroke) {
 	ctx.beginPath();
 	ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
@@ -68,7 +86,17 @@ function drawCircle (centerX, centerY, radius, color, stroke) {
 	}
 };
 
-// Draw a line XY to XY, of color and width
+/*
+Draw a line on the screen
+
+	- [startX] 	Number input 	- X co-ordinate of the starting of the line
+	- [startY]	Number input 	- Y co-ordinate of the starting of the line
+	- [endX]	Number input 	- X co-ordinate of the end of the line
+	- [endY] 	Number input 	- Y co-ordinate of the end of the line
+	- [color] 	Color input 	- Color of circle fill or stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
+	- [width]	Number Input 	- Stroke width of the line
+
+ */
 function drawLine (startX, startY, endX, endY, color, width) {
 	ctx.beginPath();
 	ctx.strokeStyle = color;
@@ -148,6 +176,12 @@ $(document).ready(function() {
 	});
 	$("#enter").click(function() {		// Click 'Select'
 		clearScreen();
+	});
+	$("#ffwd").click(function() {		// Advance 1 Day
+		alert("ffwd");
+	});
+	$("#reset").click(function() {		// Reset
+		alert("reset");
 	});
 
 	$("#proto_canvas").mousedown(function(point) {		// clicking on the canvas

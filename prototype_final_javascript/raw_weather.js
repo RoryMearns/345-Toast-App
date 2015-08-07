@@ -15,16 +15,10 @@ I will include a function in the emulator to 'fastfoward' to the next
 forecast delivery. This will simulate time passing and will allow the 
 app to update the locally stored weather and check for alerts of
 upcoming favorable weather.
-
-I still need to get an understanding of time stamps, edit the
-timestamps in the following data deliveries, and implement a fastfoward
-feature in the emulator using these time stamps.
 */
 
 // The raw weather data:
-var weatherData0 = {
-	localTimestamp: 1366902000,
-	issueTimestamp: 1366848000,	
+var weatherData0 = {	
 	// The weather forecast for now (0000) and the following 90 hours (at 6 hour intervals)
 	forecast: {
 		timePlus0000: {
@@ -226,8 +220,6 @@ var weatherData0 = {
 }
 
 var weatherData1 = {
-	localTimestamp: 1366902000,
-	issueTimestamp: 1366848000,	
 	// The weather forecast for now (0000) and the following 90 hours (at 6 hour intervals)
 	forecast: {
 		timePlus0000: {
@@ -429,8 +421,6 @@ var weatherData1 = {
 }
 
 var weatherData2 = {
-	localTimestamp: 1366902000,
-	issueTimestamp: 1366848000,	
 	// The weather forecast for now (0000) and the following 90 hours (at 6 hour intervals)
 	forecast: {
 		timePlus0000: {
@@ -632,8 +622,6 @@ var weatherData2 = {
 }
 
 var weatherData3 = {
-	localTimestamp: 1366902000,
-	issueTimestamp: 1366848000,	
 	// The weather forecast for now (0000) and the following 90 hours (at 6 hour intervals)
 	forecast: {
 		timePlus0000: {
