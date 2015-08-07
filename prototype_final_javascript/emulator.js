@@ -38,7 +38,7 @@ function clearScreen () {
 /* 
 Draw a rectangle on the screen
 
-Stroke is optional. If no stroke is given the the rectange is filled with the specified color.
+'Stroke' is optional. If no stroke is given the the rectange is filled with the specified color.
 If stroke is given the stroke is styled with given color and the rectange is not filled.
 
 	- [x, y] 	Number input 	- Starting co-ordinates of the rectangle relative the canvas (i.e. upper left of rectangle)
@@ -46,7 +46,6 @@ If stroke is given the stroke is styled with given color and the rectange is not
 	- [height]	Number input 	- Height of the rectangle
 	- [color] 	Color input 	- Color of rectange fill or stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
 	- [stroke] 	Number input 	- (Optional) Width of stroke, default = 1
-
  */
 function drawRect (x, y, width, height, color, stroke) {
 	if (stroke) {
@@ -63,7 +62,7 @@ function drawRect (x, y, width, height, color, stroke) {
 /*
 Draw a circle on the screen
 
-Stroke is optional. If no stroke is given the the circle is filled with the specified color.
+'Stroke' is optional. If no stroke is given the the circle is filled with the specified color.
 If stroke is given the stroke is styled with given color and the circle is not filled.
 
 	- [centerX] Number input 	- X co-ordinate of the circle center
@@ -71,7 +70,6 @@ If stroke is given the stroke is styled with given color and the circle is not f
 	- [radius]	Number input 	- Radius of the circle
 	- [color] 	Color input 	- Color of circle fill or stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
 	- [stroke] 	Number input 	- (Optional) Width of stroke, default = 1
-
  */
 function drawCircle (centerX, centerY, radius, color, stroke) {
 	ctx.beginPath();
@@ -93,9 +91,8 @@ Draw a line on the screen
 	- [startY]	Number input 	- Y co-ordinate of the starting of the line
 	- [endX]	Number input 	- X co-ordinate of the end of the line
 	- [endY] 	Number input 	- Y co-ordinate of the end of the line
-	- [color] 	Color input 	- Color of circle fill or stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
+	- [color] 	Color input 	- Color of the stroke. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
 	- [width]	Number Input 	- Stroke width of the line
-
  */
 function drawLine (startX, startY, endX, endY, color, width) {
 	ctx.beginPath();
@@ -106,8 +103,17 @@ function drawLine (startX, startY, endX, endY, color, width) {
 	ctx.stroke();
 };
 
-// Write text at XY, font takes standard CSS input (e.g. "48px serif")
-// align is optional and takes: 'center', 'right' or nothing, default is left justify
+/*
+Write text on the screen
+
+'Align' is optional. If no align is given the default text justification is 'left'.
+
+	- [x, y] 	Number input 	- Starting coordinates of the text relative to the canvas
+	- [font]	CSS font input 	- Styling of the font. Example: "48px serif"
+	- [color]	Color input 	- Color of circle text. Accepted formats: "orange", "#FFA500", "rgb(255,165,0)", "rgba(255,165,0,1)"
+	- [string] 	String input 	- Text string to be written to the screen
+	- [align] 	Position input 	- Text justification relative to starting coordinates, default = left justification. Accepted values "center", "right" or no input.
+ */
 function drawText (x, y, font, color, string, align) {
 	if (align == "center") {
 		ctx.textAlign = 'center';
