@@ -181,11 +181,19 @@ function constructWeather () {
 		for (var i=0; i<=3; i++) {
 			sentence = weather['day'+i]['outlook'];
 			if (sentence.search(/rain/i) != -1 || sentence.search(/hail/i) != -1) {
-				weather['day'+i]['icon'] = "weather_rain_33x33.svg";
+				if (weather['day'+i]['windUpper'] > 20) {
+					weather['day'+i]['icon'] = "weather_wind_33x33.svg";
+				} else {
+					weather['day'+i]['icon'] = "weather_rain_33x33.svg";
+				}	
 			} else if (sentence.search(/gale/i) != -1) {
 				weather['day'+i]['icon'] = "weather_wind_33x33.svg";
 			} else if (sentence.search(/storm/i) != -1) {
-				weather['day'+i]['icon'] = "weather_rain_33x33.svg";
+				if (weather['day'+i]['windUpper'] > 20) {
+					weather['day'+i]['icon'] = "weather_wind_33x33.svg";
+				} else {
+					weather['day'+i]['icon'] = "weather_rain_33x33.svg";
+				}
 			} else if (sentence.search(/overcast/i) != -1) {
 				if (weather['day'+i]['windUpper'] > 20) {
 					weather['day'+i]['icon'] = "weather_wind_cloud_33x33.svg";
