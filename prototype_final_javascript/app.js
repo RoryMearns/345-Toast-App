@@ -7,7 +7,7 @@ skill = ["beginner", "experienced"],	// Skill options available to users
 days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
 currentDay = "monday", 
 currentScreen = false,
-warningMsg = "Storm Warning",
+warningMsg = "Severe Warning",
 warningToday = true,
 firstBoot = true,
 sleepStatus = true,
@@ -297,7 +297,7 @@ function buildHomeScreen (day) {
 	// Write the wind & temp:
 	drawText(170, 212, "100 30px helvetica ", "#00ADEF", (+day[2]+"-"+day[3]+" kn, "+day[8]+", "+day[4]+"°C"), "center");
 	// Write any warnings:
-	if (warningToday) {
+	if (weather['day0']['windUpper'] > 25) {
 		drawText(170, 263, "100 30px helvetica ", "#ED1C24", warningMsg, "center");
 		drawImage(25, 241, 27, 25, "../prototype_javascript/app_images/warning_27x25.svg");
 		drawImage(285, 241, 27, 25, "../prototype_javascript/app_images/warning_27x25.svg");

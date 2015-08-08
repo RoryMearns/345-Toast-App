@@ -10,11 +10,7 @@ For simplicity this app runs on the premise that the weather data
 is delivered daily at midnight. It contains the forecast for up to
 4 full days in advace with 6 hour intervals.
 
-I have included 4 'deliveries' of data below titled: weatherData0-3
-I will include a function in the emulator to 'fastfoward' to the next
-forecast delivery. This will simulate time passing and will allow the 
-app to update the locally stored weather and check for alerts of
-upcoming favorable weather.
+I have included 4 'deliveries' of data below titled: weatherData0 - 3
 */
 
 // The raw weather data:
@@ -392,181 +388,181 @@ var weatherData2 = {
 	// The weather forecast for now (0000) and the following 90 hours (at 6 hour intervals)
 	forecast: {
 		timePlus0000: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Partly cloudy, moderate winds",
+			temp: 10,
 			tempUnit: "c",
 			wind: {
 				speed: 10,
 				gusts: 13,
-				compassDirection: "W",
+				compassDirection: "NE",
 				unit: "knt"
 			}
 		},
 		timePlus0600: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Partly cloudy, moderate winds",
+			temp: 13,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 15,
+				gusts: 16,
+				compassDirection: "NE",
 				unit: "knt"
 			}
 		},
 		timePlus1200: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Partly cloudy, moderate winds",
+			temp: 15,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 17,
+				gusts: 20,
+				compassDirection: "NE",
 				unit: "knt"
 			}
 		},
 		timePlus1800: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Partly cloudy, moderate winds",
+			temp: 15,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 16,
+				gusts: 19,
+				compassDirection: "NE",
 				unit: "knt"
 			}
 		},
 		// Midnight / start of Day 2
 		timePlus2400: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Fine, light breeze",
+			temp: 13,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 5,
+				gusts: 6,
+				compassDirection: "N",
 				unit: "knt"
 			}
 		},
 		timePlus3000: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Fine, light breeze",
+			temp: 15,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 6,
+				gusts: 8,
+				compassDirection: "N",
 				unit: "knt"
 			}
 		},
 		timePlus3600: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Fine, light breeze",
+			temp: 21,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 7,
+				gusts: 8,
+				compassDirection: "N",
 				unit: "knt"
 			}
 		},
 		timePlus4200: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Fine, light breeze",
+			temp: 19,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 3,
+				gusts: 5,
+				compassDirection: "N",
 				unit: "knt"
 			}
 		},
 		// Midnight / start of Day 3
 		timePlus4800: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Sunny, afternoon breeze",
+			temp: 13,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 3,
+				gusts: 5,
+				compassDirection: "NW",
 				unit: "knt"
 			}
 		},
 		timePlus5400: {
-			weatherDescription: "",
+			weatherDescription: "Sunny, afternoon breeze",
 			temp: 18,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 3,
+				gusts: 5,
+				compassDirection: "NW",
 				unit: "knt"
 			}
 		},
 		timePlus6000: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Sunny, afternoon breeze",
+			temp: 23,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 5,
+				gusts: 8,
+				compassDirection: "NW",
 				unit: "knt"
 			}
 		},
 		timePlus6600: {
-			weatherDescription: "",
+			weatherDescription: "Sunny, afternoon breeze",
 			temp: 18,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 6,
+				gusts: 8,
+				compassDirection: "NW",
 				unit: "knt"
 			}
 		},
 		// Midnight / start of Day 3
 		timePlus7200: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Overcast, southerlies strengthening",
+			temp: 12,
 			tempUnit: "c",
 			wind: {
 				speed: 10,
 				gusts: 13,
-				compassDirection: "W",
+				compassDirection: "SW",
 				unit: "knt"
 			}
 		},
 		timePlus7800: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Overcast, southerlies strengthening",
+			temp: 13,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
+				speed: 12,
 				gusts: 13,
-				compassDirection: "W",
+				compassDirection: "S",
 				unit: "knt"
 			}
 		},
 		timePlus8400: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Overcast, southerlies strengthening",
+			temp: 10,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 20,
+				gusts: 23,
+				compassDirection: "S",
 				unit: "knt"
 			}
 		},
 		timePlus9000: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Overcast, southerlies strengthening",
+			temp: 9,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 24,
+				gusts: 25,
+				compassDirection: "S",
 				unit: "knt"
 			}
 		}
@@ -577,181 +573,181 @@ var weatherData3 = {
 	// The weather forecast for now (0000) and the following 90 hours (at 6 hour intervals)
 	forecast: {
 		timePlus0000: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Fine, light breeze",
+			temp: 13,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 5,
+				gusts: 6,
+				compassDirection: "N",
 				unit: "knt"
 			}
 		},
 		timePlus0600: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Fine, light breeze",
+			temp: 15,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 6,
+				gusts: 8,
+				compassDirection: "N",
 				unit: "knt"
 			}
 		},
 		timePlus1200: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Fine, light breeze",
+			temp: 22,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 7,
+				gusts: 9,
+				compassDirection: "N",
 				unit: "knt"
 			}
 		},
 		timePlus1800: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Fine, light breeze",
+			temp: 20,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 3,
+				gusts: 5,
+				compassDirection: "N",
 				unit: "knt"
 			}
 		},
 		// Midnight / start of Day 2
 		timePlus2400: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Sunny, afternoon breeze",
+			temp: 13,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 3,
+				gusts: 5,
+				compassDirection: "NW",
 				unit: "knt"
 			}
 		},
 		timePlus3000: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Sunny, afternoon breeze",
+			temp: 19,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 3,
+				gusts: 6,
+				compassDirection: "NW",
 				unit: "knt"
 			}
 		},
 		timePlus3600: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Sunny, afternoon breeze",
+			temp: 24,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 5,
+				gusts: 9,
+				compassDirection: "NW",
 				unit: "knt"
 			}
 		},
 		timePlus4200: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Sunny, afternoon breeze",
+			temp: 17,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 6,
+				gusts: 8,
+				compassDirection: "NW",
 				unit: "knt"
 			}
 		},
 		// Midnight / start of Day 3
 		timePlus4800: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Overcast, southerlies strengthening",
+			temp: 11,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
+				speed: 12,
 				gusts: 13,
-				compassDirection: "W",
+				compassDirection: "SW",
 				unit: "knt"
 			}
 		},
 		timePlus5400: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Overcast, southerlies strengthening",
+			temp: 11,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 15,
+				gusts: 19,
+				compassDirection: "S",
 				unit: "knt"
 			}
 		},
 		timePlus6000: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Overcast, southerlies strengthening",
+			temp: 10,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 24,
+				gusts: 28,
+				compassDirection: "S",
 				unit: "knt"
 			}
 		},
 		timePlus6600: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Overcast, southerlies strengthening",
+			temp: 8,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 25,
+				gusts: 28,
+				compassDirection: "S",
 				unit: "knt"
 			}
 		},
 		// Midnight / start of Day 3
 		timePlus7200: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Rain, gale southerlies",
+			temp: 6,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 25,
+				gusts: 30,
+				compassDirection: "S",
 				unit: "knt"
 			}
 		},
 		timePlus7800: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Rain, gale southerlies",
+			temp: 7,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 28,
+				gusts: 35,
+				compassDirection: "S",
 				unit: "knt"
 			}
 		},
 		timePlus8400: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Rain, gale southerlies",
+			temp: 9,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 34,
+				gusts: 38,
+				compassDirection: "S",
 				unit: "knt"
 			}
 		},
 		timePlus9000: {
-			weatherDescription: "",
-			temp: 18,
+			weatherDescription: "Rain, gale southerlies",
+			temp: 7,
 			tempUnit: "c",
 			wind: {
-				speed: 10,
-				gusts: 13,
-				compassDirection: "W",
+				speed: 35,
+				gusts: 40,
+				compassDirection: "S",
 				unit: "knt"
 			}
 		}
