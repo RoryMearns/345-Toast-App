@@ -161,7 +161,13 @@ function constructWeather () {
 	
 	// Build locally stored wind direction:
 	function windDirection () {
-		//...
+		// Function defines the days wind direction as what the midday prediction will be
+		var timeStamp;
+
+		for (var i=0; i<=3; i++) {
+			timeStamp = i*2400;
+			weather['day'+i]['windDir'] = weatherData0['forecast'][timeString(timeStamp + 1200)]['wind']['compassDirection'];
+		}
 	}
 
 
@@ -172,6 +178,7 @@ function constructWeather () {
 	// Build locally stored day name:
 
 	windRange();
+	windDirection();
 
 	for (var i=0; i<=3; i++) {
 		// Set the day names
