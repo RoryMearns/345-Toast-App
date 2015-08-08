@@ -19,7 +19,9 @@ var user = {
 	riderWeight: 85,
 	riderDays: ["wednesday", "friday", "saturday", "sunday"],
 	riderSkill: "experienced",
-	riderLocal: "St Clair"
+	riderLocal: "St Clair",
+	riderPreferenceUpper: 7.0,
+	riderPreferenceLower: 4.5
 }
 
 /* ------ Weather Data ------ */
@@ -352,6 +354,18 @@ function buildSettingsScreen () {
 
 /* ------ Check For Alerts ------ */
 function alertChecker () {
+	
+	// Check upcoming days for ideal weather conditions
+	var daysCond;
+	for (var i=0; i<=3; i++) {
+			daysCond = weather['day'+i]['sailSize'];
+			//alert("Days Cond: " + daysCond + " Lower: " + user['riderPreferenceLower'] + " Upper: " + )
+			if (daysCond > user['riderPreferenceLower'] && daysCond < user['riderPreferenceUpper']) {
+				setTimeout(function () {
+        			beep();
+    			}, 2000);
+			}
+		}
 	/*
 	The alert checker function will go through all the
 	weather data (either Raw or Local, undecided yet) and
@@ -552,6 +566,7 @@ function instProcess (inst) {
 				buildHomeScreen(dayCompress(0));
 				currentScreen = "home";
 			}
+			alertChecker();
 		} else if (daysFastFoward == 2) {
 			rawWeather = weatherData2;
 			constructWeather();
@@ -559,6 +574,7 @@ function instProcess (inst) {
 				buildHomeScreen(dayCompress(0));
 				currentScreen = "home";
 			}
+			alertChecker();
 		} else if (daysFastFoward == 3) {
 			rawWeather = weatherData3;
 			constructWeather();
@@ -566,9 +582,11 @@ function instProcess (inst) {
 				buildHomeScreen(dayCompress(0));
 				currentScreen = "home";
 			}
+			alertChecker();
 		} else if (daysFastFoward > 3) {
-			alert("You cannot advance time any further, please reset app to continue using.");
-		}
+			alert("You cannot advance time any further, The app will now be reset");
+			firstBoot = true;
+		} 
 	}
 };
 
@@ -585,9 +603,9 @@ function main () {
 		currentScreen = "home";
 		sleepStatus = false;
 		firstBoot = false;
-		/* 
+		 
 		alertChecker();
-
+		/*
 		After turning the app on and reaching the home screen
 		the app will then make a call to allert checker to see
 		check for favorable forecasts and make the alert if

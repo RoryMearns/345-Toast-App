@@ -63,7 +63,7 @@ var weatherData0 = {
 		},
 		// Midnight / start of Day 2
 		timePlus2400: {
-			weatherDescription: "Strong wind easing, overcast",
+			weatherDescription: "Strong winds, overcast",
 			temp: 6,
 			tempUnit: "c",
 			wind: {
@@ -74,7 +74,7 @@ var weatherData0 = {
 			}
 		},
 		timePlus3000: {
-			weatherDescription: "Strong wind easing, overcast",
+			weatherDescription: "Strong winds, overcast",
 			temp: 10,
 			tempUnit: "c",
 			wind: {
@@ -85,7 +85,7 @@ var weatherData0 = {
 			}
 		},
 		timePlus3600: {
-			weatherDescription: "Strong wind easing, overcast",
+			weatherDescription: "Strong winds, overcast",
 			temp: 13,
 			tempUnit: "c",
 			wind: {
@@ -96,7 +96,7 @@ var weatherData0 = {
 			}
 		},
 		timePlus4200: {
-			weatherDescription: "Strong wind easing, overcast",
+			weatherDescription: "Strong winds, overcast",
 			temp: 12,
 			tempUnit: "c",
 			wind: {
@@ -108,7 +108,7 @@ var weatherData0 = {
 		},
 		// Midnight / start of Day 3
 		timePlus4800: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 9,
 			tempUnit: "c",
 			wind: {
@@ -119,7 +119,7 @@ var weatherData0 = {
 			}
 		},
 		timePlus5400: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 14,
 			tempUnit: "c",
 			wind: {
@@ -130,7 +130,7 @@ var weatherData0 = {
 			}
 		},
 		timePlus6000: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 17,
 			tempUnit: "c",
 			wind: {
@@ -141,7 +141,7 @@ var weatherData0 = {
 			}
 		},
 		timePlus6600: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 16,
 			tempUnit: "c",
 			wind: {
@@ -248,7 +248,7 @@ var weatherData1 = {
 		},
 		// Midnight / start of Day 2
 		timePlus2400: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 9,
 			tempUnit: "c",
 			wind: {
@@ -259,7 +259,7 @@ var weatherData1 = {
 			}
 		},
 		timePlus3000: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 13,
 			tempUnit: "c",
 			wind: {
@@ -270,7 +270,7 @@ var weatherData1 = {
 			}
 		},
 		timePlus3600: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 15,
 			tempUnit: "c",
 			wind: {
@@ -281,7 +281,7 @@ var weatherData1 = {
 			}
 		},
 		timePlus4200: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 15,
 			tempUnit: "c",
 			wind: {
@@ -388,7 +388,7 @@ var weatherData2 = {
 	// The weather forecast for now (0000) and the following 90 hours (at 6 hour intervals)
 	forecast: {
 		timePlus0000: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 10,
 			tempUnit: "c",
 			wind: {
@@ -399,7 +399,7 @@ var weatherData2 = {
 			}
 		},
 		timePlus0600: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 13,
 			tempUnit: "c",
 			wind: {
@@ -410,7 +410,7 @@ var weatherData2 = {
 			}
 		},
 		timePlus1200: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 15,
 			tempUnit: "c",
 			wind: {
@@ -421,7 +421,7 @@ var weatherData2 = {
 			}
 		},
 		timePlus1800: {
-			weatherDescription: "Partly cloudy, moderate winds",
+			weatherDescription: "Cloudy, moderate winds",
 			temp: 15,
 			tempUnit: "c",
 			wind: {
@@ -523,7 +523,7 @@ var weatherData2 = {
 		},
 		// Midnight / start of Day 3
 		timePlus7200: {
-			weatherDescription: "Overcast, southerlies strengthening",
+			weatherDescription: "Overcast, southerlies",
 			temp: 12,
 			tempUnit: "c",
 			wind: {
@@ -534,7 +534,7 @@ var weatherData2 = {
 			}
 		},
 		timePlus7800: {
-			weatherDescription: "Overcast, southerlies strengthening",
+			weatherDescription: "Overcast, southerlies",
 			temp: 13,
 			tempUnit: "c",
 			wind: {
@@ -545,7 +545,7 @@ var weatherData2 = {
 			}
 		},
 		timePlus8400: {
-			weatherDescription: "Overcast, southerlies strengthening",
+			weatherDescription: "Overcast, southerlies",
 			temp: 10,
 			tempUnit: "c",
 			wind: {
@@ -556,7 +556,7 @@ var weatherData2 = {
 			}
 		},
 		timePlus9000: {
-			weatherDescription: "Overcast, southerlies strengthening",
+			weatherDescription: "Overcast, southerlies",
 			temp: 9,
 			tempUnit: "c",
 			wind: {
@@ -663,7 +663,7 @@ var weatherData3 = {
 		},
 		// Midnight / start of Day 3
 		timePlus4800: {
-			weatherDescription: "Overcast, southerlies strengthening",
+			weatherDescription: "Overcast, southerlies",
 			temp: 11,
 			tempUnit: "c",
 			wind: {
@@ -674,7 +674,7 @@ var weatherData3 = {
 			}
 		},
 		timePlus5400: {
-			weatherDescription: "Overcast, southerlies strengthening",
+			weatherDescription: "Overcast, southerlies",
 			temp: 11,
 			tempUnit: "c",
 			wind: {
@@ -685,7 +685,7 @@ var weatherData3 = {
 			}
 		},
 		timePlus6000: {
-			weatherDescription: "Overcast, southerlies strengthening",
+			weatherDescription: "Overcast, southerlies",
 			temp: 10,
 			tempUnit: "c",
 			wind: {
@@ -696,7 +696,7 @@ var weatherData3 = {
 			}
 		},
 		timePlus6600: {
-			weatherDescription: "Overcast, southerlies strengthening",
+			weatherDescription: "Overcast, southerlies",
 			temp: 8,
 			tempUnit: "c",
 			wind: {

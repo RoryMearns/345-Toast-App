@@ -175,6 +175,15 @@ function dateGetter (request) {
 	}
 };
 
+/*
+Flashes "BEEP BEEP" below the emulator to mimic watch beeping
+*/
+function beep () {
+	$("#audio").html(" ... BEEP BEEP!");
+	setTimeout(function () {
+        $("#audio").html('');
+	}, 3000);
+}
 
 /* 
 Button & Input Listeners 
