@@ -5,7 +5,7 @@ var instructionQueue; 		// Queue of incoming instructions for the app. Poll this
 var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 var canvas = $("#proto_canvas").get(0);
 var ctx = canvas.getContext("2d");	
-var timePlusX = 0;
+var timePlusX = 0;			// How many times "Advance time" button has been clicked
 
 /* Basic Queue structure for instructions 
 
@@ -203,15 +203,16 @@ There are two main types of input here
 			// actions to be performed go here...
 		});
 
+	Button input and styling can be controlled through the use of its active status by switching classes between
+	"active" and "inactive" and then checking this status prior to accepting button input
+
 2 Input from clicking on the app screen:
-	######################
-	######################
-	ADD MORE ABOUT CLICKING ON SCREEN
-	######################
-	######################
+	Clicking on the screen captures the 'X' & 'Y' co-ordinates of the click location.
 */
 $(document).ready(function() {
-	$("#appOn").click(function() {		// Activate app
+
+	// "Activate App" button
+	$("#appOn").click(function() {
 		if ($("#appOn").hasClass("active")) {
 			$("#ffwd").removeClass("inactive").addClass("active");
 			$("#sleep").removeClass("inactive").addClass("active");
@@ -223,36 +224,46 @@ $(document).ready(function() {
 			alert("test");
 		}
 	});
-	$("#left").click(function() {		// Swipe left ("go back")
+
+	// "Swipe Left / Back" button
+	$("#left").click(function() {
 		if ($("#left").hasClass("active")) {
 			instructionQueue.enqueue(["swipe", "left"]);
 		}
 	});
-	$("#ffwd").click(function() {		// Advance 'time' by 1 
+
+	// "Advance 1-Day" button
+	$("#ffwd").click(function() {
 		if ($("#ffwd").hasClass("active")) {
 			timePlusX += 1;
 			instructionQueue.enqueue(["advance"]);
 		}
 	});
-	$("#sleep").click(function() {		// Sleep watch
+
+	// "Sleep" button
+	$("#sleep").click(function() {
 		if ($("#sleep").hasClass("active")) {
 			instructionQueue.enqueue(["sleep"]);
 		}
 	});
-	$("#wake").click(function() {		// Wake watch
+
+	// "Wake" button
+	$("#wake").click(function() {
 		if ($("#wake").hasClass("active")) {
 			instructionQueue.enqueue(["wake"]);
 		}
 	});
-	$("#reset").click(function() {		// Reset emulator & app
+
+	// "Reset" button
+	$("#reset").click(function() {
 		if ($("#reset").hasClass("active")) {
 			initialize();
 			instructionQueue.enqueue(["reset"]);
 		}
 	});
 
-	/* Clicking on the canvas */
-	$("#proto_canvas").mousedown(function(point) {		// clicking on the canvas
+	// Canvas click controller
+	$("#proto_canvas").mousedown(function(point) {
 		var offset = $("#proto_canvas").offset();
 		var x = point.pageX-offset.left;
 		var y = point.pageY-offset.top;
@@ -262,7 +273,7 @@ $(document).ready(function() {
 	});
 });
 
-/* ------ Emulator Setup ------ */
+/* Emulator Setup */
 function initialize () {
 	clearScreen();
 	instructionQueue = new Queue();
@@ -270,4 +281,3 @@ function initialize () {
 }
 
 initialize();
-
