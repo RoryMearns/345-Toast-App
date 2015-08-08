@@ -161,7 +161,7 @@ function constructWeather () {
 	
 	// Build locally stored wind direction:
 	function windDirection () {
-		// Function defines the days wind direction as what the midday prediction will be
+		// NOTE: The days wind direction as what the midday prediction will be
 		var timeStamp;
 
 		for (var i=0; i<=3; i++) {
@@ -170,8 +170,28 @@ function constructWeather () {
 		}
 	}
 
-
 	// Build locally stored temp:
+	function temperature () {
+		// NOTE: Temperature displayed for the day is defined as the daily max prediction
+		// it would be nice to have a changing temp to display the current time prediction.
+		var timeStamp;
+
+		for (var i=0; i<=3; i++) {
+			var max, x;
+			timeStamp = i*2400;
+
+			max = weatherData0['forecast'][timeString(timeStamp)]['temp'];
+
+			for (var j=1; j<=3; j++) {
+					timeStamp += 600;
+
+					x = weatherData0['forecast'][timeString(timeStamp)]['temp'];
+					if (max < x) max = x;
+			}
+			weather['day'+i]['temp'] = max;
+		}
+	}
+
 	// Build locally stored sail size:
 	// Build locally stored outlook:
 	// Build locally stored icon:
@@ -179,6 +199,7 @@ function constructWeather () {
 
 	windRange();
 	windDirection();
+	temperature();
 
 	for (var i=0; i<=3; i++) {
 		// Set the day names
