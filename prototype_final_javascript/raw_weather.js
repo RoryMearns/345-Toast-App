@@ -157,7 +157,7 @@ var weatherData0 = {
 		},
 		// Midnight / start of Day 4
 		timePlus7200: {
-			weatherDescription: "Fine, light breeze",
+			weatherDescription: "Sunny, light breeze",
 			temp: 11,
 			tempUnit: "c",
 			wind: {
@@ -168,7 +168,7 @@ var weatherData0 = {
 			}
 		},
 		timePlus7800: {
-			weatherDescription: "Fine, light breeze",
+			weatherDescription: "Sunny, light breeze",
 			temp: 14,
 			tempUnit: "c",
 			wind: {
@@ -179,7 +179,7 @@ var weatherData0 = {
 			}
 		},
 		timePlus8400: {
-			weatherDescription: "Fine, light breeze",
+			weatherDescription: "Sunny, light breeze",
 			temp: 18,
 			tempUnit: "c",
 			wind: {
@@ -190,7 +190,7 @@ var weatherData0 = {
 			}
 		},
 		timePlus9000: {
-			weatherDescription: "Fine, light breeze",
+			weatherDescription: "Sunny, light breeze",
 			temp: 16,
 			tempUnit: "c",
 			wind: {

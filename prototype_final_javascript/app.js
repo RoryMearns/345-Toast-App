@@ -218,7 +218,60 @@ function constructWeather () {
 	}
 
 	// Build locally stored icon:
-	
+	function icons () {
+		var sentence;
+		
+		// Serch through the weather description for keywords and assign appropriate icon
+		for (var i=0; i<=3; i++) {
+			sentence = weather['day'+i]['outlook'];
+			if (sentence.search(/rain/i) != -1 || sentence.search(/hail/i) != -1) {
+				weather['day'+i]['icon'] = "weather_rain_33x33.svg";
+			} else if (sentence.search(/gale/i) != -1) {
+				weather['day'+i]['icon'] = "weather_wind_33x33.svg";
+			} else if (sentence.search(/storm/i) != -1) {
+				weather['day'+i]['icon'] = "weather_rain_33x33.svg";
+			} else if (sentence.search(/overcast/i) != -1) {
+				if (weather['day'+i]['windUpper'] > 20) {
+					weather['day'+i]['icon'] = "weather_wind_cloud_33x33.svg";
+				} else {
+					weather['day'+i]['icon'] = "weather_sun_cloud_33x33.svg";
+				}
+			} else if (sentence.search(/cloudy/i) != -1) {
+				if (weather['day'+i]['windUpper'] > 20) {
+					weather['day'+i]['icon'] = "weather_wind_cloud_33x33.svg";
+				} else {
+					weather['day'+i]['icon'] = "weather_sun_cloud_33x33.svg";
+				}
+			} else if (sentence.search(/cloud/i) != -1) {
+				if (weather['day'+i]['windUpper'] > 20) {
+					weather['day'+i]['icon'] = "weather_wind_cloud_33x33.svg";
+				} else {
+					weather['day'+i]['icon'] = "weather_sun_cloud_33x33.svg";
+				}
+			} else if (sentence.search(/sunny/i) != -1) {
+				if (weather['day'+i]['windUpper'] > 20) {
+					weather['day'+i]['icon'] = "weather_wind_sun_33x33.svg";
+				} else {
+					weather['day'+i]['icon'] = "weather_sun_33x33.svg";
+				}
+			} else if (sentence.search(/sun/i) != -1) {
+				if (weather['day'+i]['windUpper'] > 20) {
+					weather['day'+i]['icon'] = "weather_wind_sun_33x33.svg";
+				} else {
+					weather['day'+i]['icon'] = "weather_sun_33x33.svg";
+				}
+			} else if (sentence.search(/fine/i) != -1) {
+				if (weather['day'+i]['windUpper'] > 20) {
+					weather['day'+i]['icon'] = "weather_wind_sun_33x33.svg";
+				} else {
+					weather['day'+i]['icon'] = "weather_sun_33x33.svg";
+				}
+			} else {
+				// Default to overcast if unable to find an appropriate icon
+				weather['day'+i]['icon'] = "weather_sun_cloud_33x33.svg";
+			}
+		}
+	}
 
 	windRange();
 	windDirection();
@@ -226,7 +279,7 @@ function constructWeather () {
 	outlook();
 	sailSizes();
 	dayNames();
-
+	icons();
 };
 
 /* ------ Build Alert Screen ------ */
