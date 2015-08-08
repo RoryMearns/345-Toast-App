@@ -575,9 +575,9 @@ function instProcess (inst) {
 
 /* ------ Main Function ------ */
 function main () {
-	// If this is the first boot, launch the home screen:
-	if (firstBoot) {
 
+	// Routine for the first time the app is booted
+	if (firstBoot) {
 		daysFastFoward = 0;
 		rawWeather = weatherData0;
 		currentDay = getToday();
@@ -586,14 +586,7 @@ function main () {
 		currentScreen = "home";
 		sleepStatus = false;
 		firstBoot = false;
-		 
 		alertChecker();
-		/*
-		After turning the app on and reaching the home screen
-		the app will then make a call to allert checker to see
-		check for favorable forecasts and make the alert if
-		one exists.
-		*/
 	}
 
 	// Fetch instructions from the queue if they exist

@@ -8,12 +8,12 @@ var ctx = canvas.getContext("2d");
 var timePlusX = 0;
 
 /* Basic Queue structure for instructions 
-	######################
-	######################
-	ADD INFOR ABOUT QUEUE FUNCTIONS AND RETURNS
-	######################
-	######################
 
+	my_queue.length() 		- Returns the length of the queue
+	my_queue.enqueue(item) 	- Adds 'item' to the queue
+	my_queue.dequeue() 		- Removes and returns the item at the head of the queue
+	my_queue.peek() 		- Returns but does not remove the item at the head of the queue
+	my_queue.isEmpty() 		- Returns true if queue is empty, returns false if queue is not empty
 */
 function Queue () {
 	var items = [];
@@ -179,7 +179,7 @@ function dateGetter (request) {
 Flashes "BEEP BEEP" below the emulator to mimic watch beeping
 */
 function beep () {
-	$("#audio").html(" ... BEEP BEEP!");
+	$("#audio").html("<em> ... BEEP  BEEP  BEEP!</em>");
 	setTimeout(function () {
         $("#audio").html('');
 	}, 3000);
@@ -212,24 +212,43 @@ There are two main types of input here
 */
 $(document).ready(function() {
 	$("#appOn").click(function() {		// Activate app
-		main();
+		if ($("#appOn").hasClass("active")) {
+			$("#ffwd").removeClass("inactive").addClass("active");
+			$("#sleep").removeClass("inactive").addClass("active");
+			$("#wake").removeClass("inactive").addClass("active");
+			$("#left").removeClass("inactive").addClass("active");
+			$("#reset").removeClass("inactive").addClass("active");
+			$("#appOn").removeClass("active").addClass("inactive");
+			main();
+			alert("test");
+		}
 	});
-	$("#left").click(function() {		// Swipe left
-		instructionQueue.enqueue(["swipe", "left"]);
+	$("#left").click(function() {		// Swipe left ("go back")
+		if ($("#left").hasClass("active")) {
+			instructionQueue.enqueue(["swipe", "left"]);
+		}
 	});
-	$("#ffwd").click(function() {		// Advance 'time' by 1
-		timePlusX += 1;
-		instructionQueue.enqueue(["advance"]);
+	$("#ffwd").click(function() {		// Advance 'time' by 1 
+		if ($("#ffwd").hasClass("active")) {
+			timePlusX += 1;
+			instructionQueue.enqueue(["advance"]);
+		}
 	});
 	$("#sleep").click(function() {		// Sleep watch
-		instructionQueue.enqueue(["sleep"]);
+		if ($("#sleep").hasClass("active")) {
+			instructionQueue.enqueue(["sleep"]);
+		}
 	});
 	$("#wake").click(function() {		// Wake watch
-		instructionQueue.enqueue(["wake"]);
+		if ($("#wake").hasClass("active")) {
+			instructionQueue.enqueue(["wake"]);
+		}
 	});
 	$("#reset").click(function() {		// Reset emulator & app
-		initialize();
-		instructionQueue.enqueue(["reset"]);
+		if ($("#reset").hasClass("active")) {
+			initialize();
+			instructionQueue.enqueue(["reset"]);
+		}
 	});
 
 	/* Clicking on the canvas */

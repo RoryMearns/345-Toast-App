@@ -289,3 +289,7 @@
 	width: 1000px;
 	height: 1000px;
 }
+
+#proto_canvas {
+	display: none;
+}
