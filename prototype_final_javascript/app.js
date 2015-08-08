@@ -437,7 +437,17 @@ function shortenDay (day) {
 // Calculate the sail size given a wind range
 function sailSizeSetter (lower, upper) {
 	// Sail size is: (Rider Weight X 1.34) / Windspeed in Knots
-	return ((user.riderWeight*sailAlpha)/((lower+upper)/2)).toFixed(1);
+	var size = ((user.riderWeight*sailAlpha)/((lower+upper)/2)).toFixed(1);
+	/*
+	Sail size over 10 square meters only make sense to a select few people and 
+	the 'science' of choosing a sail of such a size changes at this point.
+	As such this app will only recommend sizes up to 10 square meters.
+	*/
+	if (size > 10) {
+		return "10+";
+	} else {
+		return size;
+	}
 };
 
 // Get the name of 'today'
