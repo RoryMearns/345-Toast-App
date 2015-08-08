@@ -205,25 +205,17 @@ $(document).ready(function() {
 	$("#appOn").click(function() {		// Activate app
 		main();
 	});
-	$("#up").click(function() {			// Swipe up
-		instructionQueue.enqueue(["swipe", "up"]);
-	});
-	$("#down").click(function() {		// Swipe down
-		instructionQueue.enqueue(["swipe", "down"]);
-	});
 	$("#left").click(function() {		// Swipe left
 		instructionQueue.enqueue(["swipe", "left"]);
 	});
-	$("#right").click(function() {		// Swipe right
-		instructionQueue.enqueue(["swipe", "right"]);
-	});
-	$("#enter").click(function() {		// Click 'Select'
-		var x = 0000;
-		alert(x);
-		//clearScreen();
-	});
 	$("#ffwd").click(function() {		// Advance 'time' by 1
 		timePlusX += 1;
+	});
+	$("#sleep").click(function() {		// Sleep watch
+		instructionQueue.enqueue(["sleep"]);
+	});
+	$("#wake").click(function() {		// Wake watch
+		instructionQueue.enqueue(["wake"]);
 	});
 	$("#reset").click(function() {		// Reset emulator & app
 		initialize();

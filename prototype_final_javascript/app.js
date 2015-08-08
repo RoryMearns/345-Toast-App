@@ -9,7 +9,9 @@ currentDay = "monday",
 currentScreen = false,
 warningMsg = "Storm Warning",
 warningToday = true,
-firstBoot = true;
+firstBoot = true,
+sleepStatus = true,
+rawWeather;
 
 /* ------ User Settings ------ */
 var user = {
@@ -99,15 +101,15 @@ function constructWeather () {
 			var max, min, x;
 			timeStamp = i*2400;
 
-			min = weatherData0['forecast'][timeString(timeStamp)]['wind']['speed'];
-			max = weatherData0['forecast'][timeString(timeStamp)]['wind']['gusts'];
+			min = rawWeather['forecast'][timeString(timeStamp)]['wind']['speed'];
+			max = rawWeather['forecast'][timeString(timeStamp)]['wind']['gusts'];
 
 			for (var j=1; j<=3; j++) {
 					timeStamp += 600;
 
-					x = weatherData0['forecast'][timeString(timeStamp)]['wind']['speed'];
+					x = rawWeather['forecast'][timeString(timeStamp)]['wind']['speed'];
 					if (min > x) min = x;
-					x = weatherData0['forecast'][timeString(timeStamp)]['wind']['gusts'];
+					x = rawWeather['forecast'][timeString(timeStamp)]['wind']['gusts'];
 					if (max < x) max = x;
 			}
 			weather['day'+i]['windLower'] = min;
@@ -122,7 +124,7 @@ function constructWeather () {
 
 		for (var i=0; i<=3; i++) {
 			timeStamp = i*2400;
-			weather['day'+i]['windDir'] = weatherData0['forecast'][timeString(timeStamp + 1200)]['wind']['compassDirection'];
+			weather['day'+i]['windDir'] = rawWeather['forecast'][timeString(timeStamp + 1200)]['wind']['compassDirection'];
 		}
 	}
 
@@ -136,12 +138,12 @@ function constructWeather () {
 			var max, x;
 			timeStamp = i*2400;
 
-			max = weatherData0['forecast'][timeString(timeStamp)]['temp'];
+			max = rawWeather['forecast'][timeString(timeStamp)]['temp'];
 
 			for (var j=1; j<=3; j++) {
 					timeStamp += 600;
 
-					x = weatherData0['forecast'][timeString(timeStamp)]['temp'];
+					x = rawWeather['forecast'][timeString(timeStamp)]['temp'];
 					if (max < x) max = x;
 			}
 			weather['day'+i]['temp'] = max;
@@ -154,7 +156,7 @@ function constructWeather () {
 
 		for (var i=0; i<=3; i++) {
 			timeStamp = i*2400;
-			weather['day'+i]['outlook'] = weatherData0['forecast'][timeString(timeStamp)]['weatherDescription'];
+			weather['day'+i]['outlook'] = rawWeather['forecast'][timeString(timeStamp)]['weatherDescription'];
 		}
 	}
 
@@ -491,31 +493,46 @@ function instProcess (inst) {
 		} else if (currentScreen == "alert") {
 			// Return back to the home screen if alert screen it tapped
 			buildHomeScreen(dayCompress(0));
-			currentScreen = "home"
+			currentScreen = "home";
 		} else if (currentScreen == "settings") {
 			// Return back to the home screen if settings screen it tapped
 			buildHomeScreen(dayCompress(0));
-			currentScreen = "home"
+			currentScreen = "home";
 		}
 	}
 	// what to do with swipes
 	else if (input == "swipe") {
 		if (currentScreen == "home") {
-			// Do nothing (???), maybe expand on this later (?)
+			// Do nothing
 		} else if (currentScreen == "forecast") {
 			// If a swipe is detected on the forecast screen, return to home screen
 			buildHomeScreen(dayCompress(0));
-			currentScreen = "home"
+			currentScreen = "home";
 		} else if (currentScreen == "alert") {
 			// If a swipe is detected on the alert screen, return to home screen
 			buildHomeScreen(dayCompress(0));
-			currentScreen = "home"
+			currentScreen = "home";
 		} else if (currentScreen == "settings") {
 			// If a swipe is detected on the settings screen, return to home screen
 			buildHomeScreen(dayCompress(0));
-			currentScreen = "home"
+			currentScreen = "home";
 		}
 	}
+	// What to do if the app is put to sleep
+	else if (input == "sleep") {
+		clearScreen();
+		sleepStatus = true;
+		currentScreen = '';
+	}
+	// What to do if the app is 'woken' from a sleep
+	else if (input == "wake") {
+		if (sleepStatus == true) {
+			buildHomeScreen(dayCompress(0));
+			currentScreen = "home";
+			sleepStatus = false;
+		}
+	}
+	// What to do if the app is reset
 	else if (input == "reset") {
 		firstBoot = true;
 	}
@@ -525,11 +542,12 @@ function instProcess (inst) {
 function main () {
 	// If this is the first boot, launch the home screen:
 	if (firstBoot) {
-		// alert(weather['day'+1]['dName']);
+		rawWeather = weatherData0;
 		currentDay = getToday();
 		constructWeather();
 		buildHomeScreen(dayCompress(0));
 		currentScreen = "home";
+		sleepStatus = false;
 		firstBoot = false;
 		/* 
 		alertChecker();
