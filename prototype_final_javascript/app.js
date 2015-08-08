@@ -23,90 +23,46 @@ var user = {
 // Raw weather will be processed into the following format:
 var weather = {
 	day0: {					// Day0 = Today
-		windLower: 26,
-		windUpper: 34,
-		windDir: "SE",
-		temp: 12,
-		sailSize: 4.2,
-		outlook: "Rain, high seas, gale",
-		icon: "weather_rain_33x33.svg",
-		dName: "Monday"
+		windLower: '',
+		windUpper: '',
+		windDir: '',
+		temp: '',
+		sailSize: '',
+		outlook: '',
+		icon: '',
+		dName:''
 	},
 	day1: {	
-		windLower: 28,
-		windUpper: 36,
-		windDir: "S",
-		temp: 9,
-		sailSize: 4.2,
-		outlook: "Rain, high seas, gale",
-		icon: "weather_rain_33x33.svg",
-		dName: "Tuesday"
+		windLower: '',
+		windUpper: '',
+		windDir: '',
+		temp: '',
+		sailSize: '',
+		outlook: '',
+		icon: '',
+		dName: ''
 	},
 	day2: {
-		windLower: 18,
-		windUpper: 22,
-		windDir: "E",
-		temp: 14,
-		sailSize: 4.2,
-		outlook: "Strong wind, overcast",
-		icon: "weather_wind_cloud_33x33.svg",
-		dName: "Wednesday"
+		windLower: '',
+		windUpper: '',
+		windDir: '',
+		temp: '',
+		sailSize: '',
+		outlook: '',
+		icon: '',
+		dName: ''
 	},
 	day3: {	
-		windLower: 8,
-		windUpper: 14,
-		windDir: "NE",
-		temp: 17,
-		sailSize: 4.2,
-		outlook: "Moderate winds, sunny",
-		icon: "weather_sun_33x33.svg",
-		dName: "Thursday"
+		windLower: '',
+		windUpper: '',
+		windDir: '',
+		temp: '',
+		sailSize: '',
+		outlook: '',
+		icon: '',
+		dName: ''
 	}
 }
-
-/*
-var weather = {
-	day0: {					// Day0 = Today
-		windLower: 26,
-		windUpper: 34,
-		windDir: "SE",
-		temp: 12,
-		sailSize: 4.2,
-		outlook: "Rain, high seas, gale",
-		icon: "weather_rain_33x33.svg",
-		dName: "Monday"
-	},
-	day1: {	
-		windLower: 28,
-		windUpper: 36,
-		windDir: "S",
-		temp: 9,
-		sailSize: 4.2,
-		outlook: "Rain, high seas, gale",
-		icon: "weather_rain_33x33.svg",
-		dName: "Tuesday"
-	},
-	day2: {
-		windLower: 18,
-		windUpper: 22,
-		windDir: "E",
-		temp: 14,
-		sailSize: 4.2,
-		outlook: "Strong wind, overcast",
-		icon: "weather_wind_cloud_33x33.svg",
-		dName: "Wednesday"
-	},
-	day3: {	
-		windLower: 8,
-		windUpper: 14,
-		windDir: "NE",
-		temp: 17,
-		sailSize: 4.2,
-		outlook: "Moderate winds, sunny",
-		icon: "weather_sun_33x33.svg",
-		dName: "Thursday"
-	}
-*/
 
 /* ------ Process Raw Weather Into Local Stored Data ------ */
 function constructWeather () {
@@ -464,33 +420,6 @@ function getTodayPlusX (x) {
 	// I finally used modulo in a meaningful way!
 	return days[(x+todayIndex)%7];
 };
-
-// Choose a weather icon based on the weather
-function iconPicker () {
-	/*
-	This function will choose from the preset weather icons
-	which one will be used based on the given weather forecast.
-
-	The icons available are:
-		- Sun
-		- Sun + Cloud
-		- Cloud
-		- Cloud + Wind
-		- Wind
-		- Rain
-
-	It will first check the wind speed and if it is gale it will
-	set the icon to "wind", if not it will then check the forecast
-	description looking for keywords such as "sunny", "overcast" 
-	and "rain". 
-
-	For example if it is 'not gale', contains the words 'overcast'
-	and the wind is above some threshold then the icon is set 
-	to: "Cloud + Wind"
-
-	It should return a sting (eg. "overcast_wind_94x80.svg")
-	*/
-}
 
 /* ------ Compress day into an array ------ */
 // A day array = 	[0]sailSize, [1]day, [2]windLower, [3]windUpper, [4]temp, 
