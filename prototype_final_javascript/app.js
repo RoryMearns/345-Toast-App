@@ -203,20 +203,30 @@ function constructWeather () {
 	}
 
 	// Build locally stored sail size:
-	// Build locally stored icon:
+	function sailSizes () {
+		for (var i=0; i<=3; i++) {
+			weather['day'+i]['sailSize'] = sailSizeSetter(weather['day'+i]['windLower'], weather['day'+i]['windUpper']);
+		}
+	}
+
 	// Build locally stored day name:
+	function dayNames () {
+		for (var i=0; i<=3; i++) {
+			// Set the day names
+			weather['day'+i]['dName'] = getTodayPlusX(i);
+		}
+	}
+
+	// Build locally stored icon:
+	
 
 	windRange();
 	windDirection();
 	temperature();
 	outlook();
+	sailSizes();
+	dayNames();
 
-	for (var i=0; i<=3; i++) {
-		// Set the day names
-		weather['day'+i]['dName'] = getTodayPlusX(i);
-		// Set the sail sizes (note: wind ranges NEED to be set prior!)
-		weather['day'+i]['sailSize'] = sailSizeSetter(weather['day'+i]['windLower'], weather['day'+i]['windUpper']);
-	}
 };
 
 /* ------ Build Alert Screen ------ */
