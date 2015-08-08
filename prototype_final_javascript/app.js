@@ -542,6 +542,34 @@ function instProcess (inst) {
 	else if (input == "reset") {
 		firstBoot = true;
 	}
+	// What to do if the emulator is advanced by one day
+	else if (input == "advance") {
+		daysFastFoward += 1;
+		if (daysFastFoward == 1) {
+			rawWeather = weatherData1;
+			constructWeather();
+			if (sleepStatus != true){
+				buildHomeScreen(dayCompress(0));
+				currentScreen = "home";
+			}
+		} else if (daysFastFoward == 2) {
+			rawWeather = weatherData2;
+			constructWeather();
+			if (sleepStatus != true){
+				buildHomeScreen(dayCompress(0));
+				currentScreen = "home";
+			}
+		} else if (daysFastFoward == 3) {
+			rawWeather = weatherData3;
+			constructWeather();
+			if (sleepStatus != true){
+				buildHomeScreen(dayCompress(0));
+				currentScreen = "home";
+			}
+		} else if (daysFastFoward > 3) {
+			alert("You cannot advance time any further, please reset app to continue using.");
+		}
+	}
 };
 
 /* ------ Main Function ------ */

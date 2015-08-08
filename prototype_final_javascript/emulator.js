@@ -210,6 +210,7 @@ $(document).ready(function() {
 	});
 	$("#ffwd").click(function() {		// Advance 'time' by 1
 		timePlusX += 1;
+		instructionQueue.enqueue(["advance"]);
 	});
 	$("#sleep").click(function() {		// Sleep watch
 		instructionQueue.enqueue(["sleep"]);
