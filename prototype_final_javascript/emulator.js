@@ -221,7 +221,6 @@ $(document).ready(function() {
 			$("#reset").removeClass("inactive").addClass("active");
 			$("#appOn").removeClass("active").addClass("inactive");
 			main();
-			alert("test");
 		}
 	});
 

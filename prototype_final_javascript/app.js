@@ -346,10 +346,12 @@ function buildSettingsScreen () {
 	// Paint the background
 	clearScreen();
 	setBackgroundColor("#000");
-	drawText(170, 40, "100 30px helvetica ", "#FFFFFF", "Settings[FIXED]", "center");
+	drawText(170, 40, "100 30px helvetica ", "#FFFFFF", "Settings", "center");
 	drawText(15, 80, "100 20px helvetica ", "#BBBDC0", ("Rider Location: "+user.riderLocal));
 	drawText(15, 105, "100 20px helvetica ", "#BBBDC0", ("Rider Skill: "+user.riderSkill));
 	drawText(15, 130, "100 20px helvetica ", "#BBBDC0", ("Rider Weight: "+user.riderWeight));
+	drawText(15, 155, "100 20px helvetica ", "#BBBDC0", ("Sail Range: "+user.riderPreferenceLower+" - "+user.riderPreferenceUpper.toFixed(1)));
+
 };
 
 /* ------ Check For Alerts ------ */
@@ -487,7 +489,11 @@ function instProcess (inst) {
 	var input = inst[0];
 	// What to do with taps on the screen
 	if (input == "tap") {
-		if (currentScreen == "home") {
+		if (sleepStatus == true) {
+			clearScreen();
+			sleepStatus = true;
+			currentScreen = 'sleep';
+		} else if (currentScreen == "home") {
 			// If on home screen go to function to deal with that
 			homeTap(inst[1], inst[2]);
 		} else if (currentScreen == "forecast") {
@@ -501,11 +507,15 @@ function instProcess (inst) {
 			// Return back to the home screen if settings screen it tapped
 			buildHomeScreen(dayCompress(0));
 			currentScreen = "home";
-		}
+		} 
 	}
 	// what to do with swipes
 	else if (input == "swipe") {
-		if (currentScreen == "home") {
+		if (sleepStatus == true) {
+			clearScreen();
+			sleepStatus = true;
+			currentScreen = 'sleep';
+		} else if (currentScreen == "home") {
 			// Do nothing
 		} else if (currentScreen == "forecast") {
 			// If a swipe is detected on the forecast screen, return to home screen
@@ -525,7 +535,7 @@ function instProcess (inst) {
 	else if (input == "sleep") {
 		clearScreen();
 		sleepStatus = true;
-		currentScreen = '';
+		currentScreen = 'sleep';
 	}
 	// What to do if the app is 'woken' from a sleep
 	else if (input == "wake") {
