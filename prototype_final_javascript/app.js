@@ -354,7 +354,6 @@ function buildSettingsScreen () {
 
 /* ------ Check For Alerts ------ */
 function alertChecker () {
-	
 	// Check upcoming days for ideal weather conditions
 	var daysCond;
 	for (var i=0; i<=3; i++) {
@@ -363,28 +362,12 @@ function alertChecker () {
 			if (daysCond > user['riderPreferenceLower'] && daysCond < user['riderPreferenceUpper']) {
 				setTimeout(function () {
         			beep();
-    			}, 2000);
+        			buildAlertScreen(dayCompress(i));
+					currentScreen = "alert";
+    			}, 1600);
+    			return;
 			}
 		}
-	/*
-	The alert checker function will go through all the
-	weather data (either Raw or Local, undecided yet) and
-	check for conditions that are favorable to the users
-	preferences. If a favorable forecast is found it 
-	will alert the user after a short wait. Maybe include
-	some sort of audio alert: **BEEP**
-
-	The alert checker will deliver the FIRST and only the 
-	first favorable forecast alert. This makes sense from
-	a users point of view:
-		a) 	It would seem obnoxious to alert the user 4 times
-			if there are 4 days in a row of favorable weather.
-		b)	If the user is allerted to favorable weather (on 
-			wednesday for example) and they can't make the most
-			of the weather on that day, it is likely that they
-			would check the wether for subsequent days at that
-			time.
-	*/
 };
 
 /* ------ Some Helper Functions ------ */
