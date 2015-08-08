@@ -218,7 +218,9 @@ $(document).ready(function() {
 		instructionQueue.enqueue(["swipe", "right"]);
 	});
 	$("#enter").click(function() {		// Click 'Select'
-		clearScreen();
+		var x = 0000;
+		alert(x);
+		//clearScreen();
 	});
 	$("#ffwd").click(function() {		// Advance 'time' by 1
 		timePlusX += 1;

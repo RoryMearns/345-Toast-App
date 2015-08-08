@@ -64,17 +64,114 @@ var weather = {
 	}
 }
 
+/*
+var weather = {
+	day0: {					// Day0 = Today
+		windLower: 26,
+		windUpper: 34,
+		windDir: "SE",
+		temp: 12,
+		sailSize: 4.2,
+		outlook: "Rain, high seas, gale",
+		icon: "weather_rain_33x33.svg",
+		dName: "Monday"
+	},
+	day1: {	
+		windLower: 28,
+		windUpper: 36,
+		windDir: "S",
+		temp: 9,
+		sailSize: 4.2,
+		outlook: "Rain, high seas, gale",
+		icon: "weather_rain_33x33.svg",
+		dName: "Tuesday"
+	},
+	day2: {
+		windLower: 18,
+		windUpper: 22,
+		windDir: "E",
+		temp: 14,
+		sailSize: 4.2,
+		outlook: "Strong wind, overcast",
+		icon: "weather_wind_cloud_33x33.svg",
+		dName: "Wednesday"
+	},
+	day3: {	
+		windLower: 8,
+		windUpper: 14,
+		windDir: "NE",
+		temp: 17,
+		sailSize: 4.2,
+		outlook: "Moderate winds, sunny",
+		icon: "weather_sun_33x33.svg",
+		dName: "Thursday"
+	}
+*/
+
 /* ------ Process Raw Weather Into Local Stored Data ------ */
 function constructWeather () {
 	/* 
-	Many more funcitons & setters are to go in here to take 
-	the raw weather data and convert it into the locally 
-	stored weather data for easy access. 
+	This functions parses the raw weather data into the more managable 
+	locally stored data. If this app were to be changed to use a real 
+	world weather API then this function is all that would need to be 
+	changed to convert the raw API data into the managable local data.
+
+	It is broken into several smaller more managable functions that each 
+	deal with one aspect of the weather. First the actual weather
+	attributes are imported following this the custom graphics and 
+	sail sizes are determined using these values.
+
+	Only this function in the app should access the raw data.
 	*/
 
-	// select icon
-	// find wind range for day
+	// A way do dealing with idiosyncrasies in the raw data format 
+	function timeString (time) {
+		if(time == 0){
+			return 'timePlus0000';
+		} else if (time == 600) {
+			return 'timePlus0600';
+		} else {
+			return ('timePlus'+time);
+		}
+	}
+
+	// Build locally stored wind ranges from raw data:
+	function windRange () {
+		var timeStamp;
+
+		for (var i=0; i<=3; i++) {
+			var max, min, x;
+			timeStamp = i*2400;
+
+			min = weatherData0['forecast'][timeString(timeStamp)]['wind']['speed'];
+			max = weatherData0['forecast'][timeString(timeStamp)]['wind']['gusts'];
+
+			for (var j=1; j<=3; j++) {
+					timeStamp += 600;
+
+					x = weatherData0['forecast'][timeString(timeStamp)]['wind']['speed'];
+					if (min > x) min = x;
+					x = weatherData0['forecast'][timeString(timeStamp)]['wind']['gusts'];
+					if (max < x) max = x;
+			}
+			weather['day'+i]['windLower'] = min;
+			weather['day'+i]['windUpper'] = max;
+		}
+	}
 	
+	// Build locally stored wind direction:
+	function windDirection () {
+		//...
+	}
+
+
+	// Build locally stored temp:
+	// Build locally stored sail size:
+	// Build locally stored outlook:
+	// Build locally stored icon:
+	// Build locally stored day name:
+
+	windRange();
 
 	for (var i=0; i<=3; i++) {
 		// Set the day names
@@ -164,7 +261,7 @@ function buildForecastScreen (day0, day1, day2, day3) {
 	function drawDay (day, offset) {
 		drawText(170, 92+offset, "bold 55px helvetica", "white", day[0], "center");
 		drawText(62, 81+offset, "100 22px helvetica", "white", shortenDay(day[1]));
-		drawText(320, 65+offset, "100 22px helvetica", "#939597", (day[2]+"-"+day[2]+" kn"), "right");
+		drawText(320, 65+offset, "100 22px helvetica", "#939597", (day[2]+"-"+day[3]+" kn"), "right");
 		drawText(320, 94+offset, "100 22px helvetica", "#00ADEF", (day[8]+", "+day[4]+"°C"), "right");
 		drawImage(20, 56+offset, 33, 33, "../prototype_javascript/app_images/"+day[5]);
 	}
