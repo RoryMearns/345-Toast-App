@@ -192,14 +192,24 @@ function constructWeather () {
 		}
 	}
 
+	// Build locally stored outlook / weather description:
+	function outlook () {
+		var timeStamp;
+
+		for (var i=0; i<=3; i++) {
+			timeStamp = i*2400;
+			weather['day'+i]['outlook'] = weatherData0['forecast'][timeString(timeStamp)]['weatherDescription'];
+		}
+	}
+
 	// Build locally stored sail size:
-	// Build locally stored outlook:
 	// Build locally stored icon:
 	// Build locally stored day name:
 
 	windRange();
 	windDirection();
 	temperature();
+	outlook();
 
 	for (var i=0; i<=3; i++) {
 		// Set the day names
