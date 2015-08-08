@@ -11,6 +11,7 @@ warningMsg = "Storm Warning",
 warningToday = true,
 firstBoot = true,
 sleepStatus = true,
+daysFastFoward,
 rawWeather;
 
 /* ------ User Settings ------ */
@@ -171,7 +172,7 @@ function constructWeather () {
 	function dayNames () {
 		for (var i=0; i<=3; i++) {
 			// Set the day names
-			weather['day'+i]['dName'] = getTodayPlusX(i);
+			weather['day'+i]['dName'] = capitalizeFirstLetter(getTodayPlusX(i));
 		}
 	}
 
@@ -373,6 +374,11 @@ function alertChecker () {
 };
 
 /* ------ Some Helper Functions ------ */
+// Capitalize the first letter of a string
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // Shorten day name:
 function shortenDay (day) {
 	switch (day.toLowerCase()){
@@ -428,7 +434,7 @@ function getTodayPlusX (x) {
 		(days[i].toLowerCase() == currentDay.toLowerCase()) ? todayIndex = i : '';
 	}
 	// I finally used modulo in a meaningful way!
-	return days[(x+todayIndex)%7];
+	return days[(x+todayIndex+daysFastFoward)%7];
 };
 
 /* ------ Compress day into an array ------ */
@@ -542,6 +548,8 @@ function instProcess (inst) {
 function main () {
 	// If this is the first boot, launch the home screen:
 	if (firstBoot) {
+
+		daysFastFoward = 0;
 		rawWeather = weatherData0;
 		currentDay = getToday();
 		constructWeather();
