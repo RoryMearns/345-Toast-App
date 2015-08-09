@@ -1,3 +1,4 @@
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -43,32 +44,6 @@ table {
 a {
 	text-decoration: none;
 }
-
-/* ---------------------------------------------- */
-
-/* My custom styles are below */
-
-/*
-My Golden Ratio for Typography: Helvetica Neue
-Content Width: 685px
-Font Size: 16px
-line Height: 26px
-
-My Color Scheme:
-Light Gray 1: #F2F2F2 - (lightest)
-Light Gray 2: #E6E6E6
-Light Gray 3: #DCDCDA
-Mid Gray: #C4C4C4
-Dark Gray 1: #4C565C
-Dark Gray 2: #383B3E
-Light Green 1: #72C29B
-Light Green 2: #60AA85
-Mid Green: #47834B
-Mid Brown: #A4A875
-Mid Orange: #FF5E14
-*/
-
-/* ---------------------------------------------- */
 
 body {
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
@@ -127,10 +102,6 @@ section {
 	border-bottom: solid 1px #C4C4C4;
 }
 
-#schedule {
-	border-bottom: none;
-}
-
 header {
 	background-color: #E6E6E6;
 	margin: 0 0;
@@ -139,18 +110,6 @@ header {
 
 header p {
 	text-align: center;
-}
-
-dt {
-	float: left;
-	clear: left;
-	margin-right: 6px;
-	font-weight: 500;
-}
-
-dd {
-	clear: right;
-	padding-left: 60px;
 }
 
 ul ul {
@@ -162,50 +121,6 @@ section li {
 	margin: 5px 0 5px 50px;
 }
 
-#contents li {
-	list-style-type: none;
-	margin: 0 0 0 0;
-	font-weight: 400;
-}
-
-#contents li:before {
-	content:"> ";
-}
-
-#schedule li {
-	list-style-type: none;
-	margin: 0 0 0 0;
-}
-
-nav {
-	text-align: center;
-	margin: 20px 0;
-}
-
-nav li {
-	display: inline;
-	padding-right: 20px;
-	font-size: 18px;
-	font-weight: 900;
-}
-
-footer{
-	height: 110px;
-	background-color: #60AA85;
-	margin-top: 25px;
-	padding-top: 8px;
-	text-align: center;
-}
-
-footer p {
-	font-size: 13px;
-	color: #383B3E;
-}
-
-footer nav li {
-	font-size: 16px;
-	font-weight: 400;
-}
 
 a {
 	color: black;
@@ -224,55 +139,12 @@ p a:hover {
 	color: #FF5E14;
 }
 
-footer a {
-	color: #383B3E;
-}
-
 a:visited {
-	color: #383B3E;
-}
-
-footer a:visited {
 	color: #383B3E;
 }
 
 a:hover, a:focus {
 	color: #FF5E14;
-}
-
-footer a:hover, a:focus {
-	color: #FF5E14;
-}
-
-.brief {
-	font-style: italic;
-	font-weight: 100;
-}
-
-.deadlink {
-	color: #C4C4C4;
-}
-
-.mainapp {
-	height: 400px;
-	padding-top: 50px;
-	border-bottom: none;
-}
-
-#smartwatch_app figure {
-	border: solid 1px #C4C4C4;
-	margin: 15px 0;
-	overflow: hidden;
-	box-shadow: 0px 0px 20px #C4C4C4;
-}
-
-.imgblock {
-	display: block;
-}
-
-.note {
-	width: 685px;
-	margin: 0 auto;
 }
 
 /* --- Canvas element & controls: --- */
