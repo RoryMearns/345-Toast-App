@@ -23,6 +23,13 @@
 		<h2>Contents</h2>
 		<ul>
 			<li><a href="#prototype">Emulator &amp; App Prototype</a></li>
+			<li><a href="#finalemulator">Final Emulator</a></li>
+			<li><a href="#interface">Emulator Structure &amp; Interface</a></li>
+			<li><a href="#appproto">App Prototype</a></li>
+			<li><a href="#tools">Tools Used During Construction</a></li>
+			<li><a href="#browsers">Compatible Browsers</a></li>
+			
+			<li><a href="#forward">Forward Workload &amp; Project Schedule</a></li>
 		</ul>
 	</section>
 
@@ -55,6 +62,188 @@
 		
 		<p>Audio: <span id="audio"></span></p>
 		<p>Click Coordinates: X=<span id="x-coord"></span>, Y=<span id="y-coord"></span></p>
+	</section>
+
+	<section id="finalemulator">
+		<h2>Final Emulator</h2>
+		<p>The final emulator presented here has only undergone minor changes relative to the emulator presented in Assignment 2 which reflects the near complete state the emulator was in for the assignment 2 submission. The three most significant changes to the emulator are: improved button layout and control, a time advancing feature and a thorough overhaul of code documentation.</p>
+
+		<p>All nonessential buttons (i.e. buttons that have no specific use for my app) that were present in Assignment 2 have been removed and a number of extra buttons have been added, namely: “Reset”, “Sleep”, “Wake” and “Advance Time”. All buttons now also have a dynamic “active” and “inactive” state to reflect if they are able to be used in the current context. For example when the page is first loaded the only button that can be pressed is “Activate App” and once the app is activated the “Activate App” button can no longer be used. This dynamic button state greatly improves the user experience and prevents non-sensical input (such as trying to activate the app when the app is already activated).</p>
+
+		<p>A simple time advancing feature has been added to the emulator which consists of a variable to track how many units of time the emulator has been advanced (note: the units are purposely abstract as my app interprets them as days but another app may interpret them as minutes or hours) and an “advance” instruction that is sent to the instruction queue.</p>
+
+		<p>The last major change to the emulator is a major overhaul to the documentation of the code to make it easy to follow and understand for other users.</p>
+
+	</section>
+
+	<section id="interface">
+		<h2>Emulator Structure &amp; Interface</h2>
+		<p>The structure and interface of the emulator is described in detail in two places: In the code documentation and in a separate HTML file for distribution with the &#39;cleaned&#39; emulator files <a href="../emulator_for_distribution/index.html">here</a>.</p>
+	</section>
+
+	<section id="appproto">
+
+		<h2>App Prototype</h2>
+
+		<h3>What it does &amp; How to use it</h3>
+		<p>My smartwatch application prototype is a weather watching tool for windsurfers. It provides current weather information, weather forecasts and sail recommendations for the weather conditions. The app can be used actively to check forecasts and conditions or it can be used in a more passive way where it can be set to alert the user when some favourable conditions are forecast in the coming days.</p>
+
+		<p>For this prototype I have preset the user settings and for the purposes of demonstration use it is worth noting the setting for preferred conditions has been set to anything between “5.2” and “7.0” conditions. What this means is the user doesn’t have a sail size smaller than 5.2 meters squared or a sail larger than 7.0 meters squared.</p>
+
+		<h4>Home Screen</h4>
+		<p>When the app is opened the user is immediately given easy to read information dense home screen with the following features:</p>
+			<ul>
+				<li>A very prominent sail size recommendation for the current weather (note that windsurfers often refer to the the weather conditions in terms of the sail size e.g. “It’s looking like a good 4.5 breeze out there today”). This number is often the only think someone might want to know and would normally involve them checking the windspeed and then making a some sort of calculation to get this number (either with some sort of calculator or mental rule of thumb). As such this number is given prominence in the app home screen.</li>
+				<li>A written and graphical weather description</li>
+				<li>Actual predicted / measured weather conditions (wind speed in knots, wind direction, and temperature)</li>
+				<li>Warnings of severe weather conditions. Although no description of the warning specifics are provided to the user the importance of raising such warnings is of great importance for the safety of the user.</li>
+				<li>Current location and current day.</li>
+				<li>A forecast icon</li>
+				<li>A settings icon</li>
+			</ul>
+
+		<p>From the home screen a typical user may want to check the upcoming forecast or simply sleep the app and go about their day.</p>
+
+		<h4>Forecast Screen</h4>
+		<p>When the user taps on the forecast icon on the home screen they are taken to the forecast screen which shows a condensed forecast of the upcoming four days. Each days forecast contains the following information:</p>
+			<ul>
+				<li>Sail size recommendation for the day, again this being the most prominent element of the forecast.</li>
+				<li>What day the forecast is for</li>
+				<li>An icon depicting the forecasted weather (sun, clouds, rain, wind etc.)</li>
+				<li>Forecasted wind range in knots and wind direction</li>
+				<li>Forecasted temperature</li>
+			</ul>
+		<p>While on the forecast screen the user can take two different actions. They can either “Swipe Left” which takes them back to the home screen or they can tap an a particular day to get a full screen display of that days forecast. Any action taken on the full screen forecast view will take the user back to the home page.</p>
+
+		<h4>Alerts</h4>
+		<p>Each new day the forecast updates in the background and fresh forecast data is obtained and processed in the app. The app then checks the next four days for any forecast that is deemed favourable according to the users settings and will alert the user of the first favourable forecast that it identifies.</p> 
+
+		<p>An alert consists of a screen outlining the forecast for the day in question and a series of beep’s which are written to the page immediately below the emulator screen.</p>
+
+		<p>Any input from the user on an alert screen takes them back to the home screen or if the watch was in “Sleep Mode” then any input returns the watch to the sleep state.</p>
+
+		<h3>Example Use</h3>
+		<p>Below is a series of actions that can be performed to demonstrate the features of the app. Note that all actions must be taken and in the described order to get the described result.</p>
+		
+		<ul>
+			<li><strong>Reload the web page</strong> to ensure a fresh start.</li>
+			<li><strong>Click the “Activate App” button</strong> to load the emulator and app. You are immediately taken to the home screen where you can see todays weather.</li>
+			<li><strong>Tap the “Calander Icon” on the screen</strong> to see the forecast for the next four days.</li>
+			<li><strong>Tap on one of the four forecast days</strong> to be taken to a full screen view of that day.</li>
+			<li><strong>Click the “Swipe Left / Back” button</strong> to return to the app home screen.</li>
+			<li><strong>Click the “Advance 1-Day” button once</strong> to see the app change to the next day.</li>
+			<li><strong>Click the “Sleep” button</strong> to sleep the watch.</li>
+			<li><strong>Click the “Advance 1-Day” button once</strong> to advance to the next day, the watch will wake and alert the user of some new upcoming favourable forecast.</li>
+			<li><strong>Tap the screen anywhere</strong> to dismiss the alert and return the watch to it’s sleep state.</li>
+		</ul>
+
+	</section>
+	
+	<section id="tools">
+		<h2>Tools Used During Construction</h2>
+
+		<p>Below is a list of the main tools that were used while creating the emulator and app prototype.</p>
+
+		<h3>Sublime Text 3</h3>
+
+		<p>All code for this project was written in Sublime Text 3 editor which I have immensely enjoyed. When starting out using Sublime it was very easy to pick up because on the surface it appears to be a very simple text editor with basic features. However through continued use I discovered many powerful and useful hidden features such as simultaneous editing or the project manager which allows quick switching between projects which preserves all the windows and displays open at the time of exiting.</p>
+
+		<p>These many small powerful features make some of the more mundane tasks a lot easier, for example I like to write my reports in a word processor and then paste the completed report into the HTML document and format from there. Sublime makes wrapping paragraphs in text and replacing escape characters a very quick task which could otherwise take along time in other editors. </p>
+
+		<p>Sublime Text also has a package manager that makes it easy to find and install third party plug-ins to make certain tasks easier. One example I used was the “AutoPrefixer” plugin. AutoPrefixer parses CSS and adds vendor prefixes to CSS rules. I prefer to use CSS flexbox for the layout of certain HTML elements such as the grid of buttons. After getting my layout how I want it in one browser I am able to run AutoPrefixer to make this layout the most compatible it can be with other browsers.</p>
+
+		<h3>jQuery</h3>
+
+		<p>Although I barely scratched the surface of what the jQuery library is capable of I found it to be incredibly useful for managing the interface between the user and the emulator controls. All of the buttons actions and dynamic state are controlled through the use of jQuery.</p>
+
+		<h3>QUnit</h3>
+
+		<p>I used QUnit to carry out unit testing on my emulator and app prototype. Initially I chose QUnit because of it’s wide adoption and similarities to Java’s JUnit, a tool I have used before. However I struggled a little with using QUnit. I encountered multiple issues with trying to make complicated tests on the state of my emulator and app. </p>
+
+		<p>QUnit’s documentation describes methods for testing user behaviour through jQueries ‘trigger’ function, but no matter how hard I tried I simply couldn’t get it to work. I read multiple cookbooks, tutorials and how-to’s on using QUnit but I had more trouble managing this than any other part of the project.</p> 
+
+		<p>Testing is an area I have a lot of interest in so my struggles were not due to a lack of enthusiasm in this area. Perhaps if I was in a group with other members my workload would have been smaller and I could have dedicated more time to develop a better understanding of QUnit. Or perhaps in a group I could have afforded the time to explore other testing options.</p>
+
+		<h3>Git &amp; GitHub</h3>
+
+		<p>I recognised early on that Git is a tool that is commonly used in the real world of software development so I was quick to adopt and learn this tool. Although this project never required a complex tree of different branches to my Git repository I did make use Git and GitHub throughout the project.</p>
+
+		<h3>Learning Tools</h3>
+
+		<p>I think it is also worth noting that I knew zero JavaScript prior to commencing this project. I took it upon myself to learn as much JavaScript as possible both through the assignments for this project and externally. By far the most useful tool in learning JavaScript has been CodeSchool (https://www.codeschool.com/paths). I spent countless hours going through multiple courses on the various different topics of JavaScript in a way that makes sense to me.</p> 
+	</section>
+
+	<section id="browsers">
+		<h2>Compatible Browsers</h2>
+		
+		<p>The emulator and app were tested on multiple browsers on two separate computers one computer was an Apple Mac running OS X 10.10.4 the other was a Windows PC running Windows 10. No issues were encountered in any browser.</p>
+		<ul>
+	
+			<li>
+				<strong>Firefox</strong> (39.0.3) Mac OSX &amp; Windows10
+				<p>Firefox is my default browser and I did all of my development with a Firefox window open in the background. Both the emulator and app work without issue in Firefox. All test cases passed.</p>
+			</li>
+	
+			<li>
+				<strong>Chrome</strong> (44.0) Mac OSX &amp; Windows10
+				<p>Emulator and app work without issue in Chrome on Mac and Windows without issue. All test cases passed.</p>
+			</li>
+	
+			<li>
+				<strong>Opera</strong> (31.0) Mac OSX &amp; Windows10
+				<p>Emulator and app work without issue in Opera on Mac and Windows without issue. All test cases passed.</p>
+			</li>
+	
+			<li>
+				<strong>Safari</strong> (8.0.7) Mac OSX
+				<p>Emulator and app work without issue in Safari on Mac without issue. All test cases passed.</p>
+			</li>
+	
+			<li>
+				<strong>Edge</strong> (20) Windows10
+				<p>Emulator and app work without issue in Edge on Windows without issue. All test cases passed.</p>
+			</li>
+	
+			<li>
+				<strong>Internet Explorer</strong> (11.0) Windows10
+				<p>Emulator and app work without issue in Internet Explorer on Windows without issue. All test cases passed.</p>
+			</li>
+		</ul>
+	</section>
+	
+
+	<section id="forward">
+		<h2>Forward Workload &amp; Project Schedule</h2>
+		
+		<p>The forward workload and schedule remains unchanged from the previous schedule at this stage and is as follows:</p>
+
+		<ul>
+			<li><strong>August</strong>
+				<ul>
+					<li><strong><em>10<sup>th</sup> - Assignment 3 due</em></strong></li>
+					<li>29<sup>th</sup> - Read &amp; re-read the documentation of the the other two emulators to port to</li>
+					<li>30<sup>th</sup> - Decide which emulator to port to first and make a start</li>
+				</ul>
+			</li>
+
+			<li><strong>September</strong>
+				<ul>
+					<li>12<sup>th</sup> - Finished porting to the first emulator</li>
+					<li>13<sup>th</sup> - Write report chapter on results of porting to the first emulator</li>
+					<li>14<sup>th</sup> - Begin porting to the second emulator</li>
+					<li>26<sup>th</sup> - Finished porting to the second emulator</li>
+					<li>27<sup>th</sup> - Write report chapter on results of porting to the second emulator</li>
+					<li>27<sup>th</sup> - Compile final report in HTML</li>
+					<li>29<sup>th</sup> - Validate HTML &amp; CSS</li>
+				</ul>
+			</li>
+
+			<li><strong>October</strong>
+				<ul>
+					<li><strong><em>2<sup>nd</sup> - Assignment 4 due</em></strong></li>
+				</ul>
+			</li>
+		</ul>
 	</section>
 
 	<footer>

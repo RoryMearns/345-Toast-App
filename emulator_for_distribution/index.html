@@ -17,7 +17,6 @@
 	<section id="prototype">
 		<h2>Emulator</h2>
 		
-		
 		<div id="proto">
 			<canvas id="proto_canvas" width="340" height="340"></canvas>
 
@@ -44,7 +43,36 @@
 		<p>Audio: <span id="audio"></span></p>
 		<p>Click Coordinates: X=<span id="x-coord"></span>, Y=<span id="y-coord"></span></p>
 	</section>
+
+	<section>
+		<h2>Using The Smartwatch Emulator</h2>
+
+		<h3>Emulator Overview</h3>
+
+		<p>Below is an overview of the smartwatch emulator. This overview is designed to compliment the code documentation and as such specific details of functions, return values etc. are omitted from this text and are instead documented within the code.</p> 
+
+		<p>This smartwatch emulator has been constructed using a combination of the HTML canvas element, JavaScript and jQuery. The emulator itself has a number of functions for drawing shapes, lines, images and text to the HTML canvas. It has a function to retrieve the current date object or day name, clear the screen or simulate a beep.</p>
+
+		<h3>Emulator - App Interface</h3>
+
+		<p>Once the emulator has been initialised a special instruction queue is created called &#39;instructionQueue&#39; through which all communication to any apps is delivered. An app must poll this queue for incoming instructions. An individual instruction is an array of values. The number of different instructions and their values can be customised to reflect the number of buttons active for the emulator and the type of information associated with each action.</p>
+
+		<p>Apps must decode instructions from the queue and decide what to do with the given values.</p>
+
+		<p>For example: When the &quot;Swipe Left&quot; button is pressed a new array object is enqueued in the instruction queue with two values. The first values is the string &quot;swipe&quot;, the second value is the string &quot;left&quot;.</p>
+
+		<h3>Buttons</h3>
+
+		<p>There are nine buttons available to the emulator in total. Only six buttons are currently working but extra buttons can be created by adding an ID tag and appropriate button text in the HTML document and adding the &#39;on click&#39; pattern to the emulator.js file described in the code documentation.</p>
+
+		<p>&quot;Activate App&quot; is a special button that activates the app by making a single call to &#39;main&#39; this is the only time communication is made with the app outside of the instruction queue. For any app to work it must contain a function named &#39;main&#39; that serves as an entry point to that application.</p>
+
+		<h3>Screen Taps</h3>
+
+		<p>In addition to buttons users can interact with the emulator through screen taps. When a user clicks on the emulator screen a new array object is enqueued in the instruction queue with three values. The first value is the string &quot;tap&quot; the second and third values are the X and Y coordinates of that click relative to the emulator screen (i.e. the upper left corner of the screen has the coordinate X = &#39;0&#39;, Y = &#39;0&#39;).</p>
 		
+	</section>	
+
 	<script src="watch_emulator/jquery-2.1.4.min.js" type="text/javascript"></script>
 	<script src="watch_emulator/emulator.js" type="text/javascript"></script>
 
