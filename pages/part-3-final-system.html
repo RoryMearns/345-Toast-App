@@ -68,20 +68,20 @@
 	<section id="intro">
 		<h2>Introduction</h2>
 
-		<p>The emulator and app prototype have now been finished. The emulator has seen multiple improvements over what was put forward in Assignment 2 including a time advancing function, a more logical set of buttons and a way of preventing nonsensical button input form a user. The app prototype now demonstrates the use of alerts through the use of the time advancing feature. The app also processes raw weather data files into a locally stored data structure.</p> 
+		<p>The emulator and app prototype are now presented in their final state. The emulator has seen multiple improvements over what was put forward in Assignment 2 including a time advancing function, a more logical set of buttons and a way of preventing nonsensical button input form the user. The app prototype now demonstrates alerts through the use of the time advancing feature. The app also processes raw weather data files into a locally stored data structure.</p> 
 
-		<p>The ability to be able to change the settings of the app has been removed from the original proposal of Assignment 1 however all other features remain intact in one form or another and the app functions as planned.</p>
+		<p>The ability to be able to change the settings of the app has been removed from the original proposal of Assignment 1 however all other features remain intact in one form or another and the app prototype functions as planned.</p>
 
 		<p>Not working in a group has been a big obstacle of this assignment but despite this I have learnt a lot of new tools, languages and techniques.</p> 
 	</section>
 
 	<section id="finalemulator">
 		<h2>Final Emulator</h2>
-		<p>The final emulator presented here has only undergone minor changes relative to the emulator presented in Assignment 2 which reflects the near complete state the emulator was in for the assignment 2 submission. The three most significant changes to the emulator are: improved button layout and control, a time advancing feature and a thorough overhaul of code documentation.</p>
+		<p>The final emulator has only undergone minor changes compared to the emulator presented in Assignment 2 which reflects the near complete state the emulator was in for the Assignment 2 submission. The three most significant changes to the emulator are: improved button layout and control, a time advancing feature and a thorough overhaul of code documentation.</p>
 
-		<p>All nonessential buttons (i.e. buttons that have no specific use for my app) that were present in Assignment 2 have been removed and a number of extra buttons have been added, namely: &quot;Reset&quot;, &quot;Sleep&quot;, &quot;Wake&quot; and &quot;Advance Time&quot;. All buttons now also have a dynamic &quot;active&quot; and &quot;inactive&quot; state to reflect if they are able to be used in the current context. For example when the page is first loaded the only button that can be pressed is &quot;Activate App&quot; and once the app is activated the &quot;Activate App&quot; button can no longer be used. This dynamic button state greatly improves the user experience and prevents non-sensical input (such as trying to activate the app when the app is already activated).</p>
+		<p>All nonessential buttons (i.e. buttons that have no specific use for my app) that were present in Assignment 2 have been removed and a number of extra buttons have been added, namely: &quot;Reset&quot;, &quot;Sleep&quot;, &quot;Wake&quot; and &quot;Advance Time&quot;. All buttons now also have a dynamic &quot;active&quot; and &quot;inactive&quot; state to reflect if they are able to be used in the current context. For example when the page is first loaded the only button that can be pressed is &quot;Activate App&quot; and once the app is activated the &quot;Activate App&quot; button can no longer be used. This dynamic button state greatly improves the user experience and prevents nonsensical input (such as trying to activate the app when the app is already activated).</p>
 
-		<p>A simple time advancing feature has been added to the emulator which consists of a variable to track how many units of time the emulator has been advanced (note: the units are purposely abstract as my app interprets them as days but another app may interpret them as minutes or hours) and an &quot;advance&quot; instruction that is sent to the instruction queue.</p>
+		<p>A simple time advancing feature has been added to the emulator which consists of a variable to track how many units of time the emulator has been advanced (note: the units are purposefully abstract as my app interprets them as days but another app may interpret them as minutes or hours) and an &quot;advance&quot; instruction that is sent to the instruction queue.</p>
 
 		<p>The last major change to the emulator is a major overhaul to the documentation of the code to make it easy to follow and understand for other users.</p>
 
@@ -89,7 +89,7 @@
 
 	<section id="interface">
 		<h2>Emulator Structure &amp; Interface</h2>
-		<p>The structure and interface of the emulator is described in detail in two places: In the code documentation and in a separate HTML file for distribution with the &#39;cleaned&#39; emulator files <a href="../emulator_for_distribution/index.html">here</a>.</p>
+		<p>The structure and interface of the emulator is described in detail in two places: In the code documentation and in a separate HTML file for distribution with a &#39;cleaned&#39; version of the emulator <a href="../emulator_for_distribution/index.html">here</a>.</p>
 	</section>
 
 	<section id="appproto">
@@ -97,14 +97,14 @@
 		<h2>App Prototype</h2>
 
 		<h3>What it does &amp; How to use it</h3>
-		<p>My smartwatch application prototype is a weather watching tool for windsurfers. It provides current weather information, weather forecasts and sail recommendations for the weather conditions. The app can be used actively to check forecasts and conditions or it can be used in a more passive way where it can be set to alert the user when some favourable conditions are forecast in the coming days.</p>
+		<p>My smartwatch application prototype is a weather watching tool for windsurfers. It provides current weather information, weather forecasts and sail size recommendations for the weather conditions. The app can be used actively to check forecasts and conditions or it can be used in a more passive way where it can be set to alert the user when some favourable conditions are forecast in the coming days.</p>
 
-		<p>For this prototype I have preset the user settings and for the purposes of demonstration use it is worth noting the setting for preferred conditions has been set to anything between &quot;5.2&quot; and &quot;7.0&quot; conditions. What this means is the user doesn&#39;t have a sail size smaller than 5.2 meters squared or a sail larger than 7.0 meters squared.</p>
+		<p>For this prototype I have hardcoded the user settings and for the purposes of demonstration use it is worth noting that the settings for preferred conditions has been set to anything between &quot;5.2&quot; and &quot;7.0&quot; conditions. What this means is that the user doesn&#39;t have a sail size smaller than 5.2 meters squared or a sail larger than 7.0 meters squared.</p>
 
 		<h4>Home Screen</h4>
-		<p>When the app is opened the user is immediately given easy to read information dense home screen with the following features:</p>
+		<p>When the app is opened the user is immediately taken to an easy-to-read information-dense home screen with the following features:</p>
 			<ul>
-				<li>A very prominent sail size recommendation for the current weather (note that windsurfers often refer to the the weather conditions in terms of the sail size e.g. &quot;It&#39;s looking like a good 4.5 breeze out there today&quot;). This number is often the only think someone might want to know and would normally involve them checking the windspeed and then making a some sort of calculation to get this number (either with some sort of calculator or mental rule of thumb). As such this number is given prominence in the app home screen.</li>
+				<li>A very prominent sail size recommendation for the current weather (note that windsurfers will often refer to the weather conditions in terms of the sail size e.g. &quot;It&#39;s looking like a good 4.5 breeze out there today&quot;). This number is often the only thing someone might want to know and it would normally involve them checking the windspeed and then making a some sort of calculation to get this number (either with a calculator or mental rule of thumb). As such this number is given prominence in the app home screen.</li>
 				<li>A written and graphical weather description</li>
 				<li>Actual predicted / measured weather conditions (wind speed in knots, wind direction, and temperature)</li>
 				<li>Warnings of severe weather conditions. Although no description of the warning specifics are provided to the user the importance of raising such warnings is of great importance for the safety of the user.</li>
@@ -116,7 +116,7 @@
 		<p>From the home screen a typical user may want to check the upcoming forecast or simply sleep the app and go about their day.</p>
 
 		<h4>Forecast Screen</h4>
-		<p>When the user taps on the forecast icon on the home screen they are taken to the forecast screen which shows a condensed forecast of the upcoming four days. Each days forecast contains the following information:</p>
+		<p>When the user taps on the forecast icon on the home screen (the calendar on the bottom left) they are taken to the forecast screen which shows a condensed forecast of the upcoming four days. Each days forecast contains the following information:</p>
 			<ul>
 				<li>Sail size recommendation for the day, again this being the most prominent element of the forecast.</li>
 				<li>What day the forecast is for</li>
@@ -127,14 +127,14 @@
 		<p>While on the forecast screen the user can take two different actions. They can either &quot;Swipe Left&quot; which takes them back to the home screen or they can tap an a particular day to get a full screen display of that days forecast. Any action taken on the full screen forecast view will take the user back to the home page.</p>
 
 		<h4>Alerts</h4>
-		<p>Each new day the forecast updates in the background and fresh forecast data is obtained and processed in the app. The app then checks the next four days for any forecast that is deemed favourable according to the users settings and will alert the user of the first favourable forecast that it identifies.</p> 
+		<p>Each new day the forecast updates in the background during which new forecast data is obtained and processed in the app. The app then checks the next four days for any forecast that is deemed favourable according to the users settings and will alert the user of the first (and only the first) favourable forecast that it identifies.</p> 
 
 		<p>An alert consists of a screen outlining the forecast for the day in question and a series of beeps which are written to the page immediately below the emulator screen.</p>
 
 		<p>Any input from the user on an alert screen takes them back to the home screen or if the watch was in &quot;Sleep Mode&quot; then any input returns the watch to the sleep state.</p>
 
 		<h3>Example Use</h3>
-		<p>Below is a series of actions that can be performed to demonstrate the features of the app. Note that all actions must be taken and in the described order to get the described result.</p>
+		<p>Below is a series of actions that can be performed to demonstrate the features of the app. Note that all actions must be taken - and in the correct order - to get the described result.</p>
 		
 		<ul>
 			<li><strong>Reload the web page</strong> to ensure a fresh start.</li>
@@ -153,27 +153,27 @@
 	<section id="tools">
 		<h2>Tools Used During Construction</h2>
 
-		<p>Below is a list of the main tools that were used while creating the emulator and app prototype.</p>
+		<p>Below is an overview of the main tools that were used while creating the emulator and app prototype.</p>
 
 		<h3>Sublime Text 3</h3>
 
-		<p>All code for this project was written in Sublime Text 3 editor which I have immensely enjoyed. When starting out using Sublime it was very easy to pick up because on the surface it appears to be a very simple text editor with basic features. However through continued use I discovered many powerful and useful hidden features such as simultaneous editing or the project manager which allows quick switching between projects which preserves all the windows and displays open at the time of exiting.</p>
+		<p>All code for this project was written in Sublime Text 3 editor which I have immensely enjoyed. Sublime was easy to pick up for a first time user because on the surface it appears to be a very simple text editor with only basic features. However through continued use I discovered many powerful and useful hidden features such as simultaneous editing or the project manager which allows quick switching between projects which preserves all the windows and displays open at the time of exiting.</p>
 
-		<p>These many small powerful features make some of the more mundane tasks a lot easier, for example I like to write my reports in a word processor and then paste the completed report into the HTML document and format from there. Sublime makes wrapping paragraphs in text and replacing escape characters a very quick task which could otherwise take along time in other editors. </p>
+		<p>Many of these features make some of the more mundane developing tasks a lot easier, for example I like to write my reports in a word processor and then paste the completed report into the HTML document and format from there. Sublime makes wrapping text in the correct HTML tags and replacing escape characters a relatively short and easy task which can otherwise take a long time in other editors.</p>
 
 		<p>Sublime Text also has a package manager that makes it easy to find and install third party plug-ins to make certain tasks easier. One example I used was the &quot;AutoPrefixer&quot; plugin. AutoPrefixer parses CSS and adds vendor prefixes to CSS rules. I prefer to use CSS flexbox for the layout of certain HTML elements such as the grid of buttons. After getting my layout how I want it in one browser I am able to run AutoPrefixer to make this layout the most compatible it can be with other browsers.</p>
 
 		<h3>jQuery</h3>
 
-		<p>Although I barely scratched the surface of what the jQuery library is capable of I found it to be incredibly useful for managing the interface between the user and the emulator controls. All of the buttons actions and dynamic state are controlled through the use of jQuery.</p>
+		<p>Although I barely scratched the surface of what the jQuery library is capable of I found it to be incredibly useful for managing the interface between the user and the emulator controls. All of the buttons actions and dynamic states are controlled through the use of jQuery.</p>
 
 		<h3>Testing</h3>
 
 		<p>I used QUnit to carry out unit testing on my emulator and app prototype. Initially I chose QUnit because of its wide adoption and similarities to Java&#39;s JUnit, a tool I have used before. However I struggled a little with using QUnit. I encountered multiple issues with trying to make complicated tests on the state of my emulator and app.</p>
 
-		<p>QUnit&#39;s documentation describes methods for testing user behaviour through jQueries &#39;trigger&#39; function, but no matter how hard I tried I simply couldn&#39;t get it to work. I read multiple cookbooks, tutorials and how-to&#39;s on using QUnit but I had more trouble managing this than any other part of the project.</p> 
+		<p>QUnit&#39;s documentation describes methods for testing user behaviour through jQueries &#39;trigger&#39; function but no matter how many different ways I tried I simply couldn&#39;t get it to work. I read multiple cookbooks, tutorials and how-to&#39;s on using QUnit but I had more trouble managing this than any other part of the project.</p> 
 
-		<p>Testing is an area I have a lot of interest in so my struggles were not due to a lack of enthusiasm in this area. Perhaps if I was in a group with other members my workload would have been smaller and I could have dedicated more time to develop a better understanding of QUnit. Or perhaps in a group I could have afforded the time to explore other testing options.</p>
+		<p>Testing is an area I have a lot of interest in so my struggles were not due to a lack of enthusiasm. Perhaps if I was in a group with other members my workload would have been more managable and I could have dedicated more time to develop a better understanding of QUnit. Or perhaps in a group I could have afforded the time to explore other testing options.</p>
 
 		<p>Due to the difficulties I had with QUnit I made a lot of use of the &#39;console.log&#39; and &#39;alert&#39; functions in JavaScript during development. When developing functions I would place these throughout to keep tabs on what was happening.</p>
 
@@ -181,20 +181,20 @@
 
 		<h3>Git &amp; GitHub</h3>
 
-		<p>I recognised early on that Git is a tool that is commonly used in the real world of software development so I was quick to adopt and learn this tool. Although this project never required a complex tree of different branches to my Git repository I did make use Git and GitHub throughout the project and feel that I will continue to build on this knowledge in the future.</p>
+		<p>I recognised early on that Git is a tool that is commonly used in the real world of software development so I was quick to adopt and learn this tool. Although this project never required a complex tree of different branches in my Git repository I did make use Git and GitHub throughout the project and feel that I will continue to build on this knowledge in the future.</p>
 
 		<h3>Learning Tools</h3>
 
 		<p>I think it is also worth noting that I knew zero JavaScript prior to commencing this project. I took it upon myself to learn as much JavaScript as possible both through the assignments for this project and externally. By far the most useful tool in learning JavaScript has been <a href="https://www.codeschool.com/paths">CodeSchool</a>. I spent countless hours going through multiple courses on the various different topics of JavaScript in a way that makes sense to me.</p> 
 
-		<p>I also found &quot;JavaScript: The Good Bits&quot; by Douglas Crockford to be of great value during this assignment. I didn&#39;t read the book cover-to-cover but rather used it as a reference, reading chapters and sub-chapters on various topics an I encountered them in my work.</p>
+		<p>I also found &quot;JavaScript: The Good Bits&quot; by Douglas Crockford to be of great value during this assignment. I did not read the book cover-to-cover but rather used it as a reference, reading chapters and sub-chapters on various topics as I encountered them in my work.</p>
 
 	</section>
 
 	<section id="browsers">
 		<h2>Compatible Browsers</h2>
 		
-		<p>The emulator and app were tested on multiple browsers on two separate computers one computer was an Apple Mac running OS X 10.10.4 the other was a Windows PC running Windows 10. No issues were encountered in any browser.</p>
+		<p>The emulator and app were tested on multiple browsers on two separate computers. One computer was an Apple Mac running OS X 10.10.4 the other was a Windows PC running Windows 10. No issues were encountered in any of the following browsers.</p>
 		<ul>
 	
 			<li>
@@ -235,7 +235,7 @@
 
 		<p>I was originally in a group of four but left the group prior to the submission of Assignment 1 due to communication issues. As such I have no group dynamics to reflect upon. Instead I have decided to reflect on the decision I made and the consequences it had on my work.</p>
 
-		<p>Working solo on this assignment had both advantages and difficulties. I would have preferred to have progressed through this project in a group. I enjoy working in groups and I tend to learn a lot from other people either through asking them questions or simply reading through their code and thinking about how their processes and logic differs from my own. However I still feel I made the right choice when leaving my group and I have no regrets. Working on a project with other people (be it a group of students at University or a team at the workplace) where no-one wants to help others or communicate despite repeated requests is not healthy and is very likely to be at the detriment of the project.</p>
+		<p>Working solo on this assignment had both advantages and difficulties. I would have preferred to have progressed through this project in a group. I enjoy working in groups and I tend to learn a lot from other people either through asking them questions or simply reading through their code and thinking about how their processes and logic differs from my own. However I still feel I made the right choice when leaving my group. Working on a project with other people (be it a group of students at University or a team at the workplace) where no-one wants to help others or communicate despite repeated requests is not healthy and is very likely to be at the detriment of the project.</p>
 
 		<h3>Advantages of working solo:</h3>
 
@@ -243,11 +243,11 @@
 
 		<p>Working solo also affords one to have a much looser schedule and deadlines, I don’t need to desperately finish some features so other group members can start using them to write their own code. </p>
 
-		<p>Lastly working solo allows much tighter controls on consistency. Consistency in style, design and quality. I don’t need to pick up the pieces of someone not pulling their weight and there is no need to try and mash together two quality works that look totally different.</p>
+		<p>Lastly working solo allows much tighter controls on consistency. Consistency in style, design and quality. I don’t need to pick up the pieces of someone not pulling their weight and there is no need to try and mash together two quality works that look completely different.</p>
 
 		<h3>Disadvantages of working solo:</h3>
 
-		<p>The most immediate disadvantage of leaving my group is that the instant I left my group my workload for this project increased fourfold! This massive increase in workload has taken its toll on the quality of the work I like to produce and the main area this can be seen is my unit testing. As discussed in the tools section I testing is a topic that I am genuinely interested in but I struggled with using QUnit for this project. Given more time I may have either ironed out these issues to write deeper and more meaningful tests or I may have even switched to a different testing suite. Given teammates to work with I may have been able to sit down with someone one afternoon and discuss my issues with QUnit to get better insight on what I was doing wrong.</p>
+		<p>The most immediate disadvantage of leaving my group is that the instant I left my workload for this project increased fourfold! This massive increase in workload has taken its toll on the quality of the work I like to produce and the main area this can be seen is my unit testing. As discussed in the tools section testing is a topic that I am genuinely interested in but I struggled with using QUnit for this project. Given more time I may have either ironed out these issues to write deeper and more meaningful tests or I may have even switched to a different testing suite. Given teammates to work with I may have been able to sit down with someone one afternoon and discuss my issues with QUnit to get better insight on what I was doing wrong.</p>
 
 		<p>Working solo also brings the disadvantage of not being able to discuss and flesh out ideas with other group members. The way my emulator delivers instructions to the app through the instruction queue works fine but is something I spent a lot of time changing and re-visiting. I believe this part of my emulator could be much improved by simply sitting down with someone else and discussing possible alternative approaches.</p>
 

@@ -55,7 +55,7 @@
 
 		<h3>Emulator - App Interface</h3>
 
-		<p>Once the emulator has been initialised a special instruction queue is created called &#39;instructionQueue&#39; through which all communication to any apps is delivered. An app must poll this queue for incoming instructions. An individual instruction is an array of values. The number of different instructions and their values can be customised to reflect the number of buttons active for the emulator and the type of information associated with each action.</p>
+		<p>Once the emulator has been initialised a special instruction queue is created called &#39;instructionQueue&#39; through which all communication to any apps is delivered. An app must poll this queue for incoming instructions. An individual instruction is an array of values. The number of different types of instructions and their values can be customised to reflect the number of buttons active for the emulator and the type of information associated with each action.</p>
 
 		<p>Apps must decode instructions from the queue and decide what to do with the given values.</p>
 
@@ -63,9 +63,9 @@
 
 		<h3>Buttons</h3>
 
-		<p>There are nine buttons available to the emulator in total. Only six buttons are currently working but extra buttons can be created by adding an ID tag and appropriate button text in the HTML document and adding the &#39;on click&#39; pattern to the emulator.js file described in the code documentation.</p>
+		<p>There are nine buttons available to the emulator in total. Only six buttons are currently working but extra buttons can be created by adding an ID tag and appropriate button text in the HTML document then adding the &#39;on click&#39; pattern to the emulator.js file described in the code documentation.</p>
 
-		<p>&quot;Activate App&quot; is a special button that activates the app by making a single call to &#39;main&#39; this is the only time communication is made with the app outside of the instruction queue. For any app to work it must contain a function named &#39;main&#39; that serves as an entry point to that application.</p>
+		<p>&quot;Activate App&quot; is a special button that activates the app by making a single call to &#39;main&#39;. This is the only time communication is made with the app outside of the instruction queue. For any app to work it must contain a function named &#39;main&#39; that serves as an entry point to that application.</p>
 
 		<h3>Screen Taps</h3>
 
