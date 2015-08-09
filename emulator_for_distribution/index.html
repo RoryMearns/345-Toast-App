@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<!-- COSC 345 SmartWatch Emulator HTML file -->
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Watch emulator</title>
+	<link rel="stylesheet" type="text/css" href="../style.css"/>
+</head>
+<body>
+
+	<header>
+		<h1>Smartwatch Emulator</h1>
+	</header>
+
+	<section id="prototype">
+		<h2>Emulator</h2>
+		
+		
+		<div id="proto">
+			<canvas id="proto_canvas" width="340" height="340"></canvas>
+
+			<div>
+				<div class="controls">
+					<div class="button active" id="appOn"><p>Activate App</p></div>
+					<div class="button inactive"></div>
+					<div class="button inactive" id="ffwd"><p>Advance 1-Day</p></div>
+				</div>
+				<div class="controls">
+					<div class="button inactive" id="left"><p>Swipe Left &#47; Back</p></div>
+					<div class="button inactive"></div>
+					<div class="button inactive" id="sleep"><p>Sleep</p></div>
+				</div>
+				<div class="controls">
+					<div class="button inactive" id="reset"><p>Reset</p></div>
+					<div class="button inactive"></div>
+					<div class="button inactive" id="wake"><p>Wake</p></div>
+				</div>
+			</div>
+
+		</div>
+		
+		<p>Audio: <span id="audio"></span></p>
+		<p>Click Coordinates: X=<span id="x-coord"></span>, Y=<span id="y-coord"></span></p>
+	</section>
+
+	<footer>
+		
+	</footer>
+		
+	<script src="watch_emulator/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="watch_emulator/emulator.js" type="text/javascript"></script>
+
+</body>
+</html>

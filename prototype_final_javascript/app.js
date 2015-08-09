@@ -21,7 +21,7 @@ var user = {
 	riderSkill: "experienced",
 	riderLocal: "St Clair",
 	riderPreferenceUpper: 7.0,
-	riderPreferenceLower: 4.5
+	riderPreferenceLower: 5.2
 }
 
 /* ------ Weather Data ------ */
