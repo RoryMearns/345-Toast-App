@@ -1,4 +1,4 @@
-/* Emulator for 345 Assignment: Rory Mearns (ID.3928873) */
+/* Emulator for 345 Assignment */
 
 /* Setting up of the emulator environment and variables */
 var instructionQueue; 		// Queue of incoming instructions for the app. Poll this queue for new events.
