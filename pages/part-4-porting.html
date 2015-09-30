@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<!-- COSC 345: Assignment 3: HTML and content written by Rory Mearns (ID.3928873)-->
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Part 3: Final System</title>
+	<link rel="stylesheet" type="text/css" href="../style.css"/>
+</head>
+<body>
+
+	<header>
+		<h1>Assignment 3: Final System</h1>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Return Home</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<section id="contents">
+		<h2>Contents</h2>
+		<ul>
+			<li><a href="#intro">Introduction</a></li>
+			<li><a href="#planning">Planning</a></li>
+			<li><a href="#difficulties">Difficulties</a></li>
+			<li><a href="#documentation">Critique of Documentation and Examples</a></li>
+			<li><a href="#code">Critique of Structure and Code Quality</a></li>
+
+		</ul>
+	</section>
+
+	<section id="intro">
+		<h2>Introduction</h2>
+
+		<p>The following documents my plan and attempt at porting my smart watch app to an emulator (referred to here as the 'guest emulator') built by another group. Initially I had hoped to spend the better part of 2 days making the port, however after several hours of frustration it appears that it is not possible to run my app on the guest emulator because the guest emulator does not work.</p>
+	</section>
+
+	<section id="planning">
+		<h2>Planning</h2>
+
+		<h3>Becoming acquainted with the guest emulator (2 - 4 hours)</h3>
+		<p>The guest emulator I was given comes with a very large number of superfluous files and folders. It also comes with an instruction manual on how to use the emulator as well as documented code and a working app (maze game). In becoming acquainted with the guest emulator I will first start by reading through the emulator instructions, then reading through the emulator code.</p>
+
+		<p>Once I am familiar with the emulator system I will read through the working app bundled with the emulator to get a good understanding of how a working app utilises the emulator functions.</p>
+
+		<h3>Create a new working directory with only essential files (1 hour)</h3>
+		<p>Because the guest emulator is bundled with the groups final working app for assignment 3, numerous other apps, test files and what appears to be multiple older versions of everything I will need to spend some time removing any non-essential files and folders to build a working directory for porting my app.</p>
+
+		<h3>Port the app (4 - 6 hours)</h3>
+		<p>To port my app to the guest emulator I will start off by creating a small “hello world” app to learn how to boot the emulator and use the basic functions described in the instructions. Once I have this working I will remove the hello world app, import my app files and start linking it to the emulator. Because my app consists of a number of different screens (home, forecast, alert, settings) the best way link the emulator will be to create one screen at at time using the emulator functions.</p>
+
+		<h3>Get the app working in the browser (4 - 6 hours)</h3>
+		<p>Once I am able to build all of the different screens of my app using the guest emulator I will working on finding the best solution to linking the emulators ‘swipe’ control scheme with the ‘tap’ interface of my app. I feel this may take some time as it is a completely different control input scheme. One possible solution may be to interpret different swipes as taps on different areas of the screen. For example “swipe up” in the emulate can possibly be interpreted as “tap the top of the screen” in my app.</p>
+
+		<p>Once I have a working control scheme I will test all of the functions and resolve any new bugs that have arisen, then test again.</p>
+
+	</section>
+
+	<section id="difficulties">
+		<h2>Difficulties</h2>
+
+		<h3>Identifying the Emulator</h3>
+		<p>The first part of the process of porting my app to the guest emulator was determining exactly which of the files I was given were part of the emulator and which were not. The emulator I was given contained four folders in the root directory each of which contained a large number of files and sub-directories. None of which clearly identify themselves as “the emulator” in fact I was able to identify a total of six different files named “emulator.js” many of which were different to the others.</p> 
+
+		<p>Fortunately the files I was given also contained a working copy of the groups Assignment 3 submission. Using this working app I was able to delete files and folders then test whether the app kept working. This was a crude but very quick way of identify many of the unnecessary files and folders.</p>
+
+		<h3>User Input</h3>
+		<p>The first issue I encountered with the porting of my app to the guest emulator is the lack of input variety, more specifically “click events are not currently supported by the emulator”. The guest emulator only responds to the inputs “LEFT_KEY, RIGHT_KEY, DOWN_KEY, UP_KEY, and SPACEBAR” which the manual states is “a stand in for swipe gestures”. My app was built around the ability to tap on different areas on the screen. Upon reading the guest emulators instruction manual it was evident that one of the biggest hurdles was going to be adapting to this vastly different user interaction scheme.</p>
+
+		<h3>Getting the Guest Emulator to Respond </h3>
+		<p>Using the other groups emulator and game files I tried to create a simple “hello world” app to test the basic functions of the emulator and see how it responds. I took two approaches in attempting to get the emulator to work:</p>
+
+		<p>Approach 1 involved strictly following the instructions provided provided with the emulator files. The instructions state to start the emulator call “initialize()” then call “start()” but this wouldn’t work for me. Instead of having this hello world app as an isolated JavaScript file I also tried and coax the emulator to life through function calls to the emulator from the console. Using both of these methods the emulator failed to respond and the only feedback I was given was an error indicating the lack of a canvas element. I added a canvas element to the HTML document but this didn’t help.</p>
+
+		<p>Approach 2 involved a methodical dissection of the working app (maze game) supplied with the emulator to understand how a working app interacts with the emulator and this is where an interesting discovery was made: the emulator doesn’t work! Yes the emulator is able to deliver key presses from the browser to the app but that is all it does. It claims to be able to draw to an HTML canvas and even has functions for doing so but the links to the canvas appear to be broken in the emulator.</p> 
+
+		<p>So how does the working app supplied with the emulator work? On close inspection the working app creates a canvas element and manipulates the canvas entirely through the Phaser.js game engine / framework. This is illustrated by the fact that of the nine emulator functions listed in the emulator instructions the authors own working app only call on two of them (‘initialize’ and ‘resetKeys’) both of which are reserved for input key mapping.</p>
+
+		<p>This discovery marked the end of not only hours of frustration but also the end of the porting process. What can to do to get my app working on their emulator? Edit their emulator? This feels like a violation of the exercise. Bypass the emulator and create the canvas from the app? Then what is the point in having the emulator.</p>
+
+		<h3>Writing Text to the Canvas</h3>
+		<p>It also worth noting that even though I didn’t get my app working on the guest emulator I anticipated having trouble writing text to the screen of the smart watch as the guest emulator provides no functions to write text to the HTML canvas. I would need to have pre-written all of my text and saved it as photos. However even this would have proven troublesome as my app generates new text on the fly from updated weather data and writes this to the screen.</p>
+	</section>
+
+	<section id="documentation">
+		<h2>Critique of Documentation and Examples</h2>
+
+		<h3>Instructions</h3>
+		<p>Although the guest emulator was inherently broken the supplied instructions were good. The instructions were well written, clearly structured and concise. In some cases it wasn’t clear what type the parameters should be (string, number, special object) but this was able to be determined by reading through the function descriptions or function code.</p> 
+
+		<h3>Examples</h3>
+		<p>The example app supplied with the app, although entertaining to play, barely made use of any of the emulator functions so was entirely useless in aiding in the porting of my app. No example usage of functions were supplied in the instructions or function headers.</p>
+
+		<h3>System Requirements</h3>
+		<p>Throughout the instruction manual and code documentation there are repeated notes about the need to install a ‘server’ to run the emulator (specifically: node.js and Express.js): “The emulator requires a web server to run JavaScript” but a web server isn’t needed to run JavaScript and it is a little unclear why this is needed at all and in fact their own app works fine without a server running. I found this quite perplexing. In their defence however it is entirely possible that the app (or the phaser.js framework) requires some feature offered by these that I am unaware of. Or perhaps I have overlooked some important detail.</p>
+	</section>
+
+	<section id="code">
+		<h2>Critique of Structure and Code Quality</h2>
+
+		<p>Overall the code structure of the guest emulator is quite good. The emulator file contains a short description at the top detailing what it does, which version it is and what is required to use it. Functions have function headers that gave a short description of the what the function does but they lack input parameters and return values (i.e. ‘@param’, ‘@return’).</p>
+
+		<p>Functions, variables and parameters are well named helping to describe what the function does or what the variable is. Global variable declarations are mixed throughout the file between function declarations which is a little less conventional but not problematic in a project this size.</p>
+	</section>
+
+	<footer>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Return Home</a></li>
+				<li><a href="part-1-planning.html">Part 1: Planning</a></li>
+				<li><a href="part-2-draft-system.html">Part 2: Draft System</a></li>
+				<li class="deadlink">Part 4: Porting</li>
+			</ul>
+		</nav>
+		<p>Written by: Rory Mearns (ID.3928873)</p>
+	</footer>
+
+	<script src="../prototype_final_javascript/raw_weather.js" type="text/javascript"></script>
+	<script src="../prototype_final_javascript/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="../prototype_final_javascript/raw_weather.js" type="text/javascript"></script>
+	<script src="../prototype_final_javascript/app.js" type="text/javascript"></script>
+	<script src="../prototype_final_javascript/emulator.js" type="text/javascript"></script>
+
+</body>
+</html>
