@@ -1,4 +1,4 @@
-# COSC345 Assignment: Smartwatch and Emulator
+# University Assignment: Smartwatch and Emulator
 
 This is an ongoing assignment with 4 major submissions over the course of this year.
 
